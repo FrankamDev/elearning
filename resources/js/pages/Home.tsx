@@ -49,13 +49,16 @@ export default function Home() {
     </nav>
 
     <div>
-     <h1 className="text-center font-serif md:text-4xl my-8 font-bold text-white">
+     <h1 className="text-center  md:text-4xl my-8 font-bold text-white">
       Partez de <br /> <span className="text-yellow-300">Je veux apprendre </span> à <span className="text-green-300">j'ai réalisé ça <i className="text-white">!!</i> </span>
      </h1>
      <p className="text-center text-lg">Arretez de consommer. Commencez à creer. creer des projets reels qui augmenterons votre niveau.</p>
     </div>
     <FeaturedCourses />
+
+
     <p className="text-center text-xl">Ils ont commencé comme <span className="text-2xl text-cyan-200 font-serif font-bold">Toi</span>. actuellement ils comme ca <span className="font-serif text-2xl">👇👇</span></p>
+
     <Compagnies />
     <div className="flex flex-col items-center justify-center">
 
@@ -70,7 +73,10 @@ export default function Home() {
     </div>
     <Quotes />
     <Group />
-    <MeetMe/>
+    <MeetMe />
+
+
+
    </div>
    <Footer />
   </>

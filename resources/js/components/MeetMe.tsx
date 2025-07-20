@@ -36,16 +36,16 @@ const MeetMe = () => {
      className="bg-[#1a1a2e] rounded-xl p-6 text-center shadow-lg"
     >
      <div className="mb-4">
-      <img src="/logo.png" alt="JS Mastery" className="mx-auto w-16" />
+      <img src="/logo.png" alt="img" className="mx-auto w-16" />
      </div>
-     <h3 className="text-xl font-semibold mb-2">1M de développeurs aidés</h3>
+     <h3 className="text-xl font-semibold mb-2">10 développeurs aidés</h3>
      <p className="text-sm mb-4">
       Nos cours ont aidé plus d’un million de développeurs à décrocher des emplois dans les meilleures entreprises.
      </p>
      <div className="flex justify-center gap-4 text-sm text-gray-400">
-      <span>📍 1.05M</span>
-      <span>❤️ 250K</span>
-      <span>▶️ 250K</span>
+      <span>📍 50</span>
+      <span>❤️ 25</span>
+      <span>▶️ 100</span>
      </div>
     </motion.div>
 
