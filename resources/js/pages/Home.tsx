@@ -6,6 +6,7 @@ import Compagnies from "@/components/Compagnies";
 import CardBuild from "@/components/CardBuild";
 import Quotes from "@/components/Quotes";
 import Group from "@/components/Group";
+import MeetMe from "@/components/MeetMe";
 
 
 export default function Home() {
@@ -68,7 +69,8 @@ export default function Home() {
      <Link href="/" className="underline font-bold text-[1.1rem] mt-4">Ne sais pas où  commencer? cree ton chemin d'apprentissage✔</Link>
     </div>
     <Quotes />
-    <Group/>
+    <Group />
+    <MeetMe/>
    </div>
    <Footer />
   </>
