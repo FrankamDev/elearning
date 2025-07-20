@@ -37,12 +37,11 @@ const CompanyLogosScroller = () => {
  const logos = [...companies, ...companies];
 
  return (
-  <div
+  <div className='my-2'
    style={{
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     width: '100%',
-    background: '#fff',
     padding: '20px 0',
    }}
   >

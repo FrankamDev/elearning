@@ -1,4 +1,4 @@
-// components/TestimonialCards.tsx
+
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import clsx from "clsx";
@@ -7,14 +7,14 @@ const testimonials = [
  {
   name: "Frank Kamgang",
   role: "Développeuse Frontend",
-  image: "https://i.pravatar.cc/150?img=32",
+  image: "",
   message:
    "EscaLearn m’a permis d’évoluer rapidement avec des projets concrets et une pédagogie claire.",
  },
  {
   name: "Soh Loic",
-  role: "Ingénieur Backend",
-  image: "https://i.pravatar.cc/150?img=45",
+  role: "Developpeur Backend",
+  image: "",
   message:
    "Grâce aux parcours structurés, j’ai décroché mon premier job en développement web.",
  },
@@ -24,7 +24,7 @@ export default function TestimonialCards() {
  const [isHovering, setIsHovering] = useState(false);
 
  return (
-  <section className="py-20 bg-[#0f172a] text-white">
+  <section className="py-20 bg-[#020012] text-white">
    <div className="max-w-7xl mx-auto px-6">
     <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
      Ils nous font confiance
