@@ -20,9 +20,16 @@ export default function Login({ status, canResetPassword }) {
 
  return (
   <div className="bg-[#020013] text-white flex flex-col items-center justify-center h-screen px-6">
-   <h2 className="text-2xl font-bold text-center mb-10 max-w-lg">
+   <div className="relative w-24 h-24">
+    <div className="absolute inset-0 animate-zigzag border-4 border-cyan-400 rounded-full z-0" />
+    <div className="relative z-10 bg-cyan-400 rounded-full p-2">
+     <img src="./loogo.svg" alt="logo" className="w-20 h-20 mx-auto rounded-full" />
+    </div>
+   </div>
+
+   <h2 className="text-2xl font-bold text-center mb-4 max-w-lg">
     Generons votre chemin d'apprentissage <br />
-    <span className="block mt-2 text-[#3AABFF]">personnalisé</span>
+    <span className="block  text-[#3AABFF]">Maintenant</span>
    </h2>
 
    <form onSubmit={submit} className="w-full max-w-md space-y-6">
