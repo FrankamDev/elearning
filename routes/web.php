@@ -5,6 +5,12 @@ use Inertia\Inertia;
 Route::get('/connexion', function () {
     return Inertia::render('Connexion');
 });
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');
+Route::get('/courses', function () {
+    return Inertia::render('Courses');
+})->name('courses');
 Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');

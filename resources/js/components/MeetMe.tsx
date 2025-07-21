@@ -98,7 +98,7 @@ const MeetMe = () => {
      variants={fadeIn}
      className="rounded-xl overflow-hidden shadow-lg"
     >
-     <img src='' alt="Frank" className="w-full h-full object-cover" />
+     <img src='./img.jpg' alt="Frank" className="w-full h-full object-cover" />
     </motion.div>
    </div>
   </section>

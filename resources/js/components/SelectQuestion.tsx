@@ -117,7 +117,7 @@ export default function FAQDropdown() {
     <div key={index}>
      <div
       onClick={() => toggleFAQ(index)}
-      className="flex items-center justify-between bg-[#0E1126] text-white px-6 py-4 rounded-md cursor-pointer border border-white"
+      className="flex items-center justify-between  bg-[#11142B] my-4  text-white px-6 py-6 rounded-md cursor-pointer"
      >
       <span className="font-semibold">{faq.question}</span>
       <ChevronDown

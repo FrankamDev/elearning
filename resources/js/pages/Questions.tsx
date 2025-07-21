@@ -1,14 +1,13 @@
-import SelectQuestion from "@/components/SelectQuestion";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+import SelectQuestion from '@/components/SelectQuestion';
+
+
 
 const Questions = () => {
- const [open, setOpen] = useState(false)
  return (
-  <div className="grid my-4 grid-cols-[40%_60%] gap-4 p-6 bg-gray-900 rounded-lg">
+  <div className="grid  my-4 grid-cols-[40%_60%] gap-4 p-6 bg-[#020013] rounded-lg">
    <div className="block">
-    <p>Trouvez des reponses aux questions courantes <span className="text-cyan-400">👇</span></p>
-    <h2>Questions <br />
+    <p className='bg-[#22274A] w-[60%] text-[14px] text-white text-center rounded-md font-[Segeo_UI_Symbol]'>Trouvez des reponses aux questions courantes <span className="text-cyan-400 transform rotate-[20deg]">👇👇</span></p>
+    <h2 className="text-white text-6xl my-4 font-bold">Questions <br />
      Frequemment <br />
      Demandéee
     </h2>

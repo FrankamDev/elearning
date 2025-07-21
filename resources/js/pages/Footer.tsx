@@ -9,7 +9,7 @@ export default function Footer() {
     {/* Brand / Logo */}
     <div className="text-center md:text-left">
      <Link href="/" className="text-2xl font-bold text-white">
-      <span className="text-blue-300">E</span>sca<span className="text-blue-300">L</span>earn
+     <img src="./vraiLogo.svg" alt="logo" className="w-20 h-20 mx-auto"/>
      </Link>
      <p className="mt-4 text-sm leading-relaxed text-gray-400">
       Plateforme de formation moderne pour apprendre le développement web
