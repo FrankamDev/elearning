@@ -7,6 +7,7 @@ import CardBuild from "@/components/CardBuild";
 import Quotes from "@/components/Quotes";
 import Group from "@/components/Group";
 import MeetMe from "@/components/MeetMe";
+import Questions from "./Questions";
 
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
     <nav className="w-full flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
 
      <Link href="/" className="text-2xl font-bold text-white hover:text-indigo-400 transition">
-      <span className="text-blue-300">E</span>sca<span className="text-blue-300">L</span>earn
+      <img src="./vraiLogo.svg" alt="logo" className="w-16 h-16" />
      </Link>
 
      {/* Menu */}
@@ -74,9 +75,7 @@ export default function Home() {
     <Quotes />
     <Group />
     <MeetMe />
-
-
-
+    <Questions />
    </div>
    <Footer />
   </>
