@@ -8,9 +8,9 @@ const Courses = () => {
  return (
   <div className="bg-[#020012] flex flex-col items-center justify-center">
    <NavBar />
-   <div className="text-white min-h-screen flex items-center justify-center flex-col px-6 text-center">
+   <div className="text-white -mt-22 min-h-screen flex items-center justify-center flex-col px-6 text-center">
     <motion.h1
-     className="text-4xl md:text-6xl font-bold mb-4"
+     className="text-8xl md:text-6xl font-bold mb-4"
      initial={{ opacity: 0, y: 20 }}
      animate={{ opacity: 1, y: 0 }}
      transition={{ duration: 0.8 }}

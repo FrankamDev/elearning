@@ -3,7 +3,9 @@ import { Link } from "@inertiajs/react";
 
 const NavBar = () => {
  return (
-  <nav className="w-full flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
+
+
+  <nav className="w-full flex shadow-lg  justify-between items-center px-8 py-6 max-w-7xl mx-auto">
 
    <Link href="/" className="text-2xl font-bold text-white">
     <img src="./vraiLogo.svg" alt="logo" className="w-20 h-20 mx-auto" />
@@ -38,5 +40,6 @@ const NavBar = () => {
    </ul>
   </nav>
  )
+
 }
 export default NavBar;
