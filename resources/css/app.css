@@ -211,3 +211,22 @@
     @apply bg-background text-foreground;
     }
 }
+
+@keyframes zigzag {
+  0%, 100% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+  }
+  25% {
+    border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
+  }
+  75% {
+    border-radius: 40% 50% 60% 50% / 50% 60% 40% 60%;
+  }
+}
+
+.animate-zigzag {
+  animation: zigzag s infinite ease-in-out;
+}

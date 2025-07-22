@@ -14,6 +14,7 @@ Route::get('/courses', function () {
 Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
+
 Route::get('/inscription', function () {
     return Inertia::render('Inscription');
 })->name('Inscription');

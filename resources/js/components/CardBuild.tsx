@@ -43,7 +43,7 @@ const cours = [
 const CartesCours = () => {
  return (
   <section className="py-12 px-4">
-   <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
+   <h2 className="text-3xl font-bold text-center mb-10 text-gray-300 font-[arial]">
     Arrête de regarder. Commence à construire.
    </h2>
 
@@ -62,7 +62,7 @@ const CartesCours = () => {
         className="w-10 h-10 absolute top-5 left-5"
        />
 
-       {/* Flèche en haut à droite */}
+       
        <div className="absolute top-5 right-5 text-gray-400 group-hover:text-pink-500 transition">
         <FiArrowUpRight size={20} />
        </div>
