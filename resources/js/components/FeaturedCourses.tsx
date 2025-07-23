@@ -14,7 +14,7 @@ const testimonials = [
  {
   name: "Soh Loic",
   role: "Developpeur Backend",
-  image: "",
+  image: "./logo.svg",
   message:
    "Grâce aux parcours structurés, j’ai décroché mon premier job en développement web.",
  },
@@ -24,7 +24,7 @@ export default function TestimonialCards() {
  const [isHovering, setIsHovering] = useState(false);
 
  return (
-  <section className="py-20 bg-[#020012] text-white">
+  <section className="py-20 bg-[#020012] bg-[url('./frank.png')] text-white">
    <div className="max-w-7xl mx-auto px-6">
     <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
      Ils nous font confiance
@@ -39,13 +39,13 @@ export default function TestimonialCards() {
       <div
        key={index}
        className={clsx(
-        "bg-[#161933] rounded-xl shadow-lg w-full max-w-sm p-6 transform transition-all duration-500",
+        "bg-[#161933] h-[330px] rounded-xl shadow-lg w-full max-w-sm p-6 transform transition-all duration-500",
         "hover:scale-105",
         isHovering && (index === 0 ? "translate-x-24" : "-translate-x-32")
        )}
       >
 
-       <div className="flex items-center gap-4 mb-4">
+       <div className="flex items-center gap-4 mb-4 ">
         <img
          src={t.image}
          alt={t.name}

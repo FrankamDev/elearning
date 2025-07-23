@@ -11,6 +11,7 @@ import Questions from "./Questions";
 // import Testimonial from '@/components/Testimonial';
 import CardTestimonials from '@/pages/CardTestimonials';
 import NavBar from "@/components/NavBar";
+import SubscriptionCard from "@/components/SubscriptionCard";
 // import Contact from "./Contact";
 
 
@@ -47,6 +48,7 @@ export default function Home() {
     <CardTestimonials />
     <Quotes />
     <Group />
+    <SubscriptionCard />
     <MeetMe />
     <Questions />
     {/* <Contact /> */}

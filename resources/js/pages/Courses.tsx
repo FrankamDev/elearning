@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/react";
 import { motion } from 'framer-motion';
 import { FaHtml5, FaCss3Alt, FaReact, FaPhp, FaLaravel } from 'react-icons/fa';
 import { SiTailwindcss, SiJavascript } from 'react-icons/si';
+import CardCourses from "./courses/CardCourses";
 const Courses = () => {
  return (
   <div className="bg-[#020012] flex flex-col items-center justify-center">
@@ -51,6 +52,7 @@ const Courses = () => {
    <div className="flex justify-center items-center">
     <Link href="/contact" className="bg-[#3EAEFF] p-4 px-44 text-center font-bold rounded-sm">Besoin d'une assistance personnalisée? Contactez nous directement👌</Link>
    </div>
+   <CardCourses/>
   </div>
  )
 }
