@@ -16,7 +16,7 @@ const fadeIn = {
 
 const MeetMe = () => {
  return (
-  <section className="bg-[#0d0c1d] text-white py-16 px-6 md:px-20">
+  <section className="bg-[#020014] text-white px-6 md:px-20">
    <motion.h2
     initial="hidden"
     animate="visible"
