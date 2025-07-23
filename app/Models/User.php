@@ -12,6 +12,12 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public function getProfileUrlAttribute()
+    {
+        return $this->photo
+        ? asset('storage/images/' . $this->photo)
+        : asset('storage/images/default.jpg');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'photo',
         'password',
     ];
 

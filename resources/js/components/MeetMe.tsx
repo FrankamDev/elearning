@@ -36,11 +36,11 @@ const MeetMe = () => {
      className="bg-[#1a1a2e] rounded-xl p-6 text-center shadow-lg"
     >
      <div className="mb-4">
-      <img src="/logo.png" alt="img" className="mx-auto w-16" />
+      <img src="/loogo.svg" alt="img" className="mx-auto w-16" />
      </div>
-     <h3 className="text-xl font-semibold mb-2">10 développeurs aidés</h3>
+     <h3 className="text-xl font-semibold mb-2">50 développeurs aidés</h3>
      <p className="text-sm mb-4">
-      Nos cours ont aidé plus d’un million de développeurs à décrocher des emplois dans les meilleures entreprises.
+      Nos cours ont aidé plus de <span className="text-yellow-400">50 développeurs</span> à décrocher des emplois dans les meilleures entreprises.
      </p>
      <div className="flex justify-center gap-4 text-sm text-gray-400">
       <span>📍 50</span>
@@ -72,7 +72,7 @@ const MeetMe = () => {
 
      className="rounded-xl overflow-hidden shadow-lg"
     >
-     <img src='' alt="Frank image" className="w-full h-full object-cover" />
+     <img src='./loogo.svg' alt="Frank image" className="w-full h-full object-cover" />
     </motion.div>
 
 

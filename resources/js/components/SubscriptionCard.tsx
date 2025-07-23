@@ -9,6 +9,7 @@ import {
 } from "react-icons/gi";
 import { Switch } from "@headlessui/react";
 import { FaCheckCircle } from "react-icons/fa";
+import { Link } from "@inertiajs/react";
 
 const icones = [GiBrain, GiBookshelf, GiLaptop, GiRocket, GiWorld];
 
@@ -100,10 +101,12 @@ export default function TarifAvecCartesFr() {
       </li>
      ))}
     </ul>
+    <div className="mt-8">
 
-    <button className="mt-10 w-full bg-[#3FAEFF] hover:bg-blue-700 transition-all duration-300 text-black py-3 rounded-xl font-semibold text-lg">
+     <Link href="/" className="w-[3rem] bg-[#47B3FF] text-black font-[arial] hover:bg-blue-700 transition-all duration-300 text-black py-3 px-15 rounded-xl text-lg">
      S’abonner à EscaLearn
-    </button>
+     </Link>
+    </div>
    </div>
   </div>
  );

@@ -24,7 +24,7 @@ export default function TestimonialCards() {
  const [isHovering, setIsHovering] = useState(false);
 
  return (
-  <section className="py-20 bg-[#020012] bg-[url('./frank.png')] text-white">
+  <section className="py-20 bg-[url('/vv.png')] bg-cover bg-center h-screen text-white">
    <div className="max-w-7xl mx-auto px-6">
     <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center">
      Ils nous font confiance

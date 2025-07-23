@@ -1,7 +1,8 @@
-import { Link } from "@inertiajs/react";
+import { Link } from '@inertiajs/react';
 
 
 const NavBar = () => {
+
  return (
 
 
@@ -36,6 +37,7 @@ const NavBar = () => {
      >
       Connexion
      </Link>
+
     </li>
    </ul>
   </nav>
