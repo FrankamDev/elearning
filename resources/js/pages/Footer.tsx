@@ -7,8 +7,6 @@ export default function Footer() {
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
 
                 <div className="text-sm text-gray-400">© Copyright {new Date().getFullYear()} EsCaLearn Pro</div>
-
-
                 <div className="flex items-center gap-5 text-xl text-gray-300">
                     <Link href="#" className="transition hover:text-white">
                         <FaInstagram />
