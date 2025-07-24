@@ -41,7 +41,7 @@ export default function TestimonialGrid() {
     backgroundPosition: 'center',
    }}
   >
-   <div className="absolute inset-0 bg-black/60"></div>
+   <div className="absolute inset-0 bg-[#030215]"></div>
    <div className="relative mx-auto grid h-full max-w-7xl grid-cols-2 grid-rows-2 gap-10 px-6">
     {testimonials.map((t, idx) => (
      <div

@@ -112,26 +112,23 @@ export default function FAQDropdown() {
  };
 
  return (
-  <div className="w-full max-w-4xl mx-auto mt-10 space-y-2">
-   {faqs.map((faq, index) => (
-    <div key={index}>
-     <div
-      onClick={() => toggleFAQ(index)}
-      className="flex items-center justify-between  bg-[#11142B] my-4  text-white px-6 py-6 rounded-md cursor-pointer"
-     >
-      <span className="font-semibold">{faq.question}</span>
-      <ChevronDown
-       className={`transition-transform duration-300 ${openIndex === index ? "rotate-180" : "rotate-0"
-        }`}
-      />
+     <div className="mx-auto mt-10 w-full max-w-4xl space-y-2">
+         {faqs.map((faq, index) => (
+             <div key={index}>
+                 <div
+                     onClick={() => toggleFAQ(index)}
+                     className="my-4 flex cursor-pointer items-center justify-between rounded-md bg-[#11142B] px-6 py-6 text-white"
+                 >
+                     <span className="font-semibold">{faq.question}</span>
+                     <ChevronDown className={`transition-transform duration-300 ${openIndex === index ? 'rotate-180' : 'rotate-0'}`} />
+                 </div>
+                 {openIndex === index && (
+                     <div className="rounded-b-md border border-t-0 border-white bg-[#11142B] px-6 text-black">
+                         <p className="-mt-3 text-white">{faq.answer}</p>
+                     </div>
+                 )}
+             </div>
+         ))}
      </div>
-     {openIndex === index && (
-      <div className="bg-white text-black px-6 py-4 border border-t-0 border-white rounded-b-md">
-       <p>{faq.answer}</p>
-      </div>
-     )}
-    </div>
-   ))}
-  </div>
  );
 }

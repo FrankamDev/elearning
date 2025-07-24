@@ -17,7 +17,7 @@ import SubscriptionCard from '@/components/SubscriptionCard';
 export default function Home() {
     return (
         <>
-            <div className="min-h-screen bg-[#020012] text-white">
+            <div className="min-h-screen bg-[#030215] text-white">
                 <NavBar />
                 <div className="mx-auto my-12 max-w-3xl px-4 text-center">
                     <h1 className="text-3xl leading-tight font-extrabold text-white md:text-5xl">
