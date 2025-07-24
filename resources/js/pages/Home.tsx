@@ -12,7 +12,7 @@ import Questions from "./Questions";
 import CardTestimonials from '@/pages/CardTestimonials';
 import NavBar from '@/components/NavBar';
 import SubscriptionCard from '@/components/SubscriptionCard';
-// import Contact from "./Contact";
+import AnotherQuestion from '@/components/AnotherQuestion';
 
 export default function Home() {
     return (
@@ -61,6 +61,7 @@ export default function Home() {
                 <SubscriptionCard />
                 <MeetMe />
                 <Questions />
+                <AnotherQuestion />
                 {/* <Contact /> */}
             </div>
             <Footer />

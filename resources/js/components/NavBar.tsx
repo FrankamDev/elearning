@@ -4,44 +4,33 @@ import { Link } from '@inertiajs/react';
 const NavBar = () => {
 
  return (
+     <>
+         <nav className="flex w-full max-w-7xl mt-4 justify-between px-36">
+             <Link href="/" className="text-2xl font-bold text-white">
+                 <img src="./vraiLogo.svg" alt="logo" className="mx-auto h-10 w-20" />
+             </Link>
 
-
-  <nav className="w-full flex shadow-lg  justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-
-   <Link href="/" className="text-2xl font-bold text-white">
-    <img src="./vraiLogo.svg" alt="logo" className="w-20 h-20 mx-auto" />
-   </Link>
-
-   {/* Menu */}
-   <ul className="flex gap-6 items-center text-sm md:text-base">
-    <li>
-     <Link
-      href="/courses"
-      className="hover:text-indigo-400 transition duration-200"
-     >
-      Tous les cours
-     </Link>
-    </li>
-    <li className="mx-6 font-arial">
-     <Link
-      href="/parcours"
-      className="hover:text-indigo-400 transition duration-200"
-     >
-      Parcours
-     </Link>
-    </li>
-    <li>
-     <Link
-      href="/login"
-      className="bg-[#38AAFF] px-4 py-2 rounded-sm hover:bg-indigo-600 transition"
-     >
-      Connexion
-     </Link>
-
-    </li>
-   </ul>
-  </nav>
- )
+             {/* Menu */}
+             <ul className="flex items-center gap-2 text-sm md:text-base">
+                 <li className="text-[14px]">
+                     <Link href="/courses" className="transition duration-200 hover:text-indigo-400">
+                         Tous les cours
+                     </Link>
+                 </li>
+                 <li className="font-arial mx-6 text-[14px]">
+                     <Link href="/parcours" className="transition duration-200 hover:text-indigo-400">
+                         Parcours
+                     </Link>
+                 </li>
+                 <li>
+                     <Link href="/login" className="rounded-sm bg-[#38AAFF] px-4 py-2 transition hover:bg-indigo-600">
+                         Connexion
+                     </Link>
+                 </li>
+             </ul>
+         </nav>
+     </>
+ );
 
 }
 export default NavBar;
