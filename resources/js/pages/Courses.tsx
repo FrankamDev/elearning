@@ -1,59 +1,80 @@
-import NavBar from "@/components/NavBar";
-import CoursesCards from "@/pages/CoursesCard";
-import { Link } from "@inertiajs/react";
-import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaReact, FaPhp, FaLaravel } from 'react-icons/fa';
-import { SiTailwindcss, SiJavascript } from 'react-icons/si';
-import CardCourses from "./courses/CardCourses";
-const Courses = () => {
- return (
-  <div className="bg-[#020012] flex flex-col items-center justify-center">
-   <NavBar />
-   <div className="text-white -mt-22 min-h-screen flex items-center justify-center flex-col px-6 text-center">
-    <motion.h1
-     className="text-8xl md:text-6xl font-bold mb-4"
-     initial={{ opacity: 0, y: 20 }}
-     animate={{ opacity: 1, y: 0 }}
-     transition={{ duration: 0.8 }}
-    >
-     Des cours qui vous emmènent <span className="text-yellow-400">de</span>{' '}
-     <span className="text-green-400">l'apprentissage</span>{' '}
-     <span className="text-yellow-400">à</span>{' '}
-     <span className="text-green-400">la pratique</span>
+import { FaBrain, FaRoute, FaBriefcase, FaComments } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-    </motion.h1>
-    <motion.p
-     className="text-lg md:text-xl mb-6"
-     initial={{ opacity: 0, y: 20 }}
-     animate={{ opacity: 1, y: 0 }}
-     transition={{ duration: 0.8, delay: 0.2 }}
-    >
-     Apprenez les compétences. Construisez votre portfolio. Obtenez le job.
-    </motion.p>
-    <div className="flex gap-4 text-4xl text-blue-600">
-     <FaHtml5 title="HTML5" className="text-orange-600" />
-     <FaCss3Alt title="CSS3" className="text-blue-500" />
-     <SiTailwindcss title="TailwindCSS" className="text-teal-400" />
-     <SiJavascript title="JavaScript" className="text-yellow-400" />
-     <FaReact title="React" className="text-cyan-400 animate-spin-slow" />
-     <FaLaravel title="Laravel" className="text-red-600" />
-     <FaPhp title="PHP" className="text-indigo-600" />
+const features = [
+  {
+    title: "Comprendre le Pourquoi, pas seulement le Comment",
+    icon: <FaBrain className="text-green-400 text-4xl group-hover:scale-110 transition-transform drop-shadow-glow" />,
+    glow: "shadow-[0_0_20px_#4ade80]",
+  },
+  {
+    title: "Feuille de Route Full Stack dès le Premier Jour",
+    icon: <FaRoute className="text-blue-400 text-4xl group-hover:scale-110 transition-transform drop-shadow-glow" />,
+    glow: "shadow-[0_0_20px_#60a5fa]",
+  },
+  {
+    title: "Retour d'Experts Développeurs",
+    icon: <FaComments className="text-purple-400 text-4xl group-hover:scale-110 transition-transform drop-shadow-glow" />,
+    glow: "shadow-[0_0_20px_#c084fc]",
+  },
+  {
+    title: "Projets Portfolio qui T’embauchent",
+    icon: <FaBriefcase className="text-pink-400 text-4xl group-hover:scale-110 transition-transform drop-shadow-glow" />,
+    glow: "shadow-[0_0_20px_#f472b6]",
+  },
+];
+
+export default function ProCircleCards() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 px-6 py-12 text-white max-w-7xl mx-auto">
+
+      {/* Colonne gauche */}
+      <div className="flex flex-col gap-6">
+        {features.slice(0, 2).map((f, i) => (
+          <div
+            key={i}
+            className={`bg-[#0f172a] rounded-2xl p-6 text-center group transition-transform border border-slate-700 hover:scale-[1.03] cursor-pointer ${f.glow}`}
+          >
+            <div className="mb-4">{f.icon}</div>
+            <h3 className="font-semibold leading-snug text-lg">{f.title}</h3>
+          </div>
+        ))}
+      </div>
+
+      {/* Carte centrale animée */}
+      <motion.div
+        initial={{ rotateY: 180, opacity: 0 }}
+        whileInView={{ rotateY: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] border border-slate-700 rounded-2xl p-10 text-center flex flex-col items-center justify-center shadow-xl relative overflow-hidden animate-pulse-slow"
+      >
+        <motion.img
+          src="/jsmastery-logo.png"
+          alt="Logo"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="w-16 mb-4 drop-shadow-glow"
+        />
+        <h2 className="text-2xl font-bold mb-2">Cercle Pro JSM</h2>
+        <p className="text-sm text-gray-300 max-w-xs">
+          Accès complet à tous les cours, parcours pro, défis pratiques, et tout ce qu’il te faut pour devenir un développeur de haut niveau.
+        </p>
+        <div className="absolute bottom-3 animate-bounce text-blue-500 text-xl">↓</div>
+      </motion.div>
+
+      {/* Colonne droite */}
+      <div className="flex flex-col gap-6">
+        {features.slice(2).map((f, i) => (
+          <div
+            key={i}
+            className={`bg-[#0f172a] rounded-2xl p-6 text-center group transition-transform border border-slate-700 hover:scale-[1.03] cursor-pointer ${f.glow}`}
+          >
+            <div className="mb-4">{f.icon}</div>
+            <h3 className="font-semibold leading-snug text-lg">{f.title}</h3>
+          </div>
+        ))}
+      </div>
     </div>
-    <motion.p
-     className="text-yellow-400 text-sm md:text-base"
-     initial={{ opacity: 0, y: 20 }}
-     animate={{ opacity: 1, y: 0 }}
-     transition={{ duration: 0.8, delay: 0.4 }}
-    >
-     <p className="mt-8">⚠️ Pas besoin de filtrer. Chaque cours vous emmène du débutant au avancé, étape par étape.</p>
-    </motion.p>
-   </div>
-   <CoursesCards />
-   <div className="flex justify-center items-center">
-    <Link href="/contact" className="bg-[#3EAEFF] p-4 px-44 text-center font-bold rounded-sm">Besoin d'une assistance personnalisée? Contactez nous directement👌</Link>
-   </div>
-   <CardCourses/>
-  </div>
- )
+  );
 }
-export default Courses;

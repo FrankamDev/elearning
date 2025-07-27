@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 Route::get('/connexion', function () {
     return Inertia::render('Connexion');
 });
-
+Route::get('/courses', function () {
+    return Inertia::render('courses/Index');
+});
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
-Route::get('/courses', function () {
-    return Inertia::render('Courses');
-})->name('courses');
+
 Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
