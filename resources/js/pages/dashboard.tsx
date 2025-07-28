@@ -5,9 +5,13 @@ import { Head } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+  title: 'Tableau de bord',
         href: '/dashboard',
     },
+ {
+  title: 'Retour à la page d\'accueil',
+  href: '/',
+ },
 ];
 
 export default function Dashboard() {

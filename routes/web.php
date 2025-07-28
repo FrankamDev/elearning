@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\ProfileController;
@@ -18,7 +19,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+Route::post('/ask-ai', [AiController::class, 'ask']);
 Route::get('/inscription', function () {
     return Inertia::render('Inscription');
 })->name('Inscription');

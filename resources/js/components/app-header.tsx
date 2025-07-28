@@ -17,23 +17,23 @@ import AppLogoIcon from './app-logo-icon';
 
 const mainNavItems: NavItem[] = [
  {
-  title: 'Dashboard',
+  title: 'Tableau de bord',
   href: '/dashboard',
   icon: LayoutGrid,
  },
 ];
 
 const rightNavItems: NavItem[] = [
- {
-  title: 'Repository',
-  href: 'https://github.com/laravel/react-starter-kit',
-  icon: Folder,
- },
- {
-  title: 'Documentation',
-  href: 'https://laravel.com/docs/starter-kits#react',
-  icon: BookOpen,
- },
+ // {
+ //  title: 'Repository',
+ //  href: 'https://github.com/laravel/react-starter-kit',
+ //  icon: Folder,
+ // },
+ // {
+ //  title: 'Documentation',
+ //  href: 'https://laravel.com/docs/starter-kits#react',
+ //  icon: BookOpen,
+ // },
 ];
 
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';

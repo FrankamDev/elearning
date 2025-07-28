@@ -44,20 +44,20 @@ export default function Home({ flash }) {
                     </p>
                 </div>
 
-                <FeaturedCourses />
+       <FeaturedCourses />
 
                 <p className="text-center text-xl">
                     Ils ont commencés comme <span className="font-serif text-2xl font-bold text-cyan-200">Toi</span>. actuellement ils travaillent ici{' '}
                     <span className="font-serif text-2xl">👇👇</span>
                 </p>
 
-                <Compagnies />
+       <Compagnies />
                 <div className="flex flex-col items-center justify-center">
                     {/*
      <h2>Arretez de regarder. Commencer à créer/Construire.</h2>
      <p>Créez des projets réels qui augmenteront votre niveau.</p> */}
                 </div>
-                <CardBuild />
+       <CardBuild />
                 <div className="flex flex-col items-center justify-center py-8">
                     <Link href="/courses" className="rounded-sm bg-[#3EAEFF] p-4 px-44 text-center font-bold">
                         Voir Tous Les Cours🖤
