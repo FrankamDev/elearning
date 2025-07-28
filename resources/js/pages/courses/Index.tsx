@@ -7,14 +7,14 @@ import { useInView } from 'react-intersection-observer';
 import CardCourses from './CardCourses';
 import Member from './Member';
 import NavBar from '@/components/NavBar';
-
 const Index = () => {
-    const [isInView, setIsInView] = useState(false);
+
+ const [isInViewx, setIsInView] = useState(false);
     const { data, isLoading } = usePage().props;
     const { ref, inView } = useInView();
 
     useEffect(() => {
-        if (inView) {
+     if (inView) {
             setIsInView(true);
         }
     }, [inView]);
@@ -61,7 +61,7 @@ const Index = () => {
        </div>
        <CardCourses />
        <div className="my-12">
-        <h2 className="text-2xl">Wait... But what if I want to learn EVERYTHING?</h2>
+        <h2 className="text-2xl">Attends... Mais si je veux apprendre TOUTES les technologies?</h2>
         <h2 className="text-center text-2xl">
          Devenir un <span className="text-cyan-600">Membre</span>
         </h2>

@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\ProfileController;
+use App\Models\Connexion;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-Route::get('/connexion', function () {
-    return Inertia::render('Connexion');
-});
+Route::get('/connexion', [ConnexionController::class, 'index'])->name('connexion');
+
 Route::get('/courses', function () {
     return Inertia::render('courses/Index');
 });
