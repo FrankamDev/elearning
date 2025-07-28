@@ -8,17 +8,29 @@ import Quotes from "@/components/Quotes";
 import Group from "@/components/Group";
 import MeetMe from "@/components/MeetMe";
 import Questions from "./Questions";
-
+import { ToastContainer, toast } from 'react-toastify';
 import CardTestimonials from '@/pages/CardTestimonials';
 import NavBar from '@/components/NavBar';
 import SubscriptionCard from '@/components/SubscriptionCard';
 import AnotherQuestion from '@/components/AnotherQuestion';
+import { useEffect } from "react";
 
-export default function Home() {
+export default function Home({ flash }) {
+ useEffect(() => {
+  if (flash.message.success) {
+   toast.success(flash.message.success);
+  }
+  if (flash.message.error) {
+   toast.error(flash.message.error);
+  }
+ }, [flash]);
     return (
-        <>
+     <div className="bg-amber-400">
+
             <div className="min-h-screen bg-[#030215] text-white">
-                <NavBar />
+       <NavBar />
+
+       <ToastContainer />
                 <div className="mx-auto my-12 max-w-3xl px-4 text-center">
                     <h1 className="text-3xl leading-tight font-extrabold text-white md:text-5xl">
                         Partez de <br />
@@ -26,8 +38,7 @@ export default function Home() {
                         <span className="text-green-400">
                             j'ai réalisé ça <i className="text-white">!!</i>
                         </span>
-                    </h1>
-
+        </h1>
                     <p className="mt-6 text-base text-gray-300 md:text-lg">
                         Arrêtez de consommer. Commencez à créer. Réalisez des projets réels qui feront progresser votre niveau.
                     </p>
@@ -65,6 +76,6 @@ export default function Home() {
                 {/* <Contact /> */}
             </div>
             <Footer />
-        </>
+     </div>
     );
 }

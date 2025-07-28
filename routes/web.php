@@ -4,8 +4,10 @@ use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Models\Connexion;
+use App\Models\Home;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 Route::get('/connexion', [ConnexionController::class, 'index'])->name('connexion');
 
 Route::get('/courses', function () {
@@ -15,9 +17,7 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/inscription', function () {
     return Inertia::render('Inscription');
@@ -32,5 +32,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

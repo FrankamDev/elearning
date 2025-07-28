@@ -13,7 +13,7 @@ class ConnexionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Connexion');
+        // return Inertia::render('Connexion');
     }
 
     /**

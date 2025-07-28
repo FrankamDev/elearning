@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Connexion;
-use App\Models\Home;
+use App\Models\Inscription;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
-class HomeController extends Controller
+class InscriptionController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Home');
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Connexion $connexion)
+    public function show(Inscription $inscription)
     {
         //
     }
@@ -45,7 +42,7 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Home $home)
+    public function edit(Inscription $inscription)
     {
         //
     }
@@ -53,7 +50,7 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Home $home)
+    public function update(Request $request, Inscription $inscription)
     {
         //
     }
@@ -61,7 +58,7 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Home $home)
+    public function destroy(Inscription $inscription)
     {
         //
     }
