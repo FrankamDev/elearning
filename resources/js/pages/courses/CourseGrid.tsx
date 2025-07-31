@@ -1,51 +1,64 @@
-import { FaDatabase, FaHtml5, FaJsSquare, FaPhp, FaReact } from 'react-icons/fa';
-import { SiTailwindcss } from 'react-icons/si';
+import { FaCss3Alt, FaDatabase, FaHtml5, FaPhp, FaReact } from 'react-icons/fa';
+import { SiJavascript, SiTailwindcss } from 'react-icons/si';
 import CourseCard from './CourseCard';
 const courses = [
     {
-        title: 'HTML & CSS',
-        description: 'Construis des interfaces modernes et responsives.',
+        title: 'HTML5',
+        description: 'Structure tes pages web avec les bonnes balises.',
         icon: FaHtml5,
-        iconColor: 'bg-orange-600',
-        link: '#',
+        href: '/cours/html',
+        bgColor: 'bg-gradient-to-b from-orange-500 to-orange-700',
+        textColor: 'text-white',
     },
     {
-        title: 'JavaScript Complet',
-        description: 'Apprends les bases, les fonctions, et le DOM.',
-        icon: FaJsSquare,
-        iconColor: 'bg-yellow-400 text-black',
-        link: '#',
+        title: 'CSS3',
+        description: 'Stylise tes pages pour un rendu moderne.',
+        icon: FaCss3Alt,
+        href: '/cours/css',
+        bgColor: 'bg-gradient-to-b from-blue-500 to-blue-700',
+        textColor: 'text-white',
     },
     {
-        title: 'PHP Moderne',
-        description: 'Développe des applications dynamiques avec PHP.',
+        title: 'JavaScript',
+        description: 'Ajoute de l’interactivité à ton site.',
+        icon: SiJavascript,
+        href: '/cours/javascript',
+        bgColor: 'bg-gradient-to-b from-yellow-300 to-yellow-500',
+        textColor: 'text-black',
+    },
+    {
+        title: 'PHP',
+        description: 'Développe côté serveur avec PHP.',
         icon: FaPhp,
-        iconColor: 'bg-indigo-700',
-        link: '#',
+        href: '/cours/php',
+        bgColor: 'bg-gradient-to-b from-indigo-500 to-indigo-700',
+        textColor: 'text-white',
     },
     {
-        title: 'React JS',
-        description: 'Crée des applications SPA performantes avec React.',
+        title: 'ReactJS',
+        description: 'Construis des interfaces réactives et rapides.',
         icon: FaReact,
-        iconColor: 'bg-cyan-500',
-        link: '#',
+        href: '/cours/react',
+        bgColor: 'bg-gradient-to-b from-cyan-400 to-cyan-600',
+        textColor: 'text-white',
     },
     {
         title: 'Tailwind CSS',
-        description: 'Crée des designs beaux et rapides sans quitter ton HTML.',
+        description: 'Crée des designs rapides et responsives.',
         icon: SiTailwindcss,
-        iconColor: 'bg-sky-500',
-        link: '#',
+        href: '/cours/tailwind',
+        bgColor: 'bg-gradient-to-b from-sky-400 to-sky-600',
+        textColor: 'text-white',
     },
     {
-        title: 'Base de Données MySQL',
-        description: 'Structure, relation et requêtes de bases de données.',
+        title: 'Base de données',
+        description: 'Structure et interroge des données efficacement.',
         icon: FaDatabase,
-        iconColor: 'bg-blue-700',
-        link: '#',
+        href: '/cours/database',
+        bgColor: 'bg-gradient-to-b from-blue-800 to-blue-900',
+        textColor: 'text-white',
     },
 ];
-
 const CourseGrid = () => {
     return (
         <section className="bg-[#0b0e1e] px-4 py-16">
