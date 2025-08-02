@@ -2,13 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cours;
+// use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CoursController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
+public function list()
+{
+    $cours = Cours::with('category')->latest()->get();
+
+    return Inertia::render('Cours/List', [
+        'cours' => $cours
+    ]);
+}
+
+
+
+
     public function index()
     {
         //
@@ -33,9 +49,25 @@ class CoursController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cours $cours)
     {
-        //
+         $cours->load('lessons');
+
+    $user = Auth::user();
+
+    $progress = [];
+
+    if ($user) {
+        $progress = $user->progress()
+            ->whereIn('lesson_id', $cours->lessons->pluck('id'))
+            ->pluck('is_completed', 'lesson_id')
+            ->toArray();
+    }
+
+    return Inertia::render('cours/Show', [
+        'cours' => $cours,
+        'userProgress' => $progress,
+    ]);
     }
 
     /**

@@ -11,9 +11,21 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function list() {
+        $categories = Category::withCount('cours')->get();
+
+    return Inertia::render('Category/List', [
+        'categories' => $categories
+    ]);
+    }
     public function index()
     {
-        //
+          $categories = \App\Models\Category::all();
+
+    return Inertia::render('category/Index', [
+        'categories' => $categories,
+    ]);
     }
 
     /**
@@ -37,8 +49,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $category->load('courses');
-        return Inertia::render('Category/Show', [
+        $category->load('cours');
+        return Inertia::render('category/Show', [
             'category' => $category,
         ]);
     }

@@ -9,11 +9,14 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/connexion', [ConnexionController::class, 'index'])->name('connexion');
+Route::get('/categories', [CategoryController::class, 'list']);
+Route::get('/cours', [CoursController::class, 'list']);
 
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/cours/{cours}', [CoursController::class, 'show'])->name('cours.show');
 Route::get('/courses', [CoursController::class, 'index'])->name('cours.index');
 Route::get('/cours/{slug}', [CoursController::class, 'show'])->name('cours.show');
-Route::get('/categories/{categoty}', [CategoryController::class, 'show'])->name('categories.index');
+Route::get('/categories/{category}', [CategoryController::class, 'show']);
 Route::get('/courses', [CoursController::class, 'index'])->name('cours.index');
 
 Route::get('/courses/{slug}', [CoursController::class, 'show'])->name('cours.show');
