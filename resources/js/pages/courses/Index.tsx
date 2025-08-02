@@ -7,6 +7,7 @@ import { SiTailwindcss } from 'react-icons/si';
 import Member from './Member';
 import CourseGrid from './CourseGrid';
 
+
 const technologies = [
     { icon: <FaHtml5 size={30} />, color: 'bg-orange-700' },
     { icon: <FaCss3Alt size={30} />, color: 'bg-blue-500' },
@@ -17,7 +18,7 @@ const technologies = [
     { icon: <FaDatabase size={30} />, color: 'bg-blue-800' },
 ];
 
-export default function Hero() {
+export default function Index() {
     return (
         <>
             <Navbar />
@@ -29,7 +30,7 @@ export default function Hero() {
                     className="text-center text-4xl leading-tight font-bold md:text-5xl"
                 >
                     Des formations qui vous font passer <br />
-                    de <span className="text-yellow-400">l'apprentissage</span> à <span className="text-green-400">l'action</span>
+        de <span className="text-yellow-400">l'apprentissage</span> à <span className="text-green-400">l'action.</span>
                 </motion.h1>
 
                 <p className="mt-4 text-center text-lg text-gray-300">Apprenez les compétences. Créez votre portfolio. Trouvez un emploi.</p>
@@ -53,9 +54,11 @@ export default function Hero() {
                 </div>
             </section>
             <h1 className="bg-[#0B0E1E] text-center text-3xl font-bold">Tous Les Cours</h1>
-            <CourseGrid />
+      <CourseGrid cours={courses} />
             <div className="my-12"></div>
             <Member />
         </>
     );
 }
+
+

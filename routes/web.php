@@ -1,19 +1,23 @@
 <?php
 
 use App\Http\Controllers\AiController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Settings\ProfileController;
-use App\Models\Connexion;
-use App\Models\Home;
+
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/connexion', [ConnexionController::class, 'index'])->name('connexion');
+// Route::get('/connexion', [ConnexionController::class, 'index'])->name('connexion');
 
-Route::get('/courses', function () {
-    return Inertia::render('courses/Index');
-});
+Route::get('/courses', [CoursController::class, 'index'])->name('cours.index');
+Route::get('/cours/{slug}', [CoursController::class, 'show'])->name('cours.show');
+Route::get('/categories/{categoty}', [CategoryController::class, 'show'])->name('categories.index');
+Route::get('/courses', [CoursController::class, 'index'])->name('cours.index');
+
+Route::get('/courses/{slug}', [CoursController::class, 'show'])->name('cours.show');
+
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
