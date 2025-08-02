@@ -1,4 +1,8 @@
+import { usePage } from '@inertiajs/react';
+
 export default function Show({ cours }) {
+ const { cours } = usePage().props;
+
  return (
   <div className="p-6">
    <h1 className="text-3xl font-bold mb-2">{cours.title}</h1>
@@ -24,3 +28,5 @@ export default function Show({ cours }) {
   </div>
  );
 }
+
+

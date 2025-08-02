@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
-
+import { usePage } from '@inertiajs/react';
 export default function List({ cours }) {
+ const { cours } = usePage().props;
  return (
   <div className="p-8">
    <h1 className="text-2xl font-bold mb-4">Tous les parcours</h1>
