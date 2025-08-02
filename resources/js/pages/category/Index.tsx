@@ -1,7 +1,10 @@
+import Navbar from "@/components/NavBar";
 import { Link } from "@inertiajs/react";
 
 export default function Index({ categories }) {
  return (
+  <>
+   <Navbar />
   <div className="p-6">
    <h1 className="text-2xl font-bold mb-4">Toutes les catégories</h1>
 
@@ -10,12 +13,14 @@ export default function Index({ categories }) {
      <Link
       key={category.id}
       href={`/categories/${category.id}`}
-      className="block p-4 bg-white shadow rounded hover:bg-blue-50"
+      className="block p-4  bg-blue-900 shadow rounded"
      >
       <h2 className="text-lg font-semibold">{category.name}</h2>
+      <p> <span>{category.cours_count}</span> cours disponibles</p>
      </Link>
     ))}
    </div>
   </div>
+  </>
  );
 }

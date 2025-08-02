@@ -15,13 +15,14 @@ class CategoryController extends Controller
     public function list() {
         $categories = Category::withCount('cours')->get();
 
-    return Inertia::render('category/List', [
+    return Inertia::render('category/Index', [
         'categories' => $categories
     ]);
     }
     public function index()
     {
-          $categories = \App\Models\Category::all();
+          $categories = \App\Models\Category::withCount('cours')->get();
+
 
     return Inertia::render('category/Index', [
         'categories' => $categories,
