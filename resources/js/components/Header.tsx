@@ -1,11 +1,9 @@
 
-import Navbar from '@/components/NavBar';
 import { motion } from 'framer-motion';
 import { FaCss3Alt, FaDatabase, FaHtml5, FaJsSquare, FaPhp, FaReact } from 'react-icons/fa';
 import { HiOutlineExclamation } from 'react-icons/hi';
 import { SiTailwindcss } from 'react-icons/si';
-import Member from './Member';
-import CourseGrid from './CourseGrid';
+
 
 
 const technologies = [
@@ -18,10 +16,10 @@ const technologies = [
  { icon: <FaDatabase size={30} />, color: 'bg-blue-800' },
 ];
 
-export default function Index() {
+export default function Header() {
  return (
   <>
-   <Navbar />
+
    <section className="my-8 flex min-h-screen flex-col items-center justify-center bg-[#0B0E1E] px-4 text-white">
     <motion.h1
      initial={{ opacity: 0, y: 20 }}
@@ -53,13 +51,11 @@ export default function Index() {
      <span className="font-bold">Pas besoin de filtrer. Chaque cours vous emmène du niveau débutant à avancé, étape par étape.</span>
     </div>
    </section>
-   <h1 className="bg-[#0B0E1E] text-center text-3xl font-bold">Tous Les Cours</h1>
-   <CourseGrid cours={courses} />
 
-   <div className="my-12"></div>
-   <Member />
+
   </>
  );
 }
+
 
 

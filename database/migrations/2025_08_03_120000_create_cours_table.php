@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('description');
+            $table->enum('type', ['video', 'text']);
+        $table->text('content')->nullable();
+           $table->string('video_url')->nullable();
+        $table->string('duration')->nullable();
+        $table->boolean('is_free')->default(true);
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
