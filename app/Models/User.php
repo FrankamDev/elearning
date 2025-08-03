@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
     public function progress()
 {
     return $this->hasMany(Progress::class);
@@ -52,6 +53,7 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
+
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',

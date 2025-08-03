@@ -14,8 +14,14 @@ export default function CategoryIndex({ categories }) {
    <div className="flex justify-between items-center">
     <h1 className="text-2xl font-bold">Liste des catégories</h1>
     <Link
+     href="/categories"
+     className="bg-blue-600  px-4 py-2 rounded hover:bg-blue-700"
+    >
+     Voir les categories
+    </Link>
+    <Link
      href="/admin/category/create"
-     // className="bg-blue-600  px-4 py-2 rounded hover:bg-blue-700"
+     className="bg-blue-600  px-4 py-2 rounded hover:bg-blue-700"
     >
      + Nouvelle catégorie
     </Link>

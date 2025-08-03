@@ -9,7 +9,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
-
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

@@ -16,6 +16,9 @@ export default function Show() {
       <Link href={`/cours/${cours.id}`} className="text-xl font-semibold text-blue-600 hover:underline">
        {cours.title}
       </Link>
+      <Link href={`/cours/${cours.id}`} className="text-xl font-semibold text-blue-600 hover:underline">
+       {cours.title}
+      </Link>
       <p className="text-gray-600">{cours.description}</p>
      </li>
     ))}

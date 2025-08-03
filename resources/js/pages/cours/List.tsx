@@ -4,7 +4,7 @@ export default function List({ cours }) {
  const { cours } = usePage().props;
  return (
   <div className="p-8">
-   <h1 className="text-2xl font-bold mb-4">Tous les parcours</h1>
+   <h1 className="text-2xl font-bold mb-4">Tous les parcours......</h1>
    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
     {cours.map((cour) => (
      <Link
