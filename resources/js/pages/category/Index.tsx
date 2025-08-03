@@ -12,7 +12,7 @@ export default function Index({ categories }) {
     {categories.map((category) => (
      <Link
       key={category.id}
-      href={`/categories/${category.id}`}
+      href={`/category/${category.id}`}
       className="block p-4  bg-blue-900 shadow rounded"
      >
       <h2 className="text-lg font-semibold">{category.name}</h2>
