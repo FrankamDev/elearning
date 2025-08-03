@@ -8,7 +8,7 @@ export default function CategoryEdit({ category }) {
 
  function handleSubmit(e) {
   e.preventDefault();
-  put(`/admin/categories/${category.id}`);
+  put(`/admin/category/${category.id}`);
  }
 
  return (
@@ -36,7 +36,7 @@ export default function CategoryEdit({ category }) {
       Enregistrer
      </button>
      <Link
-      href="/admin/categories"
+      href="/admin/category"
       className="text-gray-600 px-4 py-2 rounded hover:underline"
      >
       Annuler

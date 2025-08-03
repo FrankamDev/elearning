@@ -5,7 +5,7 @@ export default function CourseIndex({ courses }) {
 
  const handleDelete = (id) => {
   if (confirm("Supprimer ce cours ?")) {
-   destroy(`/admin/courses/${id}`);
+   destroy(route('admin.courses.destroy', id));
   }
  };
 
@@ -14,7 +14,7 @@ export default function CourseIndex({ courses }) {
    <div className="flex justify-between items-center">
     <h1 className="text-2xl font-bold">Liste des cours</h1>
     <Link
-     href="/admin/courses/create"
+     href={route('admin.courses.create')}
      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
     >
      + Nouveau cours
@@ -36,10 +36,10 @@ export default function CourseIndex({ courses }) {
        <tr key={course.id} className="border-t hover:bg-gray-50">
         <td className="p-4">{course.id}</td>
         <td className="p-4">{course.title}</td>
-        <td className="p-4">{course.category?.name || '—'}</td>
+        <td className="p-4">{course.category?.name || "—"}</td>
         <td className="p-4 space-x-2">
          <Link
-          href={`/admin/courses/${course.id}/edit`}
+          href={route('admin.courses.edit', course.id)}
           className="text-indigo-600 hover:underline"
          >
           Modifier

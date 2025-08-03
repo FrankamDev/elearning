@@ -8,7 +8,7 @@ export default function CategoryCreate() {
 
  function handleSubmit(e) {
   e.preventDefault();
-  post('/admin/categories');
+  post('/admin/category');
  }
 
  return (
@@ -36,7 +36,7 @@ export default function CategoryCreate() {
       Ajouter
      </button>
      <Link
-      href="/admin/categories"
+      href="/admin/category"
       className="text-gray-600 px-4 py-2 rounded hover:underline"
      >
       Annuler

@@ -13,12 +13,12 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// ===== ROUTES PUBLIQUES =====
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/cours', [CoursController::class, 'index'])->name('cours.index');
 Route::get('/cours/{slug}', [CoursController::class, 'show'])->name('cours.show');
@@ -43,10 +43,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 
-    Route::resource('categories', CategoryAdminController::class);
+    Route::resource('category', CategoryAdminController::class);
 
 
-    Route::resource('courses', CourseAdminController::class);
+    Route::resource('cours', CourseAdminController::class);
 
 
     Route::get('/dashboard-old', [AdminController::class, 'index'])->name('dashboard-old');

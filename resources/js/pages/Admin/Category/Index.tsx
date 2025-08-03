@@ -5,7 +5,7 @@ export default function CategoryIndex({ categories }) {
 
  const handleDelete = (id) => {
   if (confirm("Supprimer cette catégorie ?")) {
-   destroy(`/admin/categories/${id}`);
+   destroy(`/admin/category/${id}`);
   }
  };
 
@@ -14,17 +14,17 @@ export default function CategoryIndex({ categories }) {
    <div className="flex justify-between items-center">
     <h1 className="text-2xl font-bold">Liste des catégories</h1>
     <Link
-     href="/admin/categories/create"
-     className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+     href="/admin/category/create"
+     // className="bg-blue-600  px-4 py-2 rounded hover:bg-blue-700"
     >
      + Nouvelle catégorie
     </Link>
    </div>
 
    <div className="overflow-x-auto">
-    <table className="min-w-full bg-white shadow rounded">
+    <table className="min-w-full  shadow rounded">
      <thead>
-      <tr className="bg-gray-100 text-left">
+      <tr className=" text-left">
        <th className="p-4">ID</th>
        <th className="p-4">Nom</th>
        <th className="p-4">Cours associés</th>
@@ -33,13 +33,13 @@ export default function CategoryIndex({ categories }) {
      </thead>
      <tbody>
       {categories.map((category) => (
-       <tr key={category.id} className="border-t hover:bg-gray-50">
+       <tr key={category.id} className="border-t hover:p-2 transition">
         <td className="p-4">{category.id}</td>
         <td className="p-4">{category.name}</td>
         <td className="p-4">{category.cours_count}</td>
         <td className="p-4 space-x-2">
          <Link
-          href={`/admin/categories/${category.id}/edit`}
+          href={`/admin/category/${category.id}/edit`}
           className="text-indigo-600 hover:underline"
          >
           Modifier

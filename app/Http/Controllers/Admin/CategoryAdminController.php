@@ -13,13 +13,13 @@ class CategoryAdminController extends Controller
     public function index()
     {
         $categories = Category::withCount('cours')->get();
-        return Inertia::render('Admin/Category/Index', compact('categories'));
+        return Inertia::render('Admin/category/Index', compact('categories'));
     }
 
     // Affiche le formulaire de création
     public function create()
     {
-        return Inertia::render('Admin/Category/Create');
+        return Inertia::render('Admin/category/Create');
     }
 
     // Enregistre une nouvelle catégorie
@@ -31,13 +31,13 @@ class CategoryAdminController extends Controller
 
         Category::create(['name' => $request->name]);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Catégorie créée avec succès.');
+        return redirect()->route('admin.category.index')->with('success', 'Catégorie créée avec succès.');
     }
 
     // Affiche le formulaire d'édition
     public function edit(Category $category)
     {
-        return Inertia::render('Admin/Category/Edit', compact('category'));
+        return Inertia::render('Admin/category/Edit', compact('category'));
     }
 
     // Met à jour la catégorie
@@ -49,7 +49,7 @@ class CategoryAdminController extends Controller
 
         $category->update(['name' => $request->name]);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Catégorie mise à jour.');
+        return redirect()->route('admin.category.index')->with('success', 'Catégorie mise à jour.');
     }
 
     // Supprime la catégorie
@@ -57,6 +57,6 @@ class CategoryAdminController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Catégorie supprimée.');
+        return redirect()->route('admin.category.index')->with('success', 'Catégorie supprimée.');
     }
 }

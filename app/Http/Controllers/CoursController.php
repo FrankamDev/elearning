@@ -17,7 +17,7 @@ public function list()
 {
     $cours = Cours::with('category')->latest()->get();
 
-    return Inertia::render('Cours/List', [
+    return Inertia::render('cours/List', [
         'cours' => $cours
     ]);
 }

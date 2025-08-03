@@ -58,7 +58,7 @@ export default function CourseEdit({ course, categories }) {
       onChange={(e) => setData("category_id", e.target.value)}
       className="w-full border rounded px-3 py-2"
      >
-      <option value="">-- Choisissez une catégorie --</option>
+      <option value=""> -- Choisissez une catégorie --</option>
       {categories.map((cat) => (
        <option key={cat.id} value={cat.id}>
         {cat.name}
@@ -80,7 +80,7 @@ export default function CourseEdit({ course, categories }) {
       value={data.video_url}
       onChange={(e) => setData("video_url", e.target.value)}
       className="w-full border rounded px-3 py-2"
-      placeholder="https://youtube.com/..."
+      placeholder="https://youtube.com/from_scratch"
      />
      {errors.video_url && (
       <p className="text-red-600 mt-1">{errors.video_url}</p>

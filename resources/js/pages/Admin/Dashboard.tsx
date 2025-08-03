@@ -7,7 +7,7 @@ export default function Dashboard() {
 
    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
     <Link
-     href={route('admin.categories.index')}
+     href={route('admin.category.index')}
      className="bg-blue-600 text-white p-6 rounded-xl shadow hover:bg-blue-700 transition"
     >
      <h2 className="text-xl font-semibold">Gérer les Catégories</h2>
@@ -15,7 +15,8 @@ export default function Dashboard() {
     </Link>
 
     <Link
-     href={route('admin.courses.index')}
+     href={route('admin.cours.index')}
+     // href="./cours/Index"
      className="bg-green-600 text-white p-6 rounded-xl shadow hover:bg-green-700 transition"
     >
      <h2 className="text-xl font-semibold">Gérer les Cours</h2>
@@ -25,3 +26,4 @@ export default function Dashboard() {
   </div>
  );
 }
+

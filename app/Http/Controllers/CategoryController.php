@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function list() {
         $categories = Category::withCount('cours')->get();
 
-    return Inertia::render('Category/Index', [
+    return Inertia::render('category/Index', [
         'categories' => $categories
     ]);
     }
