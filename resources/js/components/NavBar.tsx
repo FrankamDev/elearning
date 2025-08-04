@@ -37,14 +37,14 @@ export default function Navbar() {
         </Link>
         <FaBell className="cursor-pointer hover:text-cyan-400 transition-colors duration-200" />
 
-        <Link href="admin" className="hover:text-cyan-400 transition-colors duration-200"><strong className="text-center">Espace <br /></strong>Developpeur</Link>
+        <Link href="/admin" className="hover:text-cyan-400 transition-colors duration-200"><strong className="text-center">Espace <br /></strong>Developpeur</Link>
         <div className="relative">
          <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="flex items-center space-x-1 focus:outline-none"
          >
           <img
-           src={user.image ?? "/default-avatar.png"}
+           src={user.image ?? "./vraiLogo.svg"}
            alt="avatar"
            className="w-8 h-8 rounded-full object-cover"
           />
@@ -72,7 +72,7 @@ export default function Navbar() {
             </li>
             <li>
              <Link
-              href="/admin"
+              href='/adminb'
               className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-200"
              >
               <FiHome /> <span>Developpeur</span>

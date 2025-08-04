@@ -10,10 +10,9 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->is_admin) {
+        if (Auth::check() && Auth::user()->email === 'frankam@gmail.com') {
             return $next($request);
         }
-
         abort(403, 'Accès interdit');
     }
 }

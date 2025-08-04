@@ -12,13 +12,14 @@ class DashboardController extends Controller
    public function index()
    {
 
-    if (!auth()->user()?->is_admin) {
-        return redirect()->route('dashboard')->with('error', 'Accès réservé aux admins.');
+    if (auth()->user()?->email === 'frankam@gmail.com') {
+        $users = User::select('name', 'email')->get();
+            return Inertia::render('Admin/Dashboard', [
+                'userCount' => User::count(),
+                'users' => $users,
+            ]);
     }
-$users = User::select('name', 'email')->get();
-    return Inertia::render('Admin/Dashboard', [
-        'userCount' => User::count(),
-        'users' => $users,
-    ]);
+    return redirect()->route('/Admin/Dashboard')->with('error', 'Accès réservé aux admins.');
+
 }
 }

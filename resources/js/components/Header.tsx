@@ -1,9 +1,7 @@
-
 import { motion } from 'framer-motion';
 import { FaCss3Alt, FaDatabase, FaHtml5, FaJsSquare, FaPhp, FaReact } from 'react-icons/fa';
 import { HiOutlineExclamation } from 'react-icons/hi';
 import { SiTailwindcss } from 'react-icons/si';
-
 
 
 const technologies = [
