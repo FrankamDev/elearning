@@ -10,7 +10,11 @@ import {
 
 import data from "./data.json"
 
+import { usePage } from '@inertiajs/react';
 export default function Page() {
+
+ const { user } = usePage().props;
+
   return (
     <SidebarProvider
       style={
@@ -20,7 +24,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+    <AppSidebar user={user} variant="inset" />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">

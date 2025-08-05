@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Admin\CourseAdminController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardUsers;
 use App\Http\Controllers\Admin\LessonAdminController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -46,8 +47,13 @@ Route::post('/ask-ai', [AiController::class, 'ask']);
 //     return Inertia::render('dashboard');
 // })->name('dashboard');
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', fn () => Inertia::render('dashboard'));
+    Route::get('/dashboard', [DashboardUsers::class, 'index'])->name('dashboard');
+    Route::get('/user', fn () => Inertia::render('settings/profile'))->name('profile.edit');
+    Route::resource('lessons', LessonAdminController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('cours', CourseAdminController::class);
 });
+
 
 
 
