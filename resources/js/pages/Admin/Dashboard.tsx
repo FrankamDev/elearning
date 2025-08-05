@@ -9,7 +9,7 @@ export default function Dashboard({ userCount }) {
 
    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
     <Link
-     href={route('admin.category.index')}
+     href='/admin/category'
      className="bg-blue-600 text-white p-6 rounded-xl shadow hover:bg-blue-700 transition"
     >
      <h2 className="text-xl font-semibold">Gérer les Catégories</h2>
@@ -17,7 +17,7 @@ export default function Dashboard({ userCount }) {
     </Link>
 
     <Link
-     href={route('admin.cours.index')}
+     href='/admin/cours'
      className="bg-green-600 text-white p-6 rounded-xl shadow hover:bg-green-700 transition"
     >
      <h2 className="text-xl font-semibold">Gérer les Cours</h2>

@@ -1,8 +1,8 @@
 import Navbar from "@/components/NavBar";
 import { Link, usePage } from "@inertiajs/react";
 import Header from "@/components/Header";
-import Member from "./courses/Member";
-// import { Header } from '@components/Header';
+import Member from "./Member";
+
 
 export default function Index({ categories }) {
  const { courses } = usePage().props;

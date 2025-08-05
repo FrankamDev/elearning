@@ -1,11 +1,11 @@
 import { Link, useForm } from "@inertiajs/react";
 
-export default function CourseIndex({ courses }) {
+export default function CourseIndex({ cours, categories }) {
  const { delete: destroy } = useForm();
 
  const handleDelete = (id) => {
   if (confirm("Supprimer ce cours ?")) {
-   destroy(route('admin.courses.destroy', id));
+   destroy(route('admin.cours.destroy', { cour: id }));
   }
  };
 
@@ -14,7 +14,7 @@ export default function CourseIndex({ courses }) {
    <div className="flex justify-between items-center">
     <h1 className="text-2xl font-bold">Liste des cours</h1>
     <Link
-     href={route('admin.courses.create')}
+     href={route('admin.cours.create')}
      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
     >
      + Nouveau cours
@@ -22,9 +22,9 @@ export default function CourseIndex({ courses }) {
    </div>
 
    <div className="overflow-x-auto">
-    <table className="min-w-full bg-white shadow rounded">
+    <table className="min-w-full shadow rounded">
      <thead>
-      <tr className="bg-gray-100 text-left">
+      <tr className=" text-left">
        <th className="p-4">ID</th>
        <th className="p-4">Titre</th>
        <th className="p-4">Catégorie</th>
@@ -32,14 +32,14 @@ export default function CourseIndex({ courses }) {
       </tr>
      </thead>
      <tbody>
-      {courses.map((course) => (
-       <tr key={course.id} className="border-t hover:bg-gray-50">
+      {cours.map((course) => (
+       <tr key={course.id} className="border-t">
         <td className="p-4">{course.id}</td>
         <td className="p-4">{course.title}</td>
         <td className="p-4">{course.category?.name || "—"}</td>
         <td className="p-4 space-x-2">
          <Link
-          href={route('admin.courses.edit', course.id)}
+          href={`/admin/cours/${course.id}/edit`}
           className="text-indigo-600 hover:underline"
          >
           Modifier

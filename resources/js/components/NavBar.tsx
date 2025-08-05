@@ -72,10 +72,10 @@ export default function Navbar() {
             </li>
             <li>
              <Link
-              href='/adminb'
+              href='/admin'
               className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-200"
              >
-              <FiHome /> <span>Developpeur</span>
+              <FiHome /> <span>Super Admin</span>
              </Link>
             </li>
             <li className="my-4">

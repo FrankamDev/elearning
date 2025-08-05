@@ -59,7 +59,7 @@ export default function Home({ flash }) {
                 </div>
        <CardBuild />
                 <div className="flex flex-col items-center justify-center py-8">
-                    <Link href="/courses" className="rounded-sm bg-[#3EAEFF] p-4 px-44 text-center font-bold">
+        <Link href="/cours" className="rounded-sm bg-[#3EAEFF] p-4 px-44 text-center font-bold">
                         Voir Tous Les Cours🖤
                     </Link>
                     <Link href="/" className="mt-4 text-[1.1rem] font-bold underline">

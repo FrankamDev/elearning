@@ -11,7 +11,7 @@ export default function CourseCreate({ categories }) {
 
  function handleSubmit(e) {
   e.preventDefault();
-  post("/admin/courses");
+  post("/admin/cours");
  }
 
  return (
@@ -72,7 +72,7 @@ export default function CourseCreate({ categories }) {
 
     <div>
      <label htmlFor="video_url" className="block font-semibold mb-1">
-      URL de la vidéo (optionnel)
+      URL de la vidéo
      </label>
      <input
       type="url"
@@ -80,7 +80,7 @@ export default function CourseCreate({ categories }) {
       value={data.video_url}
       onChange={(e) => setData("video_url", e.target.value)}
       className="w-full border rounded px-3 py-2"
-      placeholder="https://youtube.com/..."
+      placeholder="https://youtube.com/from_scratch"
      />
      {errors.video_url && (
       <p className="text-red-600 mt-1">{errors.video_url}</p>
@@ -96,7 +96,7 @@ export default function CourseCreate({ categories }) {
       Ajouter
      </button>
      <Link
-      href="/admin/courses"
+      href="/admin/cours"
       className="text-gray-600 px-4 py-2 rounded hover:underline"
      >
       Annuler

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cours', function (Blueprint $table) {
-           $table->id();
+            $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->string('description');
             $table->enum('type', ['video', 'text']);
-        $table->text('content')->nullable();
-           $table->string('video_url')->nullable();
-        $table->string('duration')->nullable();
-        $table->boolean('is_free')->default(true);
+            $table->text('content')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('duration')->nullable();
+            $table->boolean('is_free')->default(true);
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();

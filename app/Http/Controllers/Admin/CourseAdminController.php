@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\Controller;
 use App\Models\Cours;
 use App\Models\Category;
@@ -12,14 +15,14 @@ class CourseAdminController extends Controller
 {
     public function index()
     {
-        $courses = Cours::with('category')->get();
-        return Inertia::render('Admin/Course/Index', compact('courses'));
+        $cours = Cours::with('category')->get();
+        return Inertia::render('Admin/cours/Index', compact('cours'));
     }
 
     public function create()
     {
         $categories = Category::all();
-        return Inertia::render('Admin/Course/Create', compact('categories'));
+        return Inertia::render('Admin/cours/Create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -33,22 +36,23 @@ class CourseAdminController extends Controller
 
         Cours::create([
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'description' => $request->description,
             'category_id' => $request->category_id,
             'video_url' => $request->video_url,
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('admin.courses.index')->with('success', 'Cours créé avec succès.');
+        return redirect()->route('admin.cours.index')->with('success', 'Cours créé avec succès.');
     }
 
-    public function edit(Cours $course)
+    public function edit(Cours $cours)
     {
         $categories = Category::all();
-        return Inertia::render('Admin/Course/Edit', compact('course', 'categories'));
+        return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
     }
 
-    public function update(Request $request, Cours $course)
+    public function update(Request $request, Cours $cours)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -57,15 +61,20 @@ class CourseAdminController extends Controller
             'video_url' => 'nullable|url',
         ]);
 
-        $course->update($request->only(['title', 'description', 'category_id', 'video_url']));
+        $cours->update($request->only(['title', 'description', 'category_id', 'video_url']));
 
-        return redirect()->route('admin.courses.index')->with('success', 'Cours mis à jour.');
+        return redirect()->route('admin.cours.index')->with('success', 'Cours mis à jour.');
     }
+public function show(Cours $cours)
+{
+    $categories = Category::all();
+        return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
+}
 
-    public function destroy(Cours $course)
+    public function destroy(Cours $cours)
     {
-        $course->delete();
+        $cours->delete();
 
-        return redirect()->route('admin.courses.index')->with('success', 'Cours supprimé.');
+        return redirect()->route('admin.cours.index')->with('success', 'Cours supprimé.');
     }
 }

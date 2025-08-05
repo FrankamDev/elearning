@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lessons', function (Blueprint $table) {
-             $table->id();
-        $table->foreignId('cours_id')->constrained('cours')->onDelete('cascade');
-        $table->string('title');
-        $table->text('video_url');
-        $table->text('content')->nullable();
-        $table->timestamps();
+         $table->id();
+         $table->foreignId('cours_id')->constrained('cours')->onDelete('cascade');
+
+    $table->string('title');
+    $table->text('video_url');
+    $table->text('content')->nullable();
+    $table->timestamps();
         });
     }
 

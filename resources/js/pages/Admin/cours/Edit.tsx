@@ -1,17 +1,17 @@
 import { useForm } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 
-export default function CourseEdit({ course, categories }) {
+export default function CourseEdit({ cours, categories }) {
  const { data, setData, put, processing, errors } = useForm({
-  title: course.title || "",
-  description: course.description || "",
-  category_id: course.category_id || "",
-  video_url: course.video_url || "",
+  title: cours.title || "",
+  description: cours.description || "",
+  category_id: cours.category_id || "",
+  video_url: cours.video_url || "",
  });
 
  function handleSubmit(e) {
   e.preventDefault();
-  put(`/admin/courses/${course.id}`);
+  put(`/admin/cours/${cours.id}`);
  }
 
  return (
@@ -72,7 +72,7 @@ export default function CourseEdit({ course, categories }) {
 
     <div>
      <label htmlFor="video_url" className="block font-semibold mb-1">
-      URL de la vidéo (optionnel)
+      URL de la vidéo
      </label>
      <input
       type="url"
@@ -96,7 +96,7 @@ export default function CourseEdit({ course, categories }) {
       Enregistrer
      </button>
      <Link
-      href="/admin/courses"
+      href="/admin/cours"
       className="text-gray-600 px-4 py-2 rounded hover:underline"
      >
       Annuler
