@@ -11,7 +11,7 @@ import {
 import data from "./data.json"
 
 import { usePage } from '@inertiajs/react';
-export default function Page() {
+export default function Page({ users, courses, categories, stats }) {
 
  const { user } = usePage().props;
 
@@ -24,13 +24,14 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-    <AppSidebar user={user} variant="inset" />
+    <AppSidebar user={user} categories={categories} users={users} courses={courses} stats={stats} variant="inset" />
       <SidebarInset>
-        <SiteHeader />
+     <SiteHeader />
         <div className="flex flex-1 flex-col">
+      <h1 className="text-xl">Bienvenue <span className="text-xl text-gray-100 font-bold">{user.name}</span><b className="text-2xl">😉✌</b></h1>
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
+        <SectionCards stats={stats} />
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>

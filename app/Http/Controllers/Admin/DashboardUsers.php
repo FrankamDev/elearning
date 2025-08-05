@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Cours;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -15,9 +18,22 @@ class DashboardUsers extends Controller
      */
     public function index()
     {
-        // $user =
+
+ $users = User::all();
+    $courses = Cours::latest()->take(5)->get();
+    $categories = Category::latest()->take(5)->get();
+    $stats = [
+        'totalUsers' => User::count(),
+        'totalCourses' => Cours::count(),
+        'totalcategories' => Category::count()
+    ];
+
         return Inertia::render('dashboard', [
             'user' => Auth::user(),
+            'users' => $users,
+            'courses' => $courses,
+            'stats' => $stats,
+            'categories' => $categories
 ]);
     }
 

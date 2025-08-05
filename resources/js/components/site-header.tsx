@@ -17,7 +17,7 @@ export function SiteHeader() {
      <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
       <Link
        href="https://github.com/frankamdev"
-       // href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
+     
        rel="noopener noreferrer"
        target="_blank"
        className="dark:text-foreground"
