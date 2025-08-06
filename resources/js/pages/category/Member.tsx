@@ -1,5 +1,6 @@
 import { FaBrain, FaRoute, FaBriefcase, FaComments } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Footer from "../Footer";
 
 const features = [
   {
@@ -67,7 +68,8 @@ export default function Member() {
             <h3 className="font-semibold">{f.title}</h3>
           </div>
         ))}
-      </div>
+
+    </div>
     </div>
   );
 }

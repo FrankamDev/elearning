@@ -21,6 +21,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::resource('category', CategoryController::class);
+
 
 
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('categories.show');

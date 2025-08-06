@@ -1,6 +1,6 @@
 import Navbar from "@/components/NavBar";
 import { Link, usePage } from "@inertiajs/react";
-import Header from "@/components/Header";
+import Header from "@/pages/Header";
 import Member from "./Member";
 
 
@@ -9,8 +9,8 @@ export default function Index({ categories }) {
  return (
   <>
    <Navbar />
-   <Header />
-   <div className="p-6 mt-12 bg-[#0B0E1E]">
+   <Header categories={categories} />
+   {/* <div className="p-6 mt-12 bg-[#0B0E1E]">
 
 
    <h1 className="text-2xl font-bold mb-4">Toutes les catégories</h1>
@@ -28,7 +28,7 @@ export default function Index({ categories }) {
     ))}
     </div>
     <Member />
-  </div>
+  </div> */}
   </>
  );
 }

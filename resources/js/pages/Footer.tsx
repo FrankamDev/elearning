@@ -3,7 +3,7 @@ import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } 
 
 export default function Footer() {
     return (
-        <footer className="bg-[#090c1d] px-6 py-4 text-white">
+     <footer className="bg-[#090c1d]  px-6 py-4 text-white">
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
 
                 <div className="text-sm text-gray-400">© Copyright {new Date().getFullYear()} EsCaLearn Pro</div>

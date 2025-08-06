@@ -1,7 +1,11 @@
+
+import Member from '@/pages/category/Member';
+import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { FaCss3Alt, FaDatabase, FaHtml5, FaJsSquare, FaPhp, FaReact } from 'react-icons/fa';
 import { HiOutlineExclamation } from 'react-icons/hi';
 import { SiTailwindcss } from 'react-icons/si';
+import Footer from './Footer';
 
 
 const technologies = [
@@ -14,7 +18,8 @@ const technologies = [
  { icon: <FaDatabase size={30} />, color: 'bg-blue-800' },
 ];
 
-export default function Header() {
+export default function Header({ categories }) {
+ const { courses } = usePage().props;
  return (
   <>
 
@@ -50,7 +55,33 @@ export default function Header() {
     </div>
    </section>
 
+   <div className="p-6 mt-12 bg-[#0B0E1E]">
 
+
+    <h1 className="text-2xl font-bold mb-4">Toutes les catégories</h1>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     {categories.map((category, index) => (
+      <Link key={index}
+
+       href={`/category/${category.id}`}
+       className="block p-4 h-full bg-blue-900 shadow rounded"
+      >
+       {
+        category.image && (
+         <img className='' src={`/storage/${category.image}`} alt={category.name} />
+        )
+       }
+
+       <h2 className="text-lg font-semibold">{category.name}</h2>
+
+       <p> <span>{category.cours_count}</span> cours disponibles.</p>
+      </Link>
+     ))}
+    </div>
+    <Member />
+   </div>
+   <Footer />
   </>
  );
 }

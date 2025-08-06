@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function list() {
         $categories = Category::withCount('cours')->get();
 
-    return Inertia::render('category/Index', [
+    return Inertia::render('Header', [
         'categories' => $categories
     ]);
     }
@@ -40,10 +40,40 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
+//     public function store(Request $request)
+// {
+//     $validated = $request->validate([
+//         'name' => 'required|string|max:255',
+//         'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+//     ]);
+
+//     if ($request->hasFile('image')) {
+//         $validated['image'] = $request->file('image')->store('categories', 'public');
+//     }
+
+//     Category::create($validated);
+
+
+
+//     return redirect()->route('admin.category.index');
+// }
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $validated['image'] = $request->file('image')->store('categories', 'public');
     }
+
+    Category::create($validated);
+
+    return redirect()->route('category.index'); // ou admin.category.index selon ta route
+}
+
 
     /**
      * Display the specified resource.
@@ -53,6 +83,7 @@ class CategoryController extends Controller
         $category->load('cours');
         return Inertia::render('category/Show', [
             'category' => $category,
+
         ]);
     }
 
@@ -67,16 +98,30 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+   public function update(Request $request, Category $category)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $validated['image'] = $request->file('image')->store('categories', 'public');
     }
+
+    $category->update($validated);
+
+    return redirect()->route('admin.category.index');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+   public function destroy(Category $category)
+{
+    $category->delete();
+
+    return redirect()->route('admin.category.index')->with('success', 'Catégorie supprimée');
+}
 }
