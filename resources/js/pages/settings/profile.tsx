@@ -30,6 +30,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
  const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
   name: auth.user.name,
   email: auth.user.email,
+  profile_photo: null,
  });
 
  const submit: FormEventHandler = (e) => {
@@ -37,6 +38,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
   patch(route('profile.update'), {
    preserveScroll: true,
+   forceFormData: true,
   });
  };
 
@@ -103,6 +105,29 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
         )}
        </div>
       )}
+
+
+
+      <div className="grid gap-2">
+       <Label htmlFor="profile_photo">Photo de profil</Label>
+       <input
+        id="profile_photo"
+        type="file"
+        accept="image/*"
+        className="mt-1 block w-full"
+        onChange={e => {
+         if (e.target.files && e.target.files.length > 0) {
+          setData('profile_photo', e.target.files[0]);
+         }
+        }}
+       />
+       <InputError className="mt-2" message={errors.profile_photo} />
+      </div>
+
+
+
+
+
 
       <div className="flex items-center gap-4">
        <Button disabled={processing}>Enregistré</Button>

@@ -15,14 +15,20 @@ class CourseAdminController extends Controller
 {
     public function index()
     {
-        $cours = Cours::with('category')->get();
-        return Inertia::render('Admin/cours/Index', compact('cours'));
+        $categories = Category::with('cours.lessons')->get();
+        // $cours = Cours::with('category')->get();
+        return Inertia::render('Admin/cours/Index', [
+            'categories' => $categories
+        ]);
     }
 
     public function create()
     {
         $categories = Category::all();
-        return Inertia::render('Admin/cours/Create', compact('categories'));
+        return Inertia::render('Admin/cours/Create', [
+            'cours' => Cours::all(),
+            'categories' => Category::all(),
+        ]);
     }
 
     public function store(Request $request)

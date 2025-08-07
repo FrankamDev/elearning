@@ -68,7 +68,24 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('cours', CourseAdminController::class);
 
 
-    Route::resource('/cours', CourseAdminController::class);
+
+
+
+
+
+    Route::get('/admin/lessons/create/{cours}', [LessonAdminController::class, 'create'])->name('admin.lessons.create');
+    Route::post('/admin/lessons/store', [LessonAdminController::class, 'store'])->name('admin.lessons.store');
+
+
+
+    // Route::get('/cours/{cours}/lessons/create', [LessonAdminController::class, 'create'])->name('admin.lessons.create');
+    // Route::post('/lessons', [LessonAdminController::class, 'store'])->name('admin.lessons.store');
+
+
+
+
+    Route::resource('lessons', LessonAdminController::class);
+
     Route::get('/dashboard-old', [AdminController::class, 'index']);
 });
 

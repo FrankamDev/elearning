@@ -43,11 +43,18 @@ export default function Navbar() {
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="flex items-center space-x-1 focus:outline-none"
          >
-          <img
-           src={user.image ?? "./vraiLogo.svg"}
+          {auth.user.profile_photo && (
+           <img
+            src={`/storage/${auth.user.profile_photo}`}
+            alt="Photo de profil"
+            className="w-8 h-8 rounded-full object-cover"
+           />
+          )}
+          {/* <img
+           src=""
            alt="avatar"
            className="w-8 h-8 rounded-full object-cover"
-          />
+          /> */}
           <HiChevronDown
            className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
           />

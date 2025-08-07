@@ -134,7 +134,7 @@ const cours = [
   titre: 'Dashboard Administrateur',
   description: 'Un tableau de bord complet avec statistiques et gestion.',
   image: 'https://cdn-icons-png.flaticon.com/512/3135/3135716.png',
-  lien: '#',
+  lien: 'https://frankamdashboard.vercel.app/',
  },
  {
   titre: 'Application de Streaming',
@@ -153,7 +153,7 @@ const CartesCours = () => {
 
    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
     {cours.map((cours, index) => (
-     <Link target='_blank' rel='noopener noreferrer'
+     <a target='_blank' rel='noopener noreferrer'
       key={index}
       href={cours.lien}
       className="relative group rounded-xl p-[2px] bg-gradient-to-b from-pink-500 via-pink-300 to-transparent shadow-md hover:shadow-lg transition-all duration-300"
@@ -177,7 +177,7 @@ const CartesCours = () => {
         <p className="text-base text-gray-300">{cours.description}</p>
        </div>
       </div>
-     </Link>
+     </a>
     ))}
    </div>
   </section>

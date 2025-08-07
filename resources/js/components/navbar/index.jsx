@@ -133,24 +133,24 @@ const Navbar = (props) => {
               />
               <a
                 target="blank"
-                href="https://horizon-ui.com/pro?ref=live-free-tailwind-react"
+                href=""
                 className="px-full linear flex cursor-pointer items-center justify-center rounded-xl bg-brand-500 py-[11px] font-bold text-white transition duration-200 hover:bg-brand-600 hover:text-white active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:bg-brand-200"
               >
                 Buy Horizon UI PRO
               </a>
               <a
                 target="blank"
-                href="https://horizon-ui.com/docs-tailwind/docs/react/installation?ref=live-free-tailwind-react"
+                href=""
                 className="px-full linear flex cursor-pointer items-center justify-center rounded-xl border py-[11px] font-bold text-navy-700 transition duration-200 hover:bg-gray-200 hover:text-navy-700 dark:!border-white/10 dark:text-white dark:hover:bg-white/20 dark:hover:text-white dark:active:bg-white/10"
               >
                 See Documentation
               </a>
               <a
                 target="blank"
-                href="https://horizon-ui.com/?ref=live-free-tailwind-react"
+                href=""
                 className="hover:bg-black px-full linear flex cursor-pointer items-center justify-center rounded-xl py-[11px] font-bold text-navy-700 transition duration-200 hover:text-navy-700 dark:text-white dark:hover:text-white"
               >
-                Try Horizon Free
+                RAS
               </a>
             </div>
           }
@@ -189,7 +189,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, Adela
+                    👋 Hey, You
                   </p>{" "}
                 </div>
               </div>
@@ -212,7 +212,7 @@ const Navbar = (props) => {
                   href=" "
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500 transition duration-150 ease-out hover:ease-in"
                 >
-                  Log Out
+                  Déconnexion
                 </a>
               </div>
             </div>

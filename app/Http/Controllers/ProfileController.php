@@ -65,10 +65,31 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    $user = $request->user();
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+
+     if ($request->hasFile('profile_photo')) {
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
+        }
+        $user->profile_photo = $request->file('profile_photo')->store('profile_photos', 'public');
     }
+
+    $user->save();
+
+    return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
+}
+
 
     /**
      * Remove the specified resource from storage.

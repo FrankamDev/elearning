@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Lesson;
 use App\Models\Cours;
 use Illuminate\Http\Request;
@@ -20,24 +21,28 @@ class LessonAdminController extends Controller
 
     public function create()
     {
+        $cours = Cours::all();
+        $categories = Category::all();
         $courses = Cours::all();
         return Inertia::render('Admin/Lessons/Create', [
-            'courses' => $courses
+            'cours' => $courses,
+            'categories' => $cours->categories
         ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'cours_id' => 'required|exists:cours,id',
             'title' => 'required|string|max:255',
             'video_url' => 'required|url',
             'content' => 'nullable|string',
+
         ]);
 
-        Lesson::create($request->all());
+        Lesson::create($validated);
 
-        return redirect()->route('admin.lessons.index')->with('success', 'Leçon créée avec succès.');
+        return redirect()->route('admin.cours.index')->with('success', 'Leçon créée avec succès.');
     }
 
     public function edit(Lesson $lesson)

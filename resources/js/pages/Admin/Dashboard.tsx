@@ -23,6 +23,13 @@ export default function Dashboard({ userCount }) {
      <h2 className="text-xl font-semibold">Gérer les Cours</h2>
      <p className="text-sm mt-2">Ajoute, modifie ou supprime les cours.</p>
     </Link>
+    <Link
+     href='/admin/lessons/'
+     className="bg-green-600 text-white p-6 rounded-xl shadow hover:bg-green-700 transition"
+    >
+     <h2 className="text-xl font-semibold">Gérer les Lecons</h2>
+     <p className="text-sm mt-2">Ajoute, modifie ou supprime les lecons.</p>
+    </Link>
    </div>
 
    {/* Tableau des utilisateurs */}

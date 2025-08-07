@@ -19,7 +19,7 @@ const testimonials = [
  },
  {
   name: "Nguimfack jean Yannick",
-  title: "Développeur Front-end",
+  title: "Développeur Fullstack",
   message:
    "J’ai appris React, Tailwind et la gestion d’API en un mois. Aujourd’hui je travaille sur des projets concrets pour des startups.",
   img: ""
@@ -57,7 +57,7 @@ const testimonials = [
   title: "Ingénieur logiciel",
   message:
    "Très bon contenu, bien structuré. J’ai même recommandé les cours à mes collègues au travail.",
-  img: ""
+  img: "./vraiLogo.svg"
  },
  {
   name: "Julien",

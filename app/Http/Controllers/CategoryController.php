@@ -32,6 +32,10 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+ 
+
+
     public function create()
     {
         //
@@ -40,25 +44,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-//     public function store(Request $request)
-// {
-//     $validated = $request->validate([
-//         'name' => 'required|string|max:255',
-//         'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-//     ]);
-
-//     if ($request->hasFile('image')) {
-//         $validated['image'] = $request->file('image')->store('categories', 'public');
-//     }
-
-//     Category::create($validated);
-
-
-
-//     return redirect()->route('admin.category.index');
-// }
-
-public function store(Request $request)
+    public function store(Request $request)
 {
     $validated = $request->validate([
         'name' => 'required|string|max:255',
@@ -71,8 +57,26 @@ public function store(Request $request)
 
     Category::create($validated);
 
-    return redirect()->route('category.index'); // ou admin.category.index selon ta route
+
+
+        return redirect()->route('admin.category.index');
 }
+
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    //     ]);
+
+    //     if ($request->hasFile('image')) {
+    //         $validated['image'] = $request->file('image')->store('categories', 'public');
+    //     }
+
+    //     Category::create($validated);
+
+    //     return redirect()->route('category.index');
+    // }
 
 
     /**

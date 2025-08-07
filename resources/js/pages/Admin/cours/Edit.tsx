@@ -13,7 +13,7 @@ export default function CourseEdit({ cours, categories }) {
   e.preventDefault();
   put(`/admin/cours/${cours.id}`);
  }
-
+ // dis moi les points que je dois modifier pour que tout marche
  return (
   <div className="p-6 max-w-lg mx-auto">
    <h1 className="text-2xl font-bold mb-6">Modifier le cours</h1>
