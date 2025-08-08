@@ -31,6 +31,7 @@ class Cours extends Model
         'video_url',
         'user_id',
     ];
+
     public function lessons() {
         return $this->hasMany(Lesson::class);
     }

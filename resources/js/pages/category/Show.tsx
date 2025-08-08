@@ -1,5 +1,6 @@
 import Navbar from "@/components/NavBar";
 import { Link, usePage } from "@inertiajs/react";
+import Footer from "../Footer";
 
 export default function Show() {
  const { category } = usePage().props;
@@ -7,7 +8,7 @@ export default function Show() {
  return (
   <>
    <Navbar />
-   <div className="p-6 ">
+   <div className="p-6 h-screen">
     <h1 className="text-3xl mt-12 font-bold text-gray-800 mb-6">
     📚 Cours de la catégorie :{" "}
     <span className="text-blue-600">{category.name}</span>
@@ -25,8 +26,9 @@ export default function Show() {
       <p className="text-gray-600">{cours.description}</p>
      </li>
     ))}
-   </div>
+    </div>
   </div>
+   <Footer />
   </>
  );
 }

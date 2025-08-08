@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import Footer from '../Footer';
+import Navbar from '@/components/NavBar';
 
 export default function Show({ cours, userProgress }) {
     const [progress, setProgress] = useState(userProgress);
@@ -12,12 +14,14 @@ export default function Show({ cours, userProgress }) {
         }));
     };
 
-    return (
-        <div className="p-6">
+ return (
+  <>
+   <Navbar />
+   <div className="p-6 h-screen">
             <h1 className="mb-2 text-3xl font-bold">{cours.title}</h1>
             <p className="mb-4 text-gray-600">{cours.description}</p>
 
-            <h2 className="mt-6 mb-2 text-2xl font-semibold">Leçons :</h2>
+    <h2 className="mt-6 mb-2 text-2xl font-semibold">Leçons sur </h2>
             <ul className="space-y-4">
                 {cours.lessons.map((lesson) => (
                     <li key={lesson.id} className="flex items-center justify-between rounded bg-white p-4 shadow">
@@ -37,6 +41,8 @@ export default function Show({ cours, userProgress }) {
                     </li>
                 ))}
             </ul>
-        </div>
+   </div>
+   <Footer />
+  </>
     );
 }

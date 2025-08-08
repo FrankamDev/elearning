@@ -103,7 +103,8 @@ export default function CourseIndex({ cours }: Props) {
 
  const handleDelete = (id: number) => {
   if (confirm("Supprimer ce cours ?")) {
-   destroy(route("admin.cours.destroy", { cours: id }));
+   destroy(route("admin.cours.destroy", { cour: id }));
+
   }
  };
 
@@ -111,6 +112,12 @@ export default function CourseIndex({ cours }: Props) {
   <div className="p-6 space-y-6">
    <div className="flex justify-between items-center">
     <h1 className="text-3xl font-bold">Liste des cours</h1>
+    <Link
+     href={route("category.index")}
+     className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+    >
+     Categories
+    </Link>
     <Link
      href={route("admin.cours.create")}
      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
@@ -140,7 +147,7 @@ export default function CourseIndex({ cours }: Props) {
       </p>
       <div className="mt-4 flex justify-between">
        <Link
-        href={route("admin.cours.edit", { cours: cour.id })}
+        href={route("admin.cours.edit", { cour: cour.id })}
         className="text-blue-500 hover:underline"
        >
         Modifier

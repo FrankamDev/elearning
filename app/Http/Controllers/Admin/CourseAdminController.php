@@ -16,9 +16,10 @@ class CourseAdminController extends Controller
     public function index()
     {
         $categories = Category::with('cours.lessons')->get();
-        // $cours = Cours::with('category')->get();
+        $cours = Cours::with('category')->get();
         return Inertia::render('Admin/cours/Index', [
-            'categories' => $categories
+            'categories' => $categories,
+            'cours' => $cours
         ]);
     }
 

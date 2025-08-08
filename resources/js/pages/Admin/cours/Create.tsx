@@ -1,7 +1,8 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 
-export default function CourseCreate({ categories }) {
+export default function CourseCreate() {
+ const { cours = [], categories = [] } = usePage().props;
  const { data, setData, post, processing, errors } = useForm({
   title: "",
   description: "",

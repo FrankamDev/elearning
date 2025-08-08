@@ -1,9 +1,13 @@
+import Navbar from '@/components/NavBar';
 import { usePage } from '@inertiajs/react';
+import Footer from '../Footer';
 
 export default function Show({ cours }) {
  const { cours } = usePage().props;
 
  return (
+  <>
+   <Navbar />
   <div className="p-6">
    <h1 className="text-3xl font-bold mb-2">{cours.title}</h1>
    <p className="text-gray-600 mb-4">{cours.description}</p>
@@ -24,8 +28,10 @@ export default function Show({ cours }) {
       <p>{lesson.content}</p>
      </li>
     ))}
-   </ul>
+    </ul>
+    <Footer />
   </div>
+  </>
  );
 }
 
