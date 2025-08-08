@@ -82,6 +82,9 @@
 
 
 
+import Navbar from "@/components/NavBar";
+import Footer from "@/pages/Footer";
+
 import { Link, useForm } from "@inertiajs/react";
 
 interface Course {
@@ -109,8 +112,10 @@ export default function CourseIndex({ cours }: Props) {
  };
 
  return (
-  <div className="p-6 space-y-6">
-   <div className="flex justify-between items-center">
+  <>
+   <Navbar />
+   <div className="p-6 mt-12 space-y-6">
+    <div className="flex justify-between items-center">
     <h1 className="text-3xl font-bold">Liste des cours</h1>
     <Link
      href={route("category.index")}
@@ -130,7 +135,7 @@ export default function CourseIndex({ cours }: Props) {
     {cours.map((cour) => (
      <div
       key={cour.id}
-      className="bg-white rounded shadow-md p-4 border border-gray-200"
+      className="bg-cyan-950 rounded shadow-md p-4 border border-gray-200"
      >
       <img
        src={cour.image}
@@ -162,6 +167,8 @@ export default function CourseIndex({ cours }: Props) {
      </div>
     ))}
    </div>
-  </div>
+   </div>
+   <Footer />
+  </>
  );
 }

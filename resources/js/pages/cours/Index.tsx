@@ -8,7 +8,7 @@ export default function Show({ cours }) {
  return (
   <>
    <Navbar />
-  <div className="p-6">
+   <div className="p-6 h-screen">
    <h1 className="text-3xl font-bold mb-2">{cours.title}</h1>
    <p className="text-gray-600 mb-4">{cours.description}</p>
 

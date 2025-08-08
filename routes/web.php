@@ -17,6 +17,8 @@ use Inertia\Inertia;
 
 
 
+
+Route::get('/cours/{cours}', [CoursController::class, 'show'])->name('cours.show');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 

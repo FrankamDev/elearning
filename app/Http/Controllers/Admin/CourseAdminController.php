@@ -74,8 +74,18 @@ class CourseAdminController extends Controller
     }
 public function show(Cours $cours)
 {
-    $categories = Category::all();
-        return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
+        $cours->load('lessons');
+        $user = auth()->user();
+        $progress = $user
+            ? $user->lessonProgress()->pluck('is_completed', 'lesson_id')->toArray()
+            : [];
+
+        // $categories = Category::all();
+        // return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
+        return Inertia::render('cours/Show', [
+            'cours' => $cours,
+            'userProgress' => $progress,
+        ]);
 }
 
     public function destroy(Cours $cours)
