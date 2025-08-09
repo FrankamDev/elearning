@@ -15,7 +15,7 @@ export default function Edit({ lesson, courses }) {
  };
 
  return (
-  <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-xl mt-10">
+  <div className="max-w-4xl mx-auto p-6 rounded-xl shadow-xl mt-10">
    <h1 className="text-2xl font-bold mb-6">Modifier la leçon</h1>
    <form onSubmit={handleSubmit} className="space-y-4">
     <div>
@@ -23,7 +23,7 @@ export default function Edit({ lesson, courses }) {
      <select
       value={data.cours_id}
       onChange={(e) => setData('cours_id', e.target.value)}
-      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+      className="w-full border  rounded-lg px-4 py-2"
      >
       <option value="">-- Sélectionner un cours --</option>
       {courses.map((course) => (
@@ -39,7 +39,7 @@ export default function Edit({ lesson, courses }) {
       type="text"
       value={data.title}
       onChange={(e) => setData('title', e.target.value)}
-      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+      className="w-full border rounded-lg px-4 py-2"
      />
      {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
     </div>
@@ -50,7 +50,7 @@ export default function Edit({ lesson, courses }) {
       type="url"
       value={data.video_url}
       onChange={(e) => setData('video_url', e.target.value)}
-      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+      className="w-full border rounded-lg px-4 py-2"
      />
      {errors.video_url && <p className="text-red-500 text-sm mt-1">{errors.video_url}</p>}
     </div>
@@ -60,7 +60,7 @@ export default function Edit({ lesson, courses }) {
      <textarea
       value={data.content}
       onChange={(e) => setData('content', e.target.value)}
-      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+      className="w-full border  rounded-lg px-4 py-2"
       rows="6"
      />
      {errors.content && <p className="text-red-500 text-sm mt-1">{errors.content}</p>}

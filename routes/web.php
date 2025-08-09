@@ -65,11 +65,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::resource('lessons', LessonAdminController::class);
+
+    Route::resource('lessons', LessonAdminController::class);
     Route::resource('category', CategoryAdminController::class);
     Route::resource('cours', CourseAdminController::class);
 
 
+
+    Route::put('/admin/cours/{cour}', [CourseAdminController::class, 'update'])
+        ->name('admin.cours.update');
 
 
 

@@ -61,15 +61,15 @@ class CourseAdminController extends Controller
 
     public function update(Request $request, Cours $cours)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'video_url' => 'nullable|url',
         ]);
 
-        $cours->update($request->only(['title', 'description', 'category_id', 'video_url']));
-
+        // $cour->update($request->only(['title', 'description', 'category_id', 'video_url']));
+        $cours->update($validated);
         return redirect()->route('admin.cours.index')->with('success', 'Cours mis à jour.');
     }
 public function show(Cours $cours)
@@ -86,11 +86,11 @@ public function show(Cours $cours)
             'cours' => $cours,
             'userProgress' => $progress,
         ]);
-}
+    }
 
-    public function destroy(Cours $cours)
+    public function destroy(Cours $cour)
     {
-        $cours->delete();
+        $cour->delete();
 
         return redirect()->route('admin.cours.index')->with('success', 'Cours supprimé.');
     }

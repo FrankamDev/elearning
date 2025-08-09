@@ -1,4 +1,4 @@
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { Link } from "@inertiajs/react";
 
 export default function CourseEdit({ cours, categories }) {
@@ -9,10 +9,20 @@ export default function CourseEdit({ cours, categories }) {
   video_url: cours.video_url || "",
  });
 
+ // function handleSubmit(e) {
+ //  e.preventDefault();
+ //  // put(`/admin/cours/${cours.id}`);
+ //  put(route('admin.cours.update', { cour: cours.id }));
+
+
+ // }
  function handleSubmit(e) {
   e.preventDefault();
-  put(`/admin/cours/${cours.id}`);
+  put(route("admin.cours.update", { cour: cours.id }), {
+   preserveScroll: true,
+  });
  }
+
  // dis moi les points que je dois modifier pour que tout marche
  return (
   <div className="p-6 max-w-lg mx-auto">

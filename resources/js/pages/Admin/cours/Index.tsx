@@ -1,85 +1,3 @@
-// import { Link, useForm } from "@inertiajs/react";
-
-// export default function CourseIndex({ cours, categories }) {
-//  const { delete: destroy } = useForm();
-
-//  const handleDelete = (id) => {
-//   if (confirm("Supprimer ce cours ?")) {
-//    destroy(route('admin.cours.destroy', cours.id));
-
-
-//   }
-//  };
-
-//  return (
-//   <div className="p-6 space-y-4">
-//    <div className="flex justify-between items-center">
-//     <h1 className="text-2xl font-bold">Liste des cours</h1>
-//     <Link
-//      href={route('admin.cours.create')}
-//      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-//     >
-//      + Nouveau cours
-//     </Link>
-//     <Link
-//      href={route('admin.category.index')}
-//      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-//     >
-//      Categories
-//     </Link>
-//    </div>
-
-//    <div className="overflow-x-auto">
-//     <table className="min-w-full shadow rounded">
-//      <thead>
-//       <tr className=" text-left">
-//        <th className="p-4">ID</th>
-//        <th className="p-4">Titre</th>
-//        <th className="p-4">Catégorie</th>
-//        <th className="p-4">Actions</th>
-//       </tr>
-//      </thead>
-//      <tbody>
-//       {cours.map((course) => (
-//        <tr key={course.id} className="border-t">
-//         <td className="p-4">{course.id}</td>
-//         <td className="p-4">{course.title}</td>
-//         <td className="p-4">{course.category?.name || "—"}</td>
-//         <td className="p-4 space-x-2">
-//          <Link
-//           href={`/admin/cours/${course.id}/edit`}
-//           className="text-indigo-600 hover:underline"
-//          >
-//           Modifier
-//          </Link>
-//          <button
-//           onClick={() => handleDelete(course.id)}
-//           className="text-red-600 hover:underline"
-//          >
-//           Supprimer
-//          </button>
-//         </td>
-//        </tr>
-//       ))}
-//      </tbody>
-//     </table>
-//    </div>
-//   </div>
-//  );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import Navbar from "@/components/NavBar";
@@ -107,9 +25,20 @@ export default function CourseIndex({ cours }: Props) {
  const handleDelete = (id: number) => {
   if (confirm("Supprimer ce cours ?")) {
    destroy(route("admin.cours.destroy", { cour: id }));
+   // destroy(`/admin/cours/${id}`)
 
   }
  };
+ // const handleDelete = (id: number) => {
+ //  if (confirm("Supprimer ce cours ?")) {
+ //   destroy(route("admin.cours.destroy", { cour: id }), {
+ //    preserveScroll: true,
+ //    onSuccess: () => {
+ //     console.log("Cours supprimé avec succès");
+ //    },
+ //   });
+ //  }
+ // };
 
  return (
   <>

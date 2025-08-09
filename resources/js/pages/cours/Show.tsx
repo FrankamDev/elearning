@@ -26,7 +26,7 @@ export default function Show() {
     <h2 className="mt-6 mb-2 text-2xl font-semibold">Leçons :</h2>
     <ul className="space-y-4">
      {cours.lessons.map((lesson) => (
-      <li key={lesson.id} className="flex items-center justify-between rounded bg-white p-4 shadow">
+      <li key={lesson.id} className="flex items-center justify-between rounded  p-4 shadow">
        <div>
         <h3 className="text-lg font-bold">{lesson.title}</h3>
         <div className="mb-2 aspect-video">
