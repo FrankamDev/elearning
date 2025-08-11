@@ -8,6 +8,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Link } from "@inertiajs/react"
+
 
 export function NavMain({
   items,
@@ -17,7 +19,8 @@ export function NavMain({
     url: string
     icon?: Icon
   }[]
-}) {
+ }) {
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -29,6 +32,7 @@ export function NavMain({
             >
               <IconCirclePlusFilled />
         <span>EsCaLearn</span>
+
             </SidebarMenuButton>
             <Button
               size="icon"
@@ -36,7 +40,7 @@ export function NavMain({
               variant="outline"
             >
               <IconMail />
-              <span className="sr-only">Inbox</span>
+        <span className="sr-only">Inbox</span>
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -45,7 +49,7 @@ export function NavMain({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title}>
                 {item.icon && <item.icon />}
-                <span>{item.title}</span>
+             <Link href={item.url}>{item.title}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

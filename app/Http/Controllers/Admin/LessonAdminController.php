@@ -18,31 +18,48 @@ class LessonAdminController extends Controller
             'lessons' => $lessons
         ]);
     }
-
     public function create()
     {
         $cours = Cours::all();
         $categories = Category::all();
-        $courses = Cours::all();
+
         return Inertia::render('Admin/Lessons/Create', [
-            'cours' => $courses,
-            'categories' => $cours->categories
+            'cours' => $cours,
+            'categories' => $categories
         ]);
     }
+
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'cours_id' => 'required|exists:cours,id',
             'title' => 'required|string|max:255',
-            'video_url' => 'required|url',
+            'video_file' => 'required|file|mimes:mp4,mov,mkv,avi,wmv',
             'content' => 'nullable|string',
 
         ]);
+        if ($request->hasFile('video_file')) {
+            $path = $request->file('video_file')->store('videos', 'public'); // stocke dans storage/app/public/videos
+            $validated['video_path'] = $path;
+        }
 
-        Lesson::create($validated);
+        Lesson::create([
+            'cours_id' => $request->cours_id,
+            'title' => $request->title,
+            'content' => $request->content,
+            'video_path' => $path ?? null,
+        ]);
+        // Lesson::create($validated);
 
-        return redirect()->route('admin.cours.index')->with('success', 'Leçon créée avec succès.');
+        // return redirect()->route('admin.cours.index')->with('success', 'Leçon créée avec succès.');
+        return redirect()->route('admin.lessons.index')->with('success', 'Leçon créée avec succès.');
+    }
+    public function show(Lesson $lesson)
+    {
+        return Inertia::render('Admin/Lessons/Show', [
+            'lesson' => $lesson,
+        ]);
     }
 
     public function edit(Lesson $lesson)
@@ -56,17 +73,23 @@ class LessonAdminController extends Controller
 
     public function update(Request $request, Lesson $lesson)
     {
-        $request->validate([
+        $validated = $request->validate([
             'cours_id' => 'required|exists:cours,id',
             'title' => 'required|string|max:255',
-            'video_url' => 'required|url',
+            'video_file' => 'nullable|file|mimes:mp4,mov,mkv,avi,wmv',
             'content' => 'nullable|string',
         ]);
 
-        $lesson->update($request->all());
+        if ($request->hasFile('video_file')) {
+            $path = $request->file('video_file')->store('videos', 'public');
+            $validated['video_path'] = $path;
+        }
+
+        $lesson->update($validated);
 
         return redirect()->route('admin.lessons.index')->with('success', 'Leçon mise à jour.');
     }
+
 
     public function destroy(Lesson $lesson)
     {

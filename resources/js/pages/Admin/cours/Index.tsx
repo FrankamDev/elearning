@@ -19,7 +19,7 @@ interface Props {
  cours: Course[];
 }
 
-export default function CourseIndex({ cours }: Props) {
+export default function Index({ cours }: Props) {
  const { delete: destroy } = useForm();
 
  const handleDelete = (id: number) => {
@@ -43,7 +43,7 @@ export default function CourseIndex({ cours }: Props) {
  return (
   <>
    <Navbar />
-   <div className="p-6 mt-12 space-y-6">
+   <div className="p-6 mt-12 h-screen bg-cyan-700 space-y-6">
     <div className="flex justify-between items-center">
     <h1 className="text-3xl font-bold">Liste des cours</h1>
     <Link
