@@ -49,23 +49,18 @@ class DashboardController extends Controller
 
     public function showUser()
     {
-        // Charge tous les utilisateurs avec les champs nécessaires
-        // $users = User::select('id', 'name', 'email', 'avatar', 'role', 'active', 'created_at')->get();
+
         $users = User::select('id', 'name', 'email', 'created_at')->get();
 
-        // Récupérer les stats par utilisateur, ici exemple statique ou relation (à adapter)
-        // Exemple : tu peux faire une relation "stats" sur User (courses, certificates, points)
-        // Ici, on simule pour chaque user un tableau de stats
         $users = $users->map(function ($user) {
-            // Exemple : récupérer le nombre de cours, certificats et points d'un user
-            // Remplace par ta logique réelle, ici statique pour démo
+
             $user->stats = [
                 // 'courses' => Cours()->count() ?? 0,
                 // 'certificates' => $user->certificates()->count() ?? 0,
                 // 'points' => $user->points ?? 0,
             ];
 
-            // Format date d'inscription lisible
+
             $user->joined = $user->created_at->format('d/m/Y');
 
             return $user;

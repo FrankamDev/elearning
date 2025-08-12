@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CourseAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DashboardUsers;
 use App\Http\Controllers\Admin\LessonAdminController;
+use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
@@ -70,25 +71,28 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('category', CategoryAdminController::class);
     Route::resource('cours', CourseAdminController::class);
 
-
-
     Route::put('/admin/cours/{cour}', [CourseAdminController::class, 'update'])
         ->name('admin.cours.update');
-
-
-
-
 
     Route::get('/admin/lessons/create/{cours}', [LessonAdminController::class, 'create'])->name('admin.lessons.create');
     Route::post('/admin/lessons/store', [LessonAdminController::class, 'store'])->name('admin.lessons.store');
 
-
     Route::get('/users', [DashboardController::class, 'showUser'])->name('users');
 
-    Route::resource('lessons', LessonAdminController::class);
+
+    // ** Routes pour la gestion des utilisateurs **
+    // Route::get('/users', [UserAdminController::class, 'index'])->name('users');
+    Route::post('/users/{id}/role', [UserAdminController::class, 'updateRole'])->name('users.updateRole');
+    Route::put('/users/{id}', [UserAdminController::class, 'update'])->name('users.update');
+
+
+    Route::delete('/admin/users/{id}', [UserAdminController::class, 'destroy'])->middleware('auth', 'admin');
+
+    Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 
     Route::get('/dashboard-old', [AdminController::class, 'index']);
 });
+
 
 
 require __DIR__ . '/settings.php';

@@ -33,7 +33,6 @@ import {
 import { Link } from "@inertiajs/react"
 import { route } from 'ziggy-js'
 
-
 import { url } from "inspector"
 type AppSidebarProps = {
  user: {
