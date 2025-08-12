@@ -83,12 +83,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/admin/lessons/store', [LessonAdminController::class, 'store'])->name('admin.lessons.store');
 
 
-
-    // Route::get('/cours/{cours}/lessons/create', [LessonAdminController::class, 'create'])->name('admin.lessons.create');
-    // Route::post('/lessons', [LessonAdminController::class, 'store'])->name('admin.lessons.store');
-
-
-
+    Route::get('/users', [DashboardController::class, 'showUser'])->name('users');
 
     Route::resource('lessons', LessonAdminController::class);
 

@@ -24,7 +24,6 @@ export default function Navbar() {
       </Link>
      </div>
 
-
      <div className="hidden md:flex items-center space-x-6">
       {user ? (
        <>
@@ -32,12 +31,12 @@ export default function Navbar() {
         <Link href="/categories" className="hover:text-cyan-400 transition-colors duration-200">
          Tous les Cours
         </Link>
-        <Link href="/cours" className="hover:text-cyan-400 transition-colors duration-200">
+        <Link href="/categories" className="hover:text-cyan-400 transition-colors duration-200">
          Parcours
         </Link>
         <FaBell className="cursor-pointer hover:text-cyan-400 transition-colors duration-200" />
 
-        <Link href="/admin" className="hover:text-cyan-400 transition-colors duration-200"><strong className="text-center">Espace <br /></strong>Developpeur</Link>
+        {/* <Link href="/admin" className="hover:text-cyan-400 transition-colors duration-200"><strong className="text-center">Espace <br /></strong>Developpeur</Link> */}
         <div className="relative">
          <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -54,7 +53,7 @@ export default function Navbar() {
            src=""
            alt="avatar"
            className="w-8 h-8 rounded-full object-cover"
-          /> */}
+           /> */}
           <HiChevronDown
            className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
           />
@@ -63,10 +62,15 @@ export default function Navbar() {
          {isDropdownOpen && (
           <div className="absolute right-0 mt-2 w-56 bg-[#0b0b14]/95 backdrop-blur-md border border-gray-800 rounded-lg shadow-xl z-50">
            <div className="px-4 py-3 border-b border-gray-700">
-            <div className="font-semibold text-white">{user.name}</div>
+            <div className="font-semibold text-white flex">
+             <span>{user.name}</span>
+
+             <h2 className=""> {user && <span className="text-green-800 px-1/2 rounded-full">👋🏽</span>}</h2>
+            </div>
             <div className="text-xs bg-yellow-700 text-white px-2 py-0.5 rounded inline-block mt-1">
              Bienvenue
             </div>
+
            </div>
            <ul className="py-2 text-sm space-y-2 px-4">
             <li>
@@ -77,14 +81,14 @@ export default function Navbar() {
               <FiHome /> <span>Tableau de bord</span>
              </Link>
             </li>
-            <li>
+            {/* <li>
              <Link
-              href='/admin'
-              className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-200"
+             href='/admin'
+             className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-200"
              >
-              <FiHome /> <span>Super Admin</span>
+             <FiHome /> <span>Super Admin</span>
              </Link>
-            </li>
+             </li> */}
             <li className="my-4">
              <Link
               href="/discord"
@@ -106,7 +110,7 @@ export default function Navbar() {
               href="/feedback"
               className="flex items-center space-x-2 hover:text-cyan-400 transition-colors duration-200"
              >
-              <FiMessageSquare /> <span>Retour</span>
+              <FiMessageSquare /> <span>Feedback</span>
              </Link>
             </li>
            </ul>

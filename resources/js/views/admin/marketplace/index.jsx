@@ -40,7 +40,7 @@ const Marketplace = () => {
                 className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
                 href=" "
               >
-                Music
+                Musique
               </a>
             </li>
             <li>

@@ -734,18 +734,18 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Table of Contents">
-                      Table of Contents
+            Table de contenus
                     </SelectItem>
                     <SelectItem value="Executive Summary">
                       Executive Summary
                     </SelectItem>
                     <SelectItem value="Technical Approach">
-                      Technical Approach
+            Approche Technique
                     </SelectItem>
                     <SelectItem value="Design">Design</SelectItem>
                     <SelectItem value="Capabilities">Capabilities</SelectItem>
                     <SelectItem value="Focus Documents">
-                      Focus Documents
+            Document
                     </SelectItem>
                     <SelectItem value="Narrative">Narrative</SelectItem>
                     <SelectItem value="Cover Page">Cover Page</SelectItem>
@@ -759,8 +759,8 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
                     <SelectValue placeholder="Select a status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Done">Done</SelectItem>
-                    <SelectItem value="In Progress">In Progress</SelectItem>
+           <SelectItem value="Done">ok</SelectItem>
+           <SelectItem value="In Progress">En progres</SelectItem>
                     <SelectItem value="Not Started">Not Started</SelectItem>
                   </SelectContent>
                 </Select>
@@ -768,11 +768,11 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
-                <Label htmlFor="target">Target</Label>
+         <Label htmlFor="target">cyble</Label>
                 <Input id="target" defaultValue={item.target} />
               </div>
               <div className="flex flex-col gap-3">
-                <Label htmlFor="limit">Limit</Label>
+         <Label htmlFor="limit">Limite</Label>
                 <Input id="limit" defaultValue={item.limit} />
               </div>
             </div>
@@ -783,7 +783,7 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
                   <SelectValue placeholder="Select a reviewer" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Eddie Lake">Eddie Lake</SelectItem>
+          <SelectItem value="Eddie Lake">Frank kamgang</SelectItem>
                   <SelectItem value="Jamik Tashpulatov">
                     Jamik Tashpulatov
                   </SelectItem>
@@ -794,9 +794,9 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           </form>
         </div>
         <DrawerFooter>
-          <Button>Submit</Button>
+      <Button>Soumission</Button>
           <DrawerClose asChild>
-            <Button variant="outline">Done</Button>
+       <Button variant="outline">ok</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

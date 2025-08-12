@@ -43,7 +43,7 @@ export default function Index({ cours }: Props) {
  return (
   <>
    <Navbar />
-   <div className="p-6 mt-12 h-screen bg-cyan-700 space-y-6">
+   <div className="py-6 mt-12 h-screen px-2 space-y-6">
     <div className="flex justify-between items-center">
     <h1 className="text-3xl font-bold">Liste des cours</h1>
     <Link
@@ -95,9 +95,9 @@ export default function Index({ cours }: Props) {
       </div>
      </div>
     ))}
-   </div>
-   </div>
+    </div>
    <Footer />
+   </div>
   </>
  );
 }

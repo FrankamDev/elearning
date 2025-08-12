@@ -31,7 +31,10 @@ import {
  SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link } from "@inertiajs/react"
+import { route } from 'ziggy-js'
 
+
+import { url } from "inspector"
 type AppSidebarProps = {
  user: {
   name: string
@@ -41,6 +44,7 @@ type AppSidebarProps = {
 } & React.ComponentProps<typeof Sidebar>
 
 export function AppSidebar({ user, ...props }: AppSidebarProps) {
+
  const data = {
   user: {
    name: user?.name ?? "Invité",
@@ -73,26 +77,31 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
     url: "/admin/lessons",
     icon: IconUsers,
    },
+   {
+    title: "Utilisateurs",
+    url: '/admin/users',
+    icon: IconUsers,
+   },
   ],
   navClouds: [
-   {
-    title: "Examens",
-    icon: IconFileDescription,
-    url: "/",
-    items: [
-     { title: "À venir", url: "/" },
-     { title: "Passés", url: "/" },
-    ],
-   },
-   {
-    title: "Supports",
-    icon: IconDatabase,
-    url: "/",
-    items: [
-     { title: "PDF", url: "/" },
-     { title: "Vidéos", url: "/" },
-    ],
-   },
+  // {
+  //  title: "Examens",
+  //  icon: IconFileDescription,
+  //  url: "/",
+  //  items: [
+  //   { title: "À venir", url: "/" },
+  //   { title: "Passés", url: "/" },
+  //  ],
+  // },
+  // {
+  //  title: "Supports",
+  //  icon: IconDatabase,
+  //  url: "/",
+  //  items: [
+  //   { title: "PDF", url: "/" },
+  //   { title: "Vidéos", url: "/" },
+  //  ],
+  // },
    {
     title: "Aide & FAQ",
     icon: IconHelp,
@@ -128,7 +137,7 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
    },
   ],
  }
-
+ // console.log(Object.keys(route().routes));
  return (
   <Sidebar collapsible="offcanvas" {...props}>
    <SidebarHeader>

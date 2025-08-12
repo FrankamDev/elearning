@@ -11,9 +11,10 @@ import {
 import data from "./data.json"
 
 import { usePage } from '@inertiajs/react';
-export default function Page({ users, courses, categories, stats }) {
+export default function Page({ users, courses, userCount, categories, stats }) {
 
  const { user } = usePage().props;
+
 
   return (
     <SidebarProvider
@@ -24,14 +25,21 @@ export default function Page({ users, courses, categories, stats }) {
         } as React.CSSProperties
       }
     >
-    <AppSidebar user={user} categories={categories} users={users} courses={courses} stats={stats} variant="inset" />
+    <AppSidebar
+     user={user}
+     userCount={userCount}
+     categories={categories}
+     users={user}
+     courses={courses}
+     stats={stats}
+     variant="inset" />
       <SidebarInset>
      <SiteHeader />
         <div className="flex flex-1 flex-col">
-      <h1 className="text-xl">Bienvenue <span className="text-xl text-gray-100 font-bold">{user.name}</span><b className="text-2xl">😉✌</b></h1>
+      <h1 className="text-xl ml-6 mt-2">Bienvenue <span className="text-xl text-gray-100 font-bold">{user.name}</span><b className="text-2xl">😉</b></h1>
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-        <SectionCards stats={stats} />
+        <SectionCards stats={stats} userCount={userCount} user={user} />
               <div className="px-4 lg:px-6">
                 <ChartAreaInteractive />
               </div>
