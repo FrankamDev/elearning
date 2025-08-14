@@ -1,26 +1,22 @@
-import * as React from "react"
+import * as React from "react";
 import {
- IconCamera,
- IconChartBar,
  IconDashboard,
- IconDatabase,
- IconFileAi,
- IconFileDescription,
- IconFileWord,
  IconFolder,
- IconHelp,
- IconInnerShadowTop,
- IconListDetails,
- IconReport,
- IconSearch,
- IconSettings,
+ IconChartBar,
+ IconFileWord,
  IconUsers,
-} from "@tabler/icons-react"
+ IconHelp,
+ IconSettings,
+ IconSearch,
+ IconInnerShadowTop,
+ IconFileAi,
+ IconReport,
+} from "@tabler/icons-react";
 
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavDocuments } from "@/components/nav-documents";
+import { NavMain } from "@/components/nav-main";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
  Sidebar,
  SidebarContent,
@@ -29,21 +25,18 @@ import {
  SidebarMenu,
  SidebarMenuButton,
  SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import { Link } from "@inertiajs/react"
-import { route } from 'ziggy-js'
+} from "@/components/ui/sidebar";
 
-import { url } from "inspector"
 type AppSidebarProps = {
  user: {
-  name: string
-  email: string
-  image?: string
- }
-} & React.ComponentProps<typeof Sidebar>
+  name: string;
+  email: string;
+  image?: string;
+ };
+ onSelect: (tab: string) => void; // fonction pour changer de page dans le dashboard
+} & React.ComponentProps<typeof Sidebar>;
 
-export function AppSidebar({ user, ...props }: AppSidebarProps) {
-
+export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
  const data = {
   user: {
    name: user?.name ?? "Invité",
@@ -52,75 +45,39 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
   },
   navMain: [
    {
+    id: "dashboard",
     title: "Tableau de bord",
-    url: "/dashboard",
     icon: IconDashboard,
    },
    {
+    id: "myCourses",
     title: "Mes cours",
-    url: "/dashboard/courses",
     icon: IconFolder,
    },
    {
-    title: "Gerer les cours",
-    url: "/admin/cours",
+    id: "manageCourses",
+    title: "Gérer les cours",
     icon: IconChartBar,
    },
    {
-    title: "Gerer les categories",
-    url: "admin/category",
+    id: "manageCategories",
+    title: "Gérer les catégories",
     icon: IconFileWord,
    },
    {
-    title: "Gerer les lecons",
-    url: "/admin/lessons",
+    id: "manageLessons",
+    title: "Gérer les leçons",
+    icon: IconFolder,
+   },
+   {
+    id: "viewCourses",
+    title: "Voir les cours",
     icon: IconUsers,
    },
    {
+    id: "manageUsers",
     title: "Utilisateurs",
-    url: '/admin/users',
     icon: IconUsers,
-   },
-  ],
-  navClouds: [
-  // {
-  //  title: "Examens",
-  //  icon: IconFileDescription,
-  //  url: "/",
-  //  items: [
-  //   { title: "À venir", url: "/" },
-  //   { title: "Passés", url: "/" },
-  //  ],
-  // },
-  // {
-  //  title: "Supports",
-  //  icon: IconDatabase,
-  //  url: "/",
-  //  items: [
-  //   { title: "PDF", url: "/" },
-  //   { title: "Vidéos", url: "/" },
-  //  ],
-  // },
-   {
-    title: "Aide & FAQ",
-    icon: IconHelp,
-    url: "/",
-    items: [
-     { title: "FAQ", url: "/" },
-     { title: "Support", url: "/" },
-    ],
-   },
-  ],
-  navSecondary: [
-   {
-    title: "Paramètres",
-    url: "/user",
-    icon: IconSettings,
-   },
-   {
-    title: "Rechercher",
-    url: "/",
-    icon: IconSearch,
    },
   ],
   documents: [
@@ -135,8 +92,20 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
     icon: IconReport,
    },
   ],
- }
- // console.log(Object.keys(route().routes));
+  navSecondary: [
+   {
+    title: "Paramètres",
+    id: "settings",
+    icon: IconSettings,
+   },
+   {
+    title: "Rechercher",
+    id: "search",
+    icon: IconSearch,
+   },
+  ],
+ };
+
  return (
   <Sidebar collapsible="offcanvas" {...props}>
    <SidebarHeader>
@@ -145,25 +114,38 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
       <SidebarMenuButton
        asChild
        className="data-[slot=sidebar-menu-button]:!p-1.5"
+       onClick={() => onSelect("dashboard")}
       >
-       <Link href="/">
+       <div className="flex items-center gap-2 cursor-pointer">
         <IconInnerShadowTop className="!size-5" />
         <span className="text-base font-semibold">Elearning</span>
-       </Link>
+       </div>
       </SidebarMenuButton>
      </SidebarMenuItem>
     </SidebarMenu>
    </SidebarHeader>
 
    <SidebarContent>
-    <NavMain items={data.navMain} />
+   
+    <NavMain
+     items={data.navMain}
+     onSelect={(id: string) => onSelect(id)}
+    />
+
+    {/* Documents */}
     <NavDocuments items={data.documents} />
-    <NavSecondary items={data.navSecondary} className="mt-auto" />
+
+    {/* Menu secondaire */}
+    <NavSecondary
+     items={data.navSecondary}
+     onSelect={(id: string) => onSelect(id)}
+     className="mt-auto"
+    />
    </SidebarContent>
 
    <SidebarFooter>
     <NavUser user={data.user} />
    </SidebarFooter>
   </Sidebar>
- )
+ );
 }

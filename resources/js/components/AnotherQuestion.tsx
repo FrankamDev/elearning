@@ -7,7 +7,7 @@ export default function AnotherQuestion() {
                 Devenez le developpeur que vous vouez devenir
             </h2>
             <div className="flex items-center justify-center">
-                <Link href="/questions" className="mt-4 text-[15px] rounded bg-[#3FAFFF] p-2 text-center font-[serif] text-black">
+                <Link href="/contact" className="mt-4 text-[15px] rounded bg-[#3FAFFF] p-2 text-center font-[serif] text-black">
                     Poser une autre question <span className="text-[10px]">👉</span>
                 </Link>
             </div>

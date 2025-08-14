@@ -88,6 +88,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::delete('/admin/users/{id}', [UserAdminController::class, 'destroy'])->middleware('auth', 'admin');
 
+
+    Route::post('/admin/users', [UserAdminController::class, 'store']);
+
+
     Route::delete('/users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
 
     Route::get('/dashboard-old', [AdminController::class, 'index']);

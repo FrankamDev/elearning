@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaComments, FaClock } from 'react-icons/fa';
+import Navbar from '@/components/NavBar';
+import Footer from './Footer';
 
 const Contact = () => {
  const [formData, setFormData] = useState({
@@ -20,6 +22,8 @@ const Contact = () => {
  };
 
  return (
+  <>
+   <Navbar />
   <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center py-16 px-6">
    <motion.div
     className="max-w-5xl w-full rounded-xl p-10 bg-gray-800 shadow-2xl border border-yellow-400"
@@ -184,7 +188,9 @@ const Contact = () => {
      <FaMapMarkerAlt className="text-6xl text-yellow-400" />
     </motion.div>
    </motion.div>
-  </div>
+   </div>
+   <Footer />
+  </>
  );
 };
 

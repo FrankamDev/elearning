@@ -9,3 +9,12 @@ return [
     'max_age' => 0,
     'supports_credentials' => false,
 ];
+// 'paths' => ['api/*', 'sanctum/csrf-cookie'],
+
+// 'allowed_methods' => ['*'],
+
+// 'allowed_origins' => ['http://localhost:3000'], // ton URL React
+
+// 'allowed_headers' => ['*'],
+
+// 'supports_credentials' => true,

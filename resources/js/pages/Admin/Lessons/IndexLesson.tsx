@@ -35,7 +35,7 @@ export default function Index({ lessons }) {
      </tr>
     </thead>
     <tbody>
-     {lessons.map((lesson) => (
+     {(lessons || []).map((lesson) => (
       <tr key={lesson.id} className="text-center">
        <td className="border p-3">{lesson.title}</td>
        <td className="border p-3">{lesson.cours.title}</td>

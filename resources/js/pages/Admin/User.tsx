@@ -791,6 +791,19 @@ export default function User({ usersData, onSaveUser, onDeleteUser }) {
  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
 
+
+ const [newUser, setNewUser] = useState({
+  name: '',
+  email: '',
+  role: 'Utilisateur',
+  password: '',
+  password_confirmation: '',
+ });
+ const [showAddUserForm, setShowAddUserForm] = useState(false);
+ const [errors, setErrors] = useState({});
+ const roles = ["Utilisateur", "Administrateur", "Super Administrateur"];
+
+
  const { csrf_token } = usePage().props;
  useEffect(() => {
   const u = users.find((u) => u.id === selectedUserId);
@@ -815,6 +828,8 @@ export default function User({ usersData, onSaveUser, onDeleteUser }) {
   setUsers((prev) =>
    prev.map((u) => (u.id === editUser.id ? { ...editUser } : u))
   );
+
+
   setIsEditing(false);
   if (onSaveUser) onSaveUser(editUser);
  };
@@ -833,13 +848,16 @@ export default function User({ usersData, onSaveUser, onDeleteUser }) {
  const handleDelete = async () => {
   if (!editUser) return;
 
+  // Récupérer le token CSRF depuis la meta si elle existe
+  const csrfToken =
+   document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") || "";
+
   try {
    const response = await fetch(`/admin/users/${editUser.id}`, {
     method: "DELETE",
     headers: {
      "Content-Type": "application/json",
-     // "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-     "X-CSRF-TOKEN": csrf_token,
+     "X-CSRF-TOKEN": csrfToken,
     },
    });
 
@@ -857,6 +875,7 @@ export default function User({ usersData, onSaveUser, onDeleteUser }) {
    alert("Erreur lors de la suppression : " + error.message);
   }
  };
+
 
 
  return (
@@ -883,6 +902,131 @@ export default function User({ usersData, onSaveUser, onDeleteUser }) {
        className="w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
      </div>
+     <button
+      onClick={() => setShowAddUserForm(true)}
+      className="mb-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+     >
+      Ajouter un utilisateur
+     </button>
+
+
+
+     {showAddUserForm && (
+      <form
+       onSubmit={async (e) => {
+        e.preventDefault();
+        setErrors({});
+
+        try {
+         const payload = {
+          name: newUser.name,
+          email: newUser.email,
+          role: newUser.role.toLowerCase(),
+          password: newUser.password,
+          password_confirmation: newUser.password_confirmation,
+         };
+
+         const response = await fetch('http://localhost:8000/api/admin/users', {
+          method: 'POST',
+          headers: {
+           'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+         });
+
+         if (!response.ok) {
+          const data = await response.json();
+          setErrors(data.errors || {});
+          throw new Error('Erreur lors de la création');
+         }
+
+         const data = await response.json();
+         alert('Utilisateur ajouté avec succès');
+
+         // Mise à jour locale de la liste utilisateurs (ajout du nouvel user)
+         setUsers((prev) => [...prev, data.user]);
+
+         // Reset formulaire & cacher
+         setNewUser({
+          name: '',
+          email: '',
+          role: 'Utilisateur',
+          password: '',
+          password_confirmation: '',
+         });
+         setShowAddUserForm(false);
+        } catch (err) {
+         alert(err.message);
+        }
+       }}
+       className="bg-white dark:bg-gray-800 rounded p-4 mb-4 shadow"
+      >
+       <input
+        type="text"
+        placeholder="Nom complet"
+        value={newUser.name}
+        onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+        required
+        className="w-full mb-2 rounded border px-3 py-2"
+       />
+       <input
+        type="email"
+        placeholder="Email"
+        value={newUser.email}
+        onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+        required
+        className="w-full mb-2 rounded border px-3 py-2"
+       />
+       <select
+        value={newUser.role}
+        onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+        className="w-full mb-2 rounded border px-3 py-2"
+       >
+        {roles.map((r) => (
+         <option key={r} value={r}>
+          {r}
+         </option>
+        ))}
+       </select>
+       <input
+        type="password"
+        placeholder="Mot de passe"
+        value={newUser.password}
+        onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+        required
+        className="w-full mb-2 rounded border px-3 py-2"
+       />
+       <input
+        type="password"
+        placeholder="Confirmer mot de passe"
+        value={newUser.password_confirmation}
+        onChange={(e) =>
+         setNewUser({ ...newUser, password_confirmation: e.target.value })
+        }
+        required
+        className="w-full mb-2 rounded border px-3 py-2"
+       />
+       <div className="flex space-x-2 justify-end">
+        <button
+         type="button"
+         onClick={() => setShowAddUserForm(false)}
+         className="px-4 py-2 rounded border hover:bg-gray-100"
+        >
+         Annuler
+        </button>
+        <button
+         type="submit"
+         className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+        >
+         Ajouter
+        </button>
+       </div>
+      </form>
+     )}
+
+
+
+
 
 
      <div className="flex-grow overflow-y-auto">

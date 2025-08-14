@@ -72,4 +72,23 @@ class UserAdminController extends Controller
 
         return back()->with('success', 'Utilisateur supprimé avec succès.');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'role' => 'required|in:user,admin,superadmin',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json(['message' => 'Utilisateur créé', 'user' => $user], 201);
+    }
 }

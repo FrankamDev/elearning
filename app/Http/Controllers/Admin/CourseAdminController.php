@@ -40,10 +40,19 @@ class CourseAdminController extends Controller
             'category_id' => 'required|exists:categories,id',
             'video_url' => 'nullable|url',
         ]);
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (Cours::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
 
         Cours::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $slug,
+            // 'slug' => Str::slug($request->title),
             'description' => $request->description,
             'category_id' => $request->category_id,
             'video_url' => $request->video_url,

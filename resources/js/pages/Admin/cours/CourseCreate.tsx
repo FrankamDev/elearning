@@ -12,7 +12,18 @@ export default function CourseCreate() {
 
  function handleSubmit(e) {
   e.preventDefault();
-  post("/admin/cours");
+  post("/admin/cours", {
+   preserveState: true, // garde l'état et évite de recharger toute la page
+   onSuccess: () => {
+    // vider le formulaire après succès
+    setData({
+     title: "",
+     description: "",
+     category_id: "",
+     video_url: "",
+    });
+   },
+  });
  }
 
  return (
