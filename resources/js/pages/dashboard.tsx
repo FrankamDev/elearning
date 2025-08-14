@@ -7,11 +7,13 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 import data from "./data.json";
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import User from "./Admin/User";
 import IndexLesson from "./Admin/Lessons/IndexLesson";
 import CreateCourse from "./Admin/cours/CourseCreate";
 import Dashboard from './Admin/Dashboard';
+import CategoryCreate from './Admin/category/Create';
+import CourseIndex from "./courses/CourseIndex";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
@@ -43,6 +45,8 @@ export default function dashboard({ users, courses, userCount, categories, stats
     variant="inset"
    />
 
+
+
    <SidebarInset>
     <SiteHeader />
     <div className="flex flex-1 flex-col">
@@ -54,7 +58,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
 
      <div className="@container/main flex flex-1 flex-col gap-2">
       <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-       {/* Dashboard */}
+
        {activeTab === "dashboard" && (
         <>
          <SectionCards stats={stats} userCount={userCount} user={user} />
@@ -68,38 +72,46 @@ export default function dashboard({ users, courses, userCount, categories, stats
 
        {activeTab === "manageCourses" && (
         <div className="p-6">
-         <h2 className="text-2xl font-bold mb-4">Gestion des cours..</h2>
-         <CreateCourse
-          onSaved={() => {
+         <h2 className="text-2xl font-bold mb-4">Gestion des lecons</h2>
 
-           setActiveTab("dashboard");
-           setEditingCourse(null);
-          }}
-          editingCourseId={editingCourse}
-         />
          <IndexLesson
           courses={courses}
           onEditCourse={handleEditCourse}
          />
+
         </div>
        )}
 
        {activeTab === "manageCategories" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des categories</h2>
-
+         <h2>CategoryCreate</h2>
         </div>
        )}
 
 
        {activeTab === "manageLessons" && (
         <div className="p-6">
-         <h2 className="text-2xl font-bold mb-4">Gestion des leçons</h2>
-
+         <h2 className="text-2xl font-bold mb-4">Gestion des leçons.</h2>
+         <h2>Lesson</h2>
         </div>
        )}
 
-       {/* Gestion des utilisateurs */}
+
+
+       <Link
+        href="/toggle-role"
+        method="post"
+        as="button"
+        className="bg-cyan-700 w-[20%] cursor-alias  text-white px-4 py-2 text-sm rounded transition"
+       >
+        {user.role === "superadmin"
+         ? "Revenir en mode Utilisateur"
+         : "Passer en mode Superadmin"}
+       </Link>
+
+
+
        {activeTab === "manageUsers" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des utilisateurs</h2>

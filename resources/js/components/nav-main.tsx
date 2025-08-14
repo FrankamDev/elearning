@@ -36,14 +36,14 @@ export function NavMain({
     role: "user"
    },
    {
-    title: "Gestion des cours",
+    title: "Gestion des lecons",
     id: "manageCourses",
     icon: IconBook,
     role: "admin"
    },
    {
     title: "Gestion des catégories",
-    id: "manageCourses",
+    id: "manageCategories",
     icon: IconBook,
     role: "admin"
    },

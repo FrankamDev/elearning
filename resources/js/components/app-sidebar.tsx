@@ -33,65 +33,34 @@ type AppSidebarProps = {
   email: string;
   image?: string;
  };
- onSelect: (tab: string) => void; // fonction pour changer de page dans le dashboard
+ onSelect: (tab: string) => void;
 } & React.ComponentProps<typeof Sidebar>;
 
 export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
  const data = {
   user: {
    name: user?.name ?? "Invité",
-   email: user?.email ?? "invité@example.com",
+   email: user?.email ?? "invite@example.com",
    avatar: user?.image ?? "./vraiLogo.svg",
   },
   navMain: [
-   {
-    id: "dashboard",
-    title: "Tableau de bord",
-    icon: IconDashboard,
-   },
-   {
-    id: "myCourses",
-    title: "Mes cours",
-    icon: IconFolder,
-   },
-   {
-    id: "manageCourses",
-    title: "Gérer les cours",
-    icon: IconChartBar,
-   },
-   {
-    id: "manageCategories",
-    title: "Gérer les catégories",
-    icon: IconFileWord,
-   },
-   {
-    id: "manageLessons",
-    title: "Gérer les leçons",
-    icon: IconFolder,
-   },
-   {
-    id: "manageLessons",
-    title: "Gérer les catégories",
-    icon: IconFolder,
-   },
-   {
-    id: "viewCourses",
-    title: "Voir les cours",
-    icon: IconUsers,
-   },
-   {
-    id: "manageUsers",
-    title: "Utilisateurs",
-    icon: IconUsers,
-   },
+   { id: "dashboard", title: "Tableau de bord", icon: IconDashboard },
+   { id: "myCourses", title: "Mes cours", icon: IconFolder },
+   { id: "manageCourses", title: "Gérer les cours", icon: IconChartBar },
+   { id: "manageLessons", title: "Gérer les leçons", icon: IconFolder },
+   { id: "manageCategories", title: "Gérer les catégories", icon: IconFolder },
+   { id: "viewCourses", title: "Voir les cours", icon: IconUsers },
+   { id: "manageUsers", title: "Utilisateurs", icon: IconUsers },
   ],
   documents: [
    {
+    id: "docs",
     name: "Documentation",
     url: "/docs",
     icon: IconFileAi,
    },
    {
+    id: "reports",
     name: "Rapports",
     url: "/dashboard/reports",
     icon: IconReport,
@@ -99,13 +68,13 @@ export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
   ],
   navSecondary: [
    {
-    title: "Paramètres",
     id: "settings",
+    title: "Paramètres",
     icon: IconSettings,
    },
    {
-    title: "Rechercher",
     id: "search",
+    title: "Rechercher",
     icon: IconSearch,
    },
   ],
@@ -131,19 +100,11 @@ export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
    </SidebarHeader>
 
    <SidebarContent>
-
-    <NavMain
-     items={data.navMain}
-     onSelect={(id: string) => onSelect(id)}
-    />
-
-
+    <NavMain items={data.navMain} onSelect={onSelect} />
     <NavDocuments items={data.documents} />
-
-
     <NavSecondary
      items={data.navSecondary}
-     onSelect={(id: string) => onSelect(id)}
+     onSelect={onSelect}
      className="mt-auto"
     />
    </SidebarContent>

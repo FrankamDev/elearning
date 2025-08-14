@@ -59,7 +59,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     // Leçons
     Route::resource('lessons', LessonAdminController::class);
-    Route::get('/lessons/create/{cours}', [LessonAdminController::class, 'create'])->name('lessons.create');
+    Route::get('/lessons/create/{cours? }', [LessonAdminController::class, 'create'])->name('lessons.create');
     Route::post('/lessons/store', [LessonAdminController::class, 'store'])->name('lessons.store');
 
     // Catégories
