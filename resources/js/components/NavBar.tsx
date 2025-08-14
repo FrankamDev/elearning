@@ -58,6 +58,11 @@ export default function Navbar() {
         >
          Parcours
         </Link>
+
+
+
+
+
         <FaBell className="cursor-pointer hover:text-cyan-400 transition-colors duration-200" />
 
         {/* Dropdown */}
