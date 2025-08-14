@@ -66,6 +66,7 @@ class DashboardController extends Controller
             return $user;
         });
 
+
         return Inertia::render('Admin/User', [
             'usersData' => $users,
             'userCount' => $users->count(),

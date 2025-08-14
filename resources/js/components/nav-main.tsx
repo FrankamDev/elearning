@@ -35,7 +35,7 @@ export function NavMain({
  return (
   <SidebarGroup>
    <SidebarGroupContent className="flex flex-col gap-2">
-
+    <h1>{user.role}</h1>
     <SidebarMenu>
      <SidebarMenuItem className="flex items-center gap-2">
       <SidebarMenuButton
@@ -80,7 +80,7 @@ export function NavMain({
       <SidebarMenuItem>
        <SidebarMenuButton
         tooltip="Gestion des utilisateurs"
-        onClick={() => onSelect("manageUsers")} // 🔥 onglet spécial
+        onClick={() => onSelect("manageUsers")}
        >
         <span>Super Admin</span>
        </SidebarMenuButton>

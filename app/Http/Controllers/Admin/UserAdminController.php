@@ -14,11 +14,13 @@ class UserAdminController extends Controller
 
     public function index()
     {
+
         Inertia::share('csrf_token', csrf_token());
         $users = User::select('id', 'name', 'email', 'role')->get();
         return Inertia::render('Admin/User', [
             'users' => $users
         ]);
+        dd(auth()->user()->toArray());
     }
     public function updateRole(Request $request, $id)
     {
