@@ -10,18 +10,41 @@ use Inertia\Inertia;
 
 class UserAdminController extends Controller
 {
-    // Modifier uniquement le rôle de l'utilisateur
-
     public function index()
     {
-
         Inertia::share('csrf_token', csrf_token());
-        $users = User::select('id', 'name', 'email', 'role')->get();
+
+        $users = User::select('id', 'name', 'email', 'role', 'created_at')->get();
+
         return Inertia::render('Admin/User', [
             'users' => $users
         ]);
-        dd(auth()->user()->toArray());
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'role'     => 'required|in:user,admin,superadmin',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'role'     => $request->role,
+            'password' => Hash::make($request->password),
+            'active'   => true,
+        ]);
+
+        // ⚡ Redirection Inertia pour éviter l'erreur resolveComponent
+        return Inertia::render('Admin/User', [
+            'users' => User::all(),
+            'success' => 'Utilisateur ajouté avec succès',
+        ]);
+    }
+
     public function updateRole(Request $request, $id)
     {
         $request->validate([
@@ -35,21 +58,20 @@ class UserAdminController extends Controller
         return back()->with('success', 'Rôle mis à jour avec succès.');
     }
 
-
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => "required|email|unique:users,email,$id",
-            'role' => 'required|in:user,admin,superadmin',
+            'name'     => 'required|string|max:255',
+            'email'    => "required|email|unique:users,email,$id",
+            'role'     => 'required|in:user,admin,superadmin',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
-        $user->name = $request->name;
+        $user->name  = $request->name;
         $user->email = $request->email;
-        $user->role = $request->role;
+        $user->role  = $request->role;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
@@ -60,12 +82,10 @@ class UserAdminController extends Controller
         return back()->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
-    // Supprimer un utilisateur
     public function destroy($id)
     {
         $user = User::findOrFail($id);
 
-        // Optionnel: empêcher un superadmin de se supprimer lui-même
         if (auth()->user()->id == $user->id) {
             return back()->with('error', 'Vous ne pouvez pas supprimer votre propre compte.');
         }
@@ -73,24 +93,5 @@ class UserAdminController extends Controller
         $user->delete();
 
         return back()->with('success', 'Utilisateur supprimé avec succès.');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'role' => 'required|in:user,admin,superadmin',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $request->role,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return response()->json(['message' => 'Utilisateur créé', 'user' => $user], 201);
     }
 }

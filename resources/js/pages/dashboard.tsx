@@ -65,13 +65,13 @@ export default function dashboard({ users, courses, userCount, categories, stats
         </>
        )}
 
-       {/* Gestion des cours */}
+
        {activeTab === "manageCourses" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des cours..</h2>
          <CreateCourse
           onSaved={() => {
-           // rafraîchir la liste ou revenir au dashboard
+
            setActiveTab("dashboard");
            setEditingCourse(null);
           }}
@@ -84,19 +84,18 @@ export default function dashboard({ users, courses, userCount, categories, stats
         </div>
        )}
 
-       {/* Gestion des categories */}
        {activeTab === "manageCategories" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des categories</h2>
-         {/* Ajouter ici un composant Category */}
+
         </div>
        )}
 
-       {/* Gestion des leçons */}
+
        {activeTab === "manageLessons" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des leçons</h2>
-         {/* Ajouter IndexLesson si nécessaire */}
+
         </div>
        )}
 

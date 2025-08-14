@@ -16,14 +16,14 @@ const testimonials = [
   message: 'Grâce aux parcours structurés, j’ai décroché mon premier job en développement web.',
  },
  {
-  name: 'Nathalie T.',
+  name: 'Maiva Charnelle',
   role: 'UI/UX Designer',
   image: '/avatar3.jpg',
   message: 'Les projets réels m’ont permis de bâtir un portfolio solide et décrocher un stage.',
  },
  {
-  name: 'Jean Michel',
-  role: 'Mobile Developer',
+  name: 'Nguimfack Jean Yannick',
+  role: 'Developpeur FullStack',
   image: '/avatar4.jpg',
   message: 'J’ai appris à créer des applications React Native modernes avec les meilleurs outils.',
  },

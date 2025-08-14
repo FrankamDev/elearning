@@ -70,6 +70,11 @@ export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
     icon: IconFolder,
    },
    {
+    id: "manageLessons",
+    title: "Gérer les catégories",
+    icon: IconFolder,
+   },
+   {
     id: "viewCourses",
     title: "Voir les cours",
     icon: IconUsers,
@@ -126,16 +131,16 @@ export function AppSidebar({ user, onSelect, ...props }: AppSidebarProps) {
    </SidebarHeader>
 
    <SidebarContent>
-   
+
     <NavMain
      items={data.navMain}
      onSelect={(id: string) => onSelect(id)}
     />
 
-    {/* Documents */}
+
     <NavDocuments items={data.documents} />
 
-    {/* Menu secondaire */}
+
     <NavSecondary
      items={data.navSecondary}
      onSelect={(id: string) => onSelect(id)}

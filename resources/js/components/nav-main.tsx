@@ -23,11 +23,42 @@ export function NavMain({
   icon?: Icon;
   role?: "user" | "admin" | "superadmin";
  }[] = [
-   { title: "Mon profil", id: "profile", icon: IconUser, role: "user" },
-   { title: "Mes cours", id: "myCourses", icon: IconBook, role: "user" },
-   { title: "Gestion des cours", id: "manageCourses", icon: IconBook, role: "admin" },
-   { title: "Paramètres", id: "settings", icon: IconSettings, role: "admin" },
-   { title: "Gestion avancée", id: "manageUsers", icon: IconUser, role: "superadmin" },
+   {
+    title: "Mon profil",
+    id: "profile",
+    icon: IconUser,
+    role: "user"
+   },
+   {
+    title: "Mes cours",
+    id: "myCourses",
+    icon: IconBook,
+    role: "user"
+   },
+   {
+    title: "Gestion des cours",
+    id: "manageCourses",
+    icon: IconBook,
+    role: "admin"
+   },
+   {
+    title: "Gestion des catégories",
+    id: "manageCourses",
+    icon: IconBook,
+    role: "admin"
+   },
+   {
+    title: "Paramètres",
+    id: "settings",
+    icon: IconSettings,
+    role: "admin"
+   },
+   {
+    title: "Gestion avancée",
+    id: "manageUsers",
+    icon: IconUser,
+    role: "superadmin"
+   },
   ];
 
 
@@ -45,7 +76,7 @@ export function NavMain({
 
     <h1 className="text-sm text-muted-foreground">
      {user.role === "user" ? "Bienvenue sur l'application" : "Bienvenue sur l'admin"}
-     {/* Rôle : <span className="font-bold">{user.role}</span> */}
+
     </h1>
 
 
