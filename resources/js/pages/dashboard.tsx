@@ -10,10 +10,14 @@ import data from "./data.json";
 import { Link, usePage } from "@inertiajs/react";
 import User from "./Admin/User";
 import IndexLesson from "./Admin/Lessons/IndexLesson";
-import CreateCourse from "./Admin/cours/CourseCreate";
-import Dashboard from './Admin/Dashboard';
-import CategoryCreate from './Admin/category/Create';
-import CourseIndex from "./courses/CourseIndex";
+// import CreateCourse from "./Admin/cours/CourseCreate";
+// import Dashboard from './Admin/Dashboard';
+// import CategoryCreate from './Admin/category/Create';
+// import CourseIndex from "./courses/CourseIndex";
+// import Index from "./Admin/category/CategoryIndex";
+import CategoryIndex from "./Admin/category/CategoryIndex";
+import CreateLesson from './Admin/Lessons/IndexLesson';
+import UsersChart from "@/components/graphiques/UserChart";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
@@ -45,8 +49,6 @@ export default function dashboard({ users, courses, userCount, categories, stats
     variant="inset"
    />
 
-
-
    <SidebarInset>
     <SiteHeader />
     <div className="flex flex-1 flex-col">
@@ -54,6 +56,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
       Bienvenue{" "}
       <span className="text-xl text-gray-100 font-bold">{user.name}</span>
       <b className="text-2xl">😉</b>
+      <UsersChart />
      </h1>
 
      <div className="@container/main flex flex-1 flex-col gap-2">
@@ -74,7 +77,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des lecons</h2>
 
-         <IndexLesson
+         <CreateLesson
           courses={courses}
           onEditCourse={handleEditCourse}
          />
@@ -85,7 +88,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
        {activeTab === "manageCategories" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des categories</h2>
-         <h2>CategoryCreate</h2>
+         <CategoryIndex categories={categories} />
         </div>
        )}
 
