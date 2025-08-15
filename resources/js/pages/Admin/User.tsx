@@ -380,10 +380,11 @@
 //  );
 // }
 
+
+
 import { useState, useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/react";
-
 import {
  CheckCircleIcon,
  XCircleIcon,
@@ -391,6 +392,8 @@ import {
  Edit3Icon,
  SaveIcon,
  SearchIcon,
+ Loader2Icon,
+ RefreshCcwIcon,
 } from "lucide-react";
 
 const roles = [
@@ -401,7 +404,6 @@ const roles = [
 
 export default function User() {
  const { users: usersFromBackend, flash } = usePage().props;
-
  const [users, setUsers] = useState(usersFromBackend || []);
  const [selectedUserId, setSelectedUserId] = useState(users[0]?.id || null);
  const [searchTerm, setSearchTerm] = useState("");
@@ -409,6 +411,8 @@ export default function User() {
  const [isEditing, setIsEditing] = useState(false);
  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
  const [showAddUserForm, setShowAddUserForm] = useState(false);
+ const [message, setMessage] = useState(flash?.success || "");
+ const [errors, setErrors] = useState({});
  const [newUser, setNewUser] = useState({
   name: "",
   email: "",
@@ -416,8 +420,7 @@ export default function User() {
   password: "",
   password_confirmation: "",
  });
- const [errors, setErrors] = useState({});
- const [message, setMessage] = useState(flash?.success || "");
+ const [loading, setLoading] = useState(false); // <-- état pour le spinner
 
  // Mettre à jour l'utilisateur sélectionné
  useEffect(() => {
@@ -430,7 +433,7 @@ export default function User() {
  useEffect(() => {
   if (flash?.success) {
    setMessage(flash.success);
-   const timer = setTimeout(() => setMessage(''), 100);
+   const timer = setTimeout(() => setMessage(""), 3000);
    return () => clearTimeout(timer);
   }
  }, [flash]);
@@ -450,15 +453,9 @@ export default function User() {
  // Sauvegarder utilisateur existant
  const handleSave = () => {
   if (!editUser) return;
-
+  setLoading(true);
   Inertia.put(`/admin/users/${editUser.id}`, editUser, {
-   onSuccess: (page) => {
-    setUsers(page.props.users);
-    setIsEditing(false);
-    setMessage("Utilisateur mis à jour avec succès !");
-    const timer = setTimeout(() => setMessage(""), 3000);
-    return () => clearTimeout(timer);
-   },
+   onFinish: () => setLoading(false),
    onError: (errs) => setErrors(errs),
   });
  };
@@ -466,60 +463,59 @@ export default function User() {
  // Supprimer utilisateur
  const handleDelete = () => {
   if (!editUser) return;
-
+  setLoading(true);
   Inertia.delete(`/admin/users/${editUser.id}`, {
-   onSuccess: (page) => {
-    setUsers(page.props.users);
-    setShowDeleteConfirm(false);
-    setSelectedUserId(page.props.users[0]?.id || null);
-    setMessage("Utilisateur supprimé avec succès !");
-    const timer = setTimeout(() => setMessage(""), 3000);
-    return () => clearTimeout(timer);
-   },
+   onFinish: () => setLoading(false),
   });
+  setShowDeleteConfirm(false);
  };
 
  // Ajouter un utilisateur
  const handleAddUser = (e) => {
   e.preventDefault();
   setErrors({});
-
+  setLoading(true);
   Inertia.post("/admin/users", newUser, {
-   onSuccess: (page) => {
-    setUsers(page.props.users);
-    setShowAddUserForm(false);
-    setNewUser({
-     name: "",
-     email: "",
-     role: "user",
-     password: "",
-     password_confirmation: "",
-    });
-    setMessage("Utilisateur ajouté avec succès !");
-    const timer = setTimeout(() => setMessage(""), 3000);
-    return () => clearTimeout(timer);
-   },
+   onFinish: () => setLoading(false),
    onError: (errs) => setErrors(errs),
   });
+  setShowAddUserForm(false);
+  setNewUser({
+   name: "",
+   email: "",
+   role: "user",
+   password: "",
+   password_confirmation: "",
+  });
+ };
+
+ // Rafraîchir la liste d'utilisateurs
+ const handleRefresh = () => {
+  setLoading(true);
+  Inertia.get("/", {}, { preserveState: true, onFinish: () => setLoading(false) });
  };
 
  return (
   <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-   {/* Message flash */}
    {message && (
     <div className="fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded shadow-lg z-50">
      {message}
     </div>
    )}
 
-   {/* Header */}
-   <header className="sticky top-0 bg-white dark:bg-gray-800 shadow-md flex items-center px-6 py-4 z-10">
+   <header className="sticky top-0 bg-white dark:bg-gray-800 shadow-md flex items-center px-6 py-4 z-10 justify-between">
     <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
      Gestion des utilisateurs
     </h1>
+    <button
+     onClick={handleRefresh}
+     className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+    >
+     <RefreshCcwIcon className="w-5 h-5" />
+     {loading ? "Chargement..." : "Rafraîchir"}
+    </button>
    </header>
 
-   {/* Main */}
    <main className="flex-grow flex flex-col md:flex-row p-4 gap-4">
     {/* Liste */}
     <section className="md:w-1/3 bg-white dark:bg-gray-800 rounded-2xl shadow-lg flex flex-col p-4">
@@ -612,9 +608,9 @@ export default function User() {
         </button>
         <button
          type="submit"
-         className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+         className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
         >
-         Ajouter
+         {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : "Ajouter"}
         </button>
        </div>
       </form>
@@ -676,7 +672,7 @@ export default function User() {
            onClick={handleSave}
            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
           >
-           <SaveIcon className="w-5 h-5" />
+           {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <SaveIcon className="w-5 h-5" />}
            Sauvegarder
           </button>
          ) : (
@@ -740,7 +736,7 @@ export default function User() {
           onClick={() => setShowDeleteConfirm(true)}
           className="flex items-center gap-2 px-6 py-2 rounded font-semibold shadow text-white bg-red-600 hover:bg-red-700 transition"
          >
-         <Trash2Icon className="w-5 h-5" />
+          {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <Trash2Icon className="w-5 h-5" />}
          Supprimer
         </button>
        </div>
