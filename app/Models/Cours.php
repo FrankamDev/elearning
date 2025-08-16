@@ -28,7 +28,6 @@ class Cours extends Model
         'title',
         'description',
         'category_id',
-        'video_url',
         'user_id',
     ];
 

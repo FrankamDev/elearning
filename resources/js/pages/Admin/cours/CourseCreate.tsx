@@ -22,12 +22,14 @@ export default function CourseCreate() {
  const [loading, setLoading] = useState(false);
  const [errors, setErrors] = useState({});
 
+ // Mettre à jour le formulaire d'édition quand on change de cours
  useEffect(() => {
   const c = cours.find((c) => c.id === selectedCourseId);
   setEditCourse(c ? { ...c } : null);
   setIsEditing(false);
  }, [selectedCourseId, cours]);
 
+ // Afficher un message flash
  useEffect(() => {
   if (flash?.success) {
    setMessage(flash.success);
@@ -36,27 +38,31 @@ export default function CourseCreate() {
   }
  }, [flash]);
 
- // Ajouter un cours avec redirection Inertia
+ // --- Ajouter un cours ---
  const handleAddCourse = (e) => {
   e.preventDefault();
   setLoading(true);
   setErrors({});
 
   Inertia.post("/admin/cours", newCourse, {
-   onSuccess: () => {
-    // Redirection automatique vers index qui mettra à jour la liste
+   onSuccess: (page) => {
+    const addedCourse = page.props.cours.slice(-1)[0];
+    setCours([...cours, addedCourse]);
     setMessage("Cours ajouté avec succès !");
     setShowAddForm(false);
     setNewCourse({ title: "", description: "", category_id: "", video_url: "" });
+    setSelectedCourseId(addedCourse.id);
     setLoading(false);
    },
    onError: (errs) => {
     setErrors(errs);
     setLoading(false);
    },
+   preserveState: true,
   });
  };
 
+ // --- Sauvegarder la modification ---
  const handleSave = () => {
   if (!editCourse) return;
   setLoading(true);
@@ -64,6 +70,7 @@ export default function CourseCreate() {
 
   Inertia.put(`/admin/cours/${editCourse.id}`, editCourse, {
    onSuccess: () => {
+    setCours(cours.map((c) => (c.id === editCourse.id ? editCourse : c)));
     setMessage("Cours mis à jour !");
     setIsEditing(false);
     setLoading(false);
@@ -72,18 +79,25 @@ export default function CourseCreate() {
     setErrors(errs);
     setLoading(false);
    },
+   preserveState: true,
   });
  };
 
+ // --- Supprimer un cours ---
  const handleDelete = (id) => {
   if (!id) return;
+  if (!confirm("Voulez-vous vraiment supprimer ce cours ?")) return;
+
   setLoading(true);
 
   Inertia.delete(`/admin/cours/${id}`, {
    onSuccess: () => {
+    setCours(cours.filter((c) => c.id !== id));
     setMessage("Cours supprimé !");
+    if (selectedCourseId === id) setSelectedCourseId(null);
     setLoading(false);
    },
+   preserveState: true,
   });
  };
 
@@ -119,10 +133,7 @@ export default function CourseCreate() {
      </button>
 
      {showAddForm && (
-      <form
-       onSubmit={handleAddCourse}
-       className="bg-gray-50 dark:bg-gray-700 rounded p-4 mb-4 shadow"
-      >
+      <form onSubmit={handleAddCourse} className="bg-gray-50 dark:bg-gray-700 rounded p-4 mb-4 shadow">
        <input
         type="text"
         placeholder="Titre"
@@ -134,24 +145,18 @@ export default function CourseCreate() {
        <textarea
         placeholder="Description"
         value={newCourse.description}
-        onChange={(e) =>
-         setNewCourse({ ...newCourse, description: e.target.value })
-        }
+        onChange={(e) => setNewCourse({ ...newCourse, description: e.target.value })}
         className="w-full mb-2 rounded border px-3 py-2"
        />
        <select
         value={newCourse.category_id}
-        onChange={(e) =>
-         setNewCourse({ ...newCourse, category_id: e.target.value })
-        }
+        onChange={(e) => setNewCourse({ ...newCourse, category_id: e.target.value })}
         className="w-full mb-2 rounded border px-3 py-2"
         required
        >
         <option value="">-- Choisissez une catégorie --</option>
         {categories.map((cat) => (
-         <option key={cat.id} value={cat.id}>
-          {cat.name}
-         </option>
+         <option key={cat.id} value={cat.id}>{cat.name}</option>
         ))}
        </select>
        <input
@@ -162,17 +167,10 @@ export default function CourseCreate() {
         className="w-full mb-2 rounded border px-3 py-2"
        />
        <div className="flex justify-end space-x-2">
-        <button
-         type="button"
-         onClick={() => setShowAddForm(false)}
-         className="px-4 py-2 rounded border hover:bg-gray-100"
-        >
+        <button type="button" onClick={() => setShowAddForm(false)} className="px-4 py-2 rounded border hover:bg-gray-100">
          Annuler
         </button>
-        <button
-         type="submit"
-         className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-        >
+        <button type="submit" className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
          {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : "Ajouter"}
         </button>
        </div>
@@ -185,8 +183,7 @@ export default function CourseCreate() {
         <li
          key={c.id}
          onClick={() => setSelectedCourseId(c.id)}
-         className={`cursor-pointer flex flex-col gap-1 px-4 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-indigo-100 dark:hover:bg-indigo-700 transition ${c.id === selectedCourseId ? "bg-indigo-200 dark:bg-indigo-900 font-semibold" : "font-normal"
-          }`}
+         className={`cursor-pointer flex flex-col gap-1 px-4 py-3 border-b border-gray-200 dark:border-gray-700 hover:bg-indigo-100 dark:hover:bg-indigo-700 transition ${c.id === selectedCourseId ? "bg-indigo-200 dark:bg-indigo-900 font-semibold" : "font-normal"}`}
         >
          <p className="truncate">{c.title}</p>
          <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{c.category?.name}</p>
@@ -199,100 +196,46 @@ export default function CourseCreate() {
     {/* Détails / édition */}
     <section className="md:w-2/3 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 flex flex-col">
      {!editCourse ? (
-      <p className="text-gray-600 dark:text-gray-400 text-center mt-20">
-       Sélectionnez un cours pour voir les détails.
-      </p>
+      <p className="text-gray-600 dark:text-gray-400 text-center mt-20">Sélectionnez un cours pour voir les détails.</p>
      ) : (
       <>
        <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-         {editCourse.title}
-        </h3>
+         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">{editCourse.title}</h3>
         {isEditing ? (
-         <button
-          onClick={handleSave}
-          className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition"
-         >
-          {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <SaveIcon className="w-5 h-5" />}
-          Sauvegarder
+          <button onClick={handleSave} className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow transition">
+           {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <SaveIcon className="w-5 h-5" />} Sauvegarder
          </button>
         ) : (
-         <button
-          onClick={() => setIsEditing(true)}
-          className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded shadow transition"
-         >
-          <Edit3Icon className="w-5 h-5" />
-          Modifier
+           <button onClick={() => setIsEditing(true)} className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded shadow transition">
+            <Edit3Icon className="w-5 h-5" />Modifier
          </button>
         )}
        </div>
 
-        <form
-         onSubmit={(e) => {
-          e.preventDefault();
-          handleSave();
-         }}
-         className="flex-grow space-y-4"
-        >
+        <form onSubmit={(e) => { e.preventDefault(); handleSave(); }} className="flex-grow space-y-4">
          <div>
           <label>Titre</label>
-          <input
-           type="text"
-           disabled={!isEditing}
-           value={editCourse.title}
-           onChange={(e) => setEditCourse({ ...editCourse, title: e.target.value })}
-           className="w-full rounded border px-3 py-2"
-          />
+          <input type="text" disabled={!isEditing} value={editCourse.title} onChange={(e) => setEditCourse({ ...editCourse, title: e.target.value })} className="w-full rounded border px-3 py-2" />
          </div>
          <div>
           <label>Description</label>
-          <textarea
-           disabled={!isEditing}
-           value={editCourse.description}
-           onChange={(e) =>
-            setEditCourse({ ...editCourse, description: e.target.value })
-           }
-           className="w-full rounded border px-3 py-2"
-          />
+          <textarea disabled={!isEditing} value={editCourse.description} onChange={(e) => setEditCourse({ ...editCourse, description: e.target.value })} className="w-full rounded border px-3 py-2" />
          </div>
          <div>
           <label>Catégorie</label>
-          <select
-           disabled={!isEditing}
-           value={editCourse.category_id}
-           onChange={(e) =>
-            setEditCourse({ ...editCourse, category_id: e.target.value })
-           }
-           className="w-full rounded border px-3 py-2"
-          >
-           {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-             {cat.name}
-            </option>
-           ))}
+          <select disabled={!isEditing} value={editCourse.category_id} onChange={(e) => setEditCourse({ ...editCourse, category_id: e.target.value })} className="w-full rounded border px-3 py-2">
+           {categories.map((cat) => (<option key={cat.id} value={cat.id}>{cat.name}</option>))}
           </select>
          </div>
          <div>
           <label>URL vidéo</label>
-          <input
-           type="url"
-           disabled={!isEditing}
-           value={editCourse.video_url}
-           onChange={(e) =>
-            setEditCourse({ ...editCourse, video_url: e.target.value })
-           }
-           className="w-full rounded border px-3 py-2"
-          />
+          <input type="url" disabled={!isEditing} value={editCourse.video_url} onChange={(e) => setEditCourse({ ...editCourse, video_url: e.target.value })} className="w-full rounded border px-3 py-2" />
          </div>
         </form>
 
         <div className="mt-6 flex justify-end">
-         <button
-          onClick={() => handleDelete(editCourse.id)}
-          className="flex items-center gap-2 px-6 py-2 rounded font-semibold shadow text-white bg-red-600 hover:bg-red-700 transition"
-         >
-          {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <Trash2Icon className="w-5 h-5" />}
-          Supprimer
+         <button onClick={() => handleDelete(editCourse.id)} className="flex items-center gap-2 px-6 py-2 rounded font-semibold shadow text-white bg-red-600 hover:bg-red-700 transition">
+          {loading ? <Loader2Icon className="w-5 h-5 animate-spin" /> : <Trash2Icon className="w-5 h-5" />} Supprimer
          </button>
         </div>
       </>

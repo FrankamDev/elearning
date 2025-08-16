@@ -9,22 +9,26 @@ import { AuthProvider } from './context/AuthContext';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
-    title: (title) => title ? `${title} - ${appName}` : appName,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
-    setup({ el, App, props }) {
-        const root = createRoot(el);
+ title: (title) => (title ? `${title} - ${appName}` : appName),
+ // 🔹 Chemin exact vers tes pages (majuscules sensibles)
+ resolve: (name) =>
+  resolvePageComponent(
+   `./Pages/${name}.tsx`,
+   import.meta.glob('./Pages/**/*.tsx')
+  ),
+ setup({ el, App, props }) {
+  const root = createRoot(el);
 
-     root.render(
-      <AuthProvider>
-
-       <App {...props} />
-      </AuthProvider>
-     );
-    },
-    progress: {
-     color: 'cyan',
-    },
+  root.render(
+   <AuthProvider>
+    <App {...props} />
+   </AuthProvider>
+  );
+ },
+ progress: {
+  color: 'cyan',
+ },
 });
 
-
+// Initialisation du thème (dark/light)
 initializeTheme();

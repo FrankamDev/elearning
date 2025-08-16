@@ -66,8 +66,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('category', CategoryAdminController::class);
 
     // Cours
-    Route::resource('cours', CourseAdminController::class);
-    Route::put('/cours/{cour}', [CourseAdminController::class, 'update'])->name('cours.update');
+    Route::get("/cours", [CourseAdminController::class, "index"])->name('cours.index');
+    Route::post("/cours", [CourseAdminController::class, "store"])->name('cours.store');
+    Route::put("/cours/{cour}", [CourseAdminController::class, "update"])->name('cours.update');
+    Route::delete("/cours/{cour}", [CourseAdminController::class, "destroy"])->name('cours.destroy');
 
     // Gestion des utilisateurs
     Route::get('/users', [UserAdminController::class, 'index'])->name('users.index');
