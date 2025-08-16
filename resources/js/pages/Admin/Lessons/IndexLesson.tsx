@@ -21,6 +21,7 @@ export default function Index({ lessons }) {
     </Link>
     <Link
      href={route('admin.lessons.create')}
+
      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
     >
      Ajouter une leçon

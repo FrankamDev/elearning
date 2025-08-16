@@ -18,6 +18,8 @@ import IndexLesson from "./Admin/Lessons/IndexLesson";
 import CategoryIndex from "./Admin/category/CategoryIndex";
 import CreateLesson from './Admin/Lessons/IndexLesson';
 import UsersChart from "@/components/graphiques/UserChart";
+import CoursesIndex from "./cours/Index";
+import Index from "../../js/pages/Admin/cours/CourseCreate";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
@@ -75,12 +77,8 @@ export default function dashboard({ users, courses, userCount, categories, stats
 
        {activeTab === "manageCourses" && (
         <div className="p-6">
-         <h2 className="text-2xl font-bold mb-4">Gestion des lecons</h2>
-
-         <CreateLesson
-          courses={courses}
-          onEditCourse={handleEditCourse}
-         />
+         <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>
+         <Index />
 
         </div>
        )}
@@ -119,6 +117,14 @@ export default function dashboard({ users, courses, userCount, categories, stats
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des utilisateurs</h2>
          <User />
+        </div>
+       )}
+       {activeTab === "manageLessons" && (
+        <div className="p-6">
+         <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>
+         <IndexLesson />
+
+
         </div>
        )}
       </div>

@@ -50,9 +50,7 @@ class LessonAdminController extends Controller
             'content' => $request->content,
             'video_path' => $path ?? null,
         ]);
-        // Lesson::create($validated);
-
-        // return redirect()->route('admin.cours.index')->with('success', 'Leçon créée avec succès.');
+        
         return redirect()->route('admin.lessons.index')->with('success', 'Leçon créée avec succès.');
     }
     public function show(Lesson $lesson)

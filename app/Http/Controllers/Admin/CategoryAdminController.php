@@ -5,58 +5,96 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class CategoryAdminController extends Controller
 {
-    // Liste toutes les catégories avec le nombre de cours
+    /**
+     * Liste des catégories
+     */
     public function index()
     {
         $categories = Category::withCount('cours')->get();
-        return Inertia::render('Admin/category/Index', compact('categories'));
+
+        return Inertia::render('Admin/CategoryIndex', [
+            'categories' => $categories
+        ]);
     }
 
-    // Affiche le formulaire de création
-    public function create()
-    {
-        return Inertia::render('Admin/category/Create');
-    }
-
-    // Enregistre une nouvelle catégorie
+    /**
+     * Ajouter une catégorie
+     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name',
+        $validated = $request->validate([
+            'name'  => 'required|string|max:255|unique:categories,name',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        Category::create(['name' => $request->name]);
+        $imagePath = $request->file('image')->store('categories', 'public');
 
-        return redirect()->route('admin.category.index')->with('success', 'Catégorie créée avec succès.');
+        $category = Category::create([
+            'name'  => $validated['name'],
+            'image' => $imagePath
+        ]);
+
+        $category->loadCount('cours');
+
+        // Si c'est une requête AJAX → JSON
+        if ($request->expectsJson()) {
+            return response()->json($category, 201);
+        }
+
+        // Sinon → redirection Inertia
+        return redirect()->back()->with('success', 'Catégorie ajoutée avec succès.');
     }
 
-    // Affiche le formulaire d'édition
-    public function edit(Category $category)
-    {
-        return Inertia::render('Admin/category/Edit', compact('category'));
-    }
-
-    // Met à jour la catégorie
+    /**
+     * Mettre à jour une catégorie
+     */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:categories,name,'.$category->id,
+        $validated = $request->validate([
+            'name'  => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $category->update(['name' => $request->name]);
+        $data = ['name' => $validated['name']];
 
-        return redirect()->route('admin.category.index')->with('success', 'Catégorie mise à jour.');
+        // Si nouvelle image → remplacer
+        if ($request->hasFile('image')) {
+            if ($category->image && Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        $category->update($data);
+        $category->loadCount('cours');
+
+        if ($request->expectsJson()) {
+            return response()->json($category);
+        }
+
+        return redirect()->back()->with('success', 'Catégorie mise à jour avec succès.');
     }
 
-    // Supprime la catégorie
-    public function destroy(Category $category)
+    /**
+     * Supprimer une catégorie
+     */
+    public function destroy(Request $request, Category $category)
     {
+        if ($category->image && Storage::disk('public')->exists($category->image)) {
+            Storage::disk('public')->delete($category->image);
+        }
+
         $category->delete();
 
-        return redirect()->route('admin.category.index')->with('success', 'Catégorie supprimée.');
+        if ($request->expectsJson()) {
+            return response()->json(['id' => $category->id]);
+        }
+
+        return redirect()->back()->with('success', 'Catégorie supprimée avec succès.');
     }
 }

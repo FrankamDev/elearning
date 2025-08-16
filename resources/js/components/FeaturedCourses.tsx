@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const testimonials = [
 
 export default function TestimonialGrid() {
  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-
+ const { auth } = usePage().props;
  return (
   <section
    className="relative min-h-screen overflow-hidden py-20 text-white"
@@ -60,7 +61,7 @@ export default function TestimonialGrid() {
       onMouseLeave={() => setHoverIndex(null)}
      >
       <div className="mb-4 flex items-center gap-4">
-       <img src={t.image} alt={t.name} className="h-14 w-14 rounded-full border-2 border-white object-cover" />
+       <img src={t.image} alt={t.name} className="h-14 w-14 rounded-full border-2 border-white object-cover shadow-lg" />
        <div>
         <h4 className="text-lg font-semibold">{t.name}</h4>
         <p className="text-sm text-gray-300">{t.role}</p>

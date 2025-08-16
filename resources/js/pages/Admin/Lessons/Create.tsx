@@ -12,7 +12,7 @@ export default function Create({ cours, categories }) {
   e.preventDefault();
   post(route("admin.lessons.store"), {
    preserveScroll: true,
-   forceFormData: true, // 🔥 Nécessaire pour envoyer un fichier
+   forceFormData: true,
   });
  };
 

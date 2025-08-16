@@ -36,7 +36,7 @@ export function NavMain({
     role: "user"
    },
    {
-    title: "Gestion des lecons",
+    title: "Gestion des cours",
     id: "manageCourses",
     icon: IconBook,
     role: "admin"
@@ -48,8 +48,8 @@ export function NavMain({
     role: "admin"
    },
    {
-    title: "Paramètres",
-    id: "settings",
+    title: "Gerer les lecons",
+    id: "manageLessons",
     icon: IconSettings,
     role: "admin"
    },

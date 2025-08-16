@@ -23,7 +23,7 @@ export default function CourseIndex() {
  return (
   <>
    <Navbar />
-   <section className="my-8 flex min-h-screen flex-col items-center justify-center bg-[#0B0E1E] px-4 text-white">
+   <section className="my-8 flex min-h-screen flex-col items-center justify-center bg-[#0B0E1E] px-4">
     <motion.h1
      initial={{ opacity: 0, y: 20 }}
      animate={{ opacity: 1, y: 0 }}

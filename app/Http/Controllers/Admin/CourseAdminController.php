@@ -2,105 +2,88 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use Illuminate\Support\Str;
-
 use App\Http\Controllers\Controller;
 use App\Models\Cours;
-use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class CourseAdminController extends Controller
 {
+    // Liste tous les cours
     public function index()
     {
-        $categories = Category::with('cours.lessons')->get();
-        $cours = Cours::with('category')->get();
-        return Inertia::render('Admin/cours/Index', [
-            'categories' => $categories,
-            'cours' => $cours
+        $cours = Cours::with('category')->get(); // récupère tous les cours avec leur catégorie
+
+        return Inertia::render('Admin/Course/Index', [
+            'cours' => $cours,
+            'flash' => session()->all(), // pour les messages de succès
         ]);
     }
 
-    public function create()
-    {
-        $categories = Category::all();
-        return Inertia::render('Admin/cours/Create', [
-            'cours' => Cours::all(),
-            'categories' => Category::all(),
-        ]);
-    }
-
+    // Créer un nouveau cours
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'       => 'required|string|max:255|unique:cours,title',
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
-            'video_url' => 'nullable|url',
+            'video_url'   => 'nullable|url',
         ]);
-        $slug = Str::slug($request->title);
-        $originalSlug = $slug;
-        $count = 1;
 
-        while (Cours::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $count;
-            $count++;
-        }
-
-        Cours::create([
-            'title' => $request->title,
-            'slug' => $slug,
-            // 'slug' => Str::slug($request->title),
+        $cours = Cours::create([
+            'title'       => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
-            'video_url' => $request->video_url,
-            'user_id' => auth()->id(),
+            'video_url'   => $request->video_url,
+            'user_id'     => Auth::id(),
+            'slug'        => Str::slug($request->title),
         ]);
 
-        return redirect()->route('admin.cours.index')->with('success', 'Cours créé avec succès.');
+        return redirect()->route('cours.index')->with('success', 'Cours ajouté avec succès !');
     }
 
-    public function edit(Cours $cours)
+    // Mettre à jour un cours
+    public function update(Request $request, Cours $cour)
     {
-        $categories = Category::all();
-        return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
-    }
-
-    public function update(Request $request, Cours $cours)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
+        $request->validate([
+            'title'       => 'required|string|max:255|unique:cours,title,' . $cour->id,
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
-            'video_url' => 'nullable|url',
+            'video_url'   => 'nullable|url',
         ]);
 
-        // $cour->update($request->only(['title', 'description', 'category_id', 'video_url']));
-        $cours->update($validated);
-        return redirect()->route('admin.cours.index')->with('success', 'Cours mis à jour.');
-    }
-public function show(Cours $cours)
-{
-        $cours->load('lessons');
-        $user = auth()->user();
-        $progress = $user
-            ? $user->lessonProgress()->pluck('is_completed', 'lesson_id')->toArray()
-            : [];
+        $cour->update([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'video_url'   => $request->video_url,
+            'slug'        => Str::slug($request->title),
+        ]);
 
-        // $categories = Category::all();
-        // return Inertia::render('Admin/cours/Edit', compact('cours', 'categories'));
-        return Inertia::render('cours/Show', [
-            'cours' => $cours,
-            'userProgress' => $progress,
+        return Inertia::render('Admin/Course/Index', [
+            'cours' => Cours::with('category')->get(),
+            'flash' => ['success' => 'Cours mis à jour avec succès !'],
         ]);
     }
 
+    // Supprimer un cours
     public function destroy(Cours $cour)
     {
         $cour->delete();
 
-        return redirect()->route('admin.cours.index')->with('success', 'Cours supprimé.');
+        return Inertia::render('Admin/Course/Index', [
+            'cours' => Cours::with('category')->get(),
+            'flash' => ['success' => 'Cours supprimé avec succès !'],
+        ]);
+    }
+
+    // Afficher un cours (optionnel)
+    public function show(Cours $cour)
+    {
+        return Inertia::render('Admin/Course/Show', [
+            'course' => $cour->load('category', 'lessons'),
+        ]);
     }
 }
