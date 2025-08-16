@@ -55,6 +55,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
     // Dashboard
+    Route::get('/cours', [CourseAdminController::class, 'index'])->name('cours.index');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leçons

@@ -6,22 +6,22 @@ export default function CategoryIndex() {
  const { categories: initialCategories } = usePage().props;
  const [categories, setCategories] = useState(initialCategories);
  const [adding, setAdding] = useState(false);
- const [editing, setEditing] = useState(null); // id de la catégorie en cours d'édition
+ const [editing, setEditing] = useState(null);
  const [form, setForm] = useState({ name: "", image: null });
  const [errors, setErrors] = useState({});
  const [processing, setProcessing] = useState(false);
 
- // Gérer champs texte
+
  const handleChange = (e) => {
   setForm({ ...form, [e.target.name]: e.target.value });
  };
 
- // Gérer image
+
  const handleFileChange = (e) => {
   setForm({ ...form, image: e.target.files[0] });
  };
 
- // Ajouter catégorie
+
  const handleAdd = (e) => {
   e.preventDefault();
   setProcessing(true);
@@ -226,7 +226,7 @@ export default function CategoryIndex() {
      </div>
     ))}
    </div>
-   <Link href="/categories/" className="bg-blue-600 mt-14 text-white px-4 py-2 rounded hover:bg-blue-700"> Retour à la liste des catégories</Link>
+   <Link href="/categories/" className="bg-blue-600  text-white px-4 py-2 rounded hover:bg-blue-700"> Retour à la liste des catégories</Link>
   </div>
  );
 }

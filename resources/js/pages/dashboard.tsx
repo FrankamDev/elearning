@@ -19,7 +19,7 @@ import CategoryIndex from "./Admin/category/CategoryIndex";
 import CreateLesson from './Admin/Lessons/IndexLesson';
 import UsersChart from "@/components/graphiques/UserChart";
 import CoursesIndex from "./cours/Index";
-import Index from "../../js/pages/Admin/cours/CourseCreate";
+import Index from "./Admin/cours/CourseCreate";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;

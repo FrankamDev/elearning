@@ -14,6 +14,15 @@ class DashboardController extends Controller
     /**
      * Affiche les utilisateurs pour le dashboard admin
      */
+
+    public function index()
+    {
+        return Inertia::render('Admin/Dashboard', [
+            'cours' => Cours::with('category')->get(),
+            'categories' => Category::all(),
+        ]);
+    }
+
     public function showUser()
     {
         // Récupérer tous les utilisateurs

@@ -1,15 +1,29 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Support\Str;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 
 class Cours extends Model
 {
+    use HasFactory;
 
-      protected static function booted()
+    protected $fillable = [
+        'title',
+        'description',
+        'type',
+        'content',
+        'video_url',
+        'duration',
+        'is_free',
+        'category_id',
+        'user_id',
+        'slug',
+    ];
+
+    protected static function booted()
     {
         static::creating(function ($cours) {
             if (empty($cours->slug)) {
@@ -18,22 +32,13 @@ class Cours extends Model
         });
     }
 
-
-    use HasFactory;
-
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
- protected $fillable = [
-        'title',
-        'description',
-        'category_id',
-        'user_id',
-    ];
 
-    public function lessons() {
+    public function lessons()
+    {
         return $this->hasMany(Lesson::class);
     }
-
-
 }
