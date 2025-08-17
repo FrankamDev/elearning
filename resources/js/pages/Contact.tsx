@@ -70,6 +70,18 @@ const Contact = () => {
         placeholder="votre@email.com"
        />
       </motion.div>
+       <motion.div className="mb-6" whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}>
+        <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-200">Numero de telephone</label>
+        <input
+         type="number"
+         id="number"
+         name="numer"
+         value={formData.email}
+         onChange={handleChange}
+         className="w-full p-4 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-300"
+         placeholder="votre@email.com"
+        />
+       </motion.div>
 
       <motion.div className="mb-6" whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}>
        <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-200">Sujet</label>

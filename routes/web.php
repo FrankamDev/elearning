@@ -11,6 +11,7 @@ use App\Http\Controllers\AiController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,7 @@ Route::get('/inscription', fn() => Inertia::render('Inscription'))->name('inscri
 Route::get('/connexion', fn() => Inertia::render('Connexion'))->name('connexion');
 
 Route::post('/ask-ai', [AiController::class, 'ask']);
-
+Route::post('/contact', [ContactController::class, 'store']);
 // --------------------------
 // Authenticated User Routes
 // --------------------------
