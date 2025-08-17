@@ -35,7 +35,7 @@ const ContactTable = () => {
  return (
   <>
 
-   <div className="bg-gradient-to-br  min-h-screen py-16 px-4">
+   <div className="bg-gradient-to-br  min-h-screen py-16 px-4    from-cyan-900-100 via-blue-900 to-black">
     <div className="max-w-7xl mx-auto">
      <motion.h2
       className="text-5xl md:text-6xl font-bold text-center text-white mb-12 animate-pulse"
@@ -57,18 +57,18 @@ const ContactTable = () => {
        animate={{ opacity: 1 }}
        transition={{ duration: 0.8 }}
       >
-       <table className="min-w-full divide-y divide-gray-200">
+         <table className="min-w-full divide-y bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900">
         <thead className="bg-blue-800">
          <tr>
             <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Nom</th>
-            <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Email</th>
-            <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Téléphone</th>
-            <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Sujet</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 uppercase tracking-wider">Email</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 uppercase tracking-wider">Téléphone</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 uppercase tracking-wider">Sujet</th>
             <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Message</th>
-            <th className="px-6 py-3 text-left text-sm font-semibold text-white uppercase tracking-wider">Date</th>
+            <th className="px-6 py-3 text-left text-sm font-semibold bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 uppercase tracking-wider">Date</th>
            </tr>
           </thead>
-          <tbody className="bg-gray-50 divide-y divide-gray-200">
+          <tbody className="bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 divide-y divide-gray-200">
            {contacts.map((contact) => (
             <motion.tr
              key={contact.id}
@@ -97,17 +97,17 @@ const ContactTable = () => {
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.8 }}
      >
-      <div className="bg-blue-800 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
-       <h3 className="text-xl font-bold mb-2">Support Email</h3>
-       <p className="text-blue-100">support@votresite.com</p>
+      <div className="bg-blue-800 bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
+       <h3 className="text-xl font-bold mb-2">Nothing To add Here</h3>
+       <p className="text-blue-100">mensonge.con</p>
       </div>
-      <div className="bg-blue-800 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
-       <h3 className="text-xl font-bold mb-2">Téléphone</h3>
-       <p className="text-blue-100">+237 6XXXXXXXX</p>
+      <div className="bg-blue-800 bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
+       <h3 className="text-xl font-bold mb-2">Objectif de la journee validé✔🥰🖖🏿</h3>
+       <p className="text-blue-100">690461830</p>
       </div>
-      <div className="bg-blue-800 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
+      <div className="bg-blue-800 bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
        <h3 className="text-xl font-bold mb-2">Tu es un Genie Mr Frank✔🥰🖖🏿</h3>
-       <p className="text-blue-100">Votre ville, Pays</p>
+       <p className="text-blue-100">Tu merites un grand jus</p>
       </div>
      </motion.div>
     </div>
