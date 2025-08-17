@@ -9,17 +9,18 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import data from "./data.json";
 import { Link, usePage } from "@inertiajs/react";
 import User from "./Admin/User";
-import IndexLesson from "./Admin/Lessons/IndexLesson";
+import IndexLesson from "./Admin/IndexLesson";
 // import CreateCourse from "./Admin/cours/CourseCreate";
 // import Dashboard from './Admin/Dashboard';
 // import CategoryCreate from './Admin/category/Create';
 // import CourseIndex from "./courses/CourseIndex";
 // import Index from "./Admin/category/CategoryIndex";
 import CategoryIndex from "./Admin/category/CategoryIndex";
-import CreateLesson from './Admin/Lessons/IndexLesson';
+import CreateLesson from './Admin/IndexLesson';
 import UsersChart from "@/components/graphiques/UserChart";
 import CoursesIndex from "./cours/Index";
 import Index from "./Admin/cours/CourseCreate";
+import LessonCrud from "./Admin/Lessons/LessonCrud";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
@@ -34,6 +35,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
  };
 
  return (
+  <>
   <SidebarProvider
    style={{
     "--sidebar-width": "calc(var(--spacing) * 72)",
@@ -122,15 +124,20 @@ export default function dashboard({ users, courses, userCount, categories, stats
        {activeTab === "manageLessons" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>
-         <IndexLesson />
+          <LessonCrud />
 
 
         </div>
        )}
       </div>
+
      </div>
+      <Link href="/categories" className="bg-blue-600 w-[20%] text-white px-4 py-2 rounded hover:bg-blue-700">
+       Tous les cours
+      </Link>
     </div>
    </SidebarInset>
-  </SidebarProvider>
+   </SidebarProvider>
+  </>
  );
 }

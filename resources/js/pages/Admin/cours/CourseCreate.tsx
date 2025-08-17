@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Link } from "@inertiajs/react";
 
 interface Category {
  id: number;
@@ -214,6 +215,7 @@ const CourseCreate: React.FC = () => {
      ))}
     </motion.div>
    </div>
+   <Link href="/categories">Liste des categories</Link>
   </div>
  );
 };

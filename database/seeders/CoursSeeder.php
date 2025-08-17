@@ -3,80 +3,47 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 use App\Models\Cours;
-use App\Models\Category;
-use App\Models\User;
 
 class CoursSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        // Récupérer le premier utilisateur existant
-        $user = User::first();
-        if (!$user) {
-            $this->command->error('Aucun utilisateur trouvé. Veuillez exécuter UserSeeder avant.');
-            return;
-        }
+        // Crée 3 cours de test
+        Cours::create([
+            'title'       => 'HTML pour débutants',
+            'description' => 'Apprenez les bases du HTML',
+            'type'        => 'video',
+            'content'     => 'Contenu HTML',
+            'video_url'   => null,
+            'duration'    => '1h',
+            'is_free'     => true,
+            'category_id' => 1,
+            'user_id'     => 1,
+        ]);
 
-        // Récupérer toutes les catégories indexées par slug
-        $categories = Category::all()->keyBy('slug');
-        if ($categories->isEmpty()) {
-            $this->command->error('Aucune catégorie trouvée. Veuillez exécuter CategorySeeder avant.');
-            return;
-        }
+        Cours::create([
+            'title'       => 'CSS avancé',
+            'description' => 'Maîtrisez le CSS',
+            'type'        => 'video',
+            'content'     => 'Contenu CSS',
+            'video_url'   => null,
+            'duration'    => '2h',
+            'is_free'     => false,
+            'category_id' => 1,
+            'user_id'     => 1,
+        ]);
 
-        $cours = [
-            [
-                'title' => 'Introduction à HTML',
-                'description' => 'Apprends les bases du HTML.',
-                'category_slug' => 'html',
-            ],
-            [
-                'title' => 'Introduction à CSS',
-                'description' => 'Apprends à styliser tes pages.',
-                'category_slug' => 'css',
-            ],
-            [
-                'title' => 'Bases de JavaScript',
-                'description' => 'Ajoute de l\'interactivité.',
-                'category_slug' => 'javascript',
-            ],
-            [
-                'title' => 'Programmation avec PHP',
-                'description' => 'Développement backend.',
-                'category_slug' => 'php',
-            ],
-        ];
-
-        foreach ($cours as $item) {
-            // Récupérer l'id de la catégorie depuis le slug
-            $category = $categories->get($item['category_slug']);
-
-            if (!$category) {
-                $this->command->warn("Catégorie non trouvée pour slug '{$item['category_slug']}', cours '{$item['title']}' ignoré.");
-                continue;
-            }
-
-            // Générer un slug propre pour le cours
-            $slug = Str::slug($item['title']);
-
-            // Vérifier que le cours n'existe pas déjà (par slug)
-            if (Cours::where('slug', $slug)->exists()) {
-                $this->command->info("Le cours '{$item['title']}' existe déjà, création ignorée.");
-                continue;
-            }
-
-
-            Cours::create([
-                'title' => $item['title'],
-                'slug' => $slug,
-                'description' => $item['description'],
-                'category_id' => $category->id,
-                'user_id' => $user->id,
-            ]);
-
-            $this->command->info("Cours '{$item['title']}' créé avec succès.");
-        }
+        Cours::create([
+            'title'       => 'JavaScript Interactif',
+            'description' => 'Apprendre JS étape par étape',
+            'type'        => 'video',
+            'content'     => 'Contenu JS',
+            'video_url'   => null,
+            'duration'    => '3h',
+            'is_free'     => true,
+            'category_id' => 2,
+            'user_id'     => 1,
+        ]);
     }
 }

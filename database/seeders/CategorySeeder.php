@@ -7,20 +7,10 @@ use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $categories = [
-            ['name' => 'HTML', 'slug' => 'html'],
-            ['name' => 'CSS', 'slug' => 'css'],
-            ['name' => 'JavaScript', 'slug' => 'javascript'],
-            ['name' => 'PHP', 'slug' => 'php'],
-            ['name' => 'React', 'slug' => 'react'],
-            ['name' => 'Tailwind', 'slug' => 'tailwind'],
-            ['name' => 'Base de données', 'slug' => 'database'],
-        ];
-
-        foreach ($categories as $cat) {
-            Category::firstOrCreate(['slug' => $cat['slug']], $cat);
-        }
+        Category::create(['name' => 'Développement Web']);
+        Category::create(['name' => 'JavaScript']);
+        Category::create(['name' => 'Design']);
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
- protected $fillable = [
+    use HasFactory;
+
+    protected $fillable = [
         'cours_id',
         'title',
         'video_path',
@@ -17,9 +20,9 @@ class Lesson extends Model
     {
         return $this->belongsTo(Cours::class);
     }
-    public function progress()
-{
-    return $this->hasMany(Progress::class);
-}
 
+    public function progress()
+    {
+        return $this->hasMany(Progress::class);
+    }
 }
