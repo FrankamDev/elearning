@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
+Route::post('/contact', [ContactController::class, 'store']);
+Route::get('/admin/contacts', [ContactController::class, 'index']);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cours', [CoursController::class, 'index'])->name('cours.index');
@@ -37,7 +41,7 @@ Route::get('/inscription', fn() => Inertia::render('Inscription'))->name('inscri
 Route::get('/connexion', fn() => Inertia::render('Connexion'))->name('connexion');
 
 Route::post('/ask-ai', [AiController::class, 'ask']);
-Route::post('/contact', [ContactController::class, 'store']);
+// Route::post('/contact', [ContactController::class, 'store']);
 // --------------------------
 // Authenticated User Routes
 // --------------------------
@@ -54,7 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Admin Routes
 // --------------------------
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
+    // Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
