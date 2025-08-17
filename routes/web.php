@@ -54,13 +54,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Admin Routes
 // --------------------------
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
     // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leçons
-    Route::get('lessons', [LessonAdminController::class, 'index'])->name('lessons.index'); // formulaire + cours
-    Route::post('lessons', [LessonAdminController::class, 'store'])->name('lessons.store'); // ajouter une leçon
+    Route::get('lessons', [LessonAdminController::class, 'index'])->name('lessons.index');
+    Route::post('lessons', [LessonAdminController::class, 'store'])->name('lessons.store');
 
     // Cours
     Route::get('cours', [CourseAdminController::class, 'index'])->name('cours.index');
@@ -77,8 +77,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('users/{id}', [UserAdminController::class, 'update'])->name('users.update');
     Route::delete('users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
     Route::post('users/{id}/role', [UserAdminController::class, 'updateRole'])->name('users.updateRole');
+
     Route::get('/dashboard-old', [AdminController::class, 'index']);
 });
+
+Route::get('/dashboard-old', [AdminController::class, 'index']);
 
 
 

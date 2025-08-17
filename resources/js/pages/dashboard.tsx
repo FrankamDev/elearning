@@ -21,12 +21,13 @@ import UsersChart from "@/components/graphiques/UserChart";
 import CoursesIndex from "./cours/Index";
 import Index from "./Admin/cours/CourseCreate";
 import LessonCrud from "./Admin/Lessons/LessonCrud";
+import DashboardContacts from "./Admin/DashboardContacts";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
  const user = auth.user;
 
- const [activeTab, setActiveTab] = useState<"dashboard" | "manageCourses" | "manageCategories" | "manageLessons" | "manageUsers">("dashboard");
+ const [activeTab, setActiveTab] = useState<"dashboard" | "manageCourses" | "manageCategories" | "contactUsers" | "manageLessons" | "manageUsers">("dashboard");
  const [editingCourse, setEditingCourse] = useState<number | null>(null);
 
  const handleEditCourse = (id: number) => {
@@ -87,7 +88,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
 
        {activeTab === "manageCategories" && (
         <div className="p-6">
-         <h2 className="text-2xl font-bold mb-4">Gestion des categories</h2>
+          <h2 className="text-2xl font-bold mb-4">Gestion des categoriesm</h2>
          <CategoryIndex categories={categories} />
         </div>
        )}
@@ -121,6 +122,12 @@ export default function dashboard({ users, courses, userCount, categories, stats
          <User />
         </div>
        )}
+        {activeTab === "contactUsers" && (
+         <div className="p-6">
+          <h2 className="text-2xl font-bold mb-4">Gerer les questions</h2>
+          <DashboardContacts />
+         </div>
+        )}
        {activeTab === "manageLessons" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>

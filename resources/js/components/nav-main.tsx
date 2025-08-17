@@ -59,6 +59,12 @@ export function NavMain({
     icon: IconUser,
     role: "superadmin"
    },
+   {
+    title: "Questions",
+    id: "contactUsers",
+    icon: IconUser,
+    role: "superadmin"
+   },
   ];
 
 
