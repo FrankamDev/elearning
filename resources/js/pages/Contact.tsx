@@ -30,7 +30,7 @@ const Contact = () => {
  return (
   <>
    <Navbar />
-   <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex flex-col items-center justify-center py-12 px-4">
+   <div className="min-h-screen bg-gradient-to-br from-blue-200 via-blue-600 to-blue-900 flex flex-col items-center justify-center py-12 px-4">
     <motion.div
      className="max-w-6xl w-full bg-gray-900 p-10 rounded-3xl shadow-2xl border border-blue-400"
      initial={{ opacity: 0, y: 60 }}

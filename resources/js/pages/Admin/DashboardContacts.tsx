@@ -106,7 +106,7 @@ const ContactTable = () => {
        <p className="text-blue-100">+237 6XXXXXXXX</p>
       </div>
       <div className="bg-blue-800 text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition-all duration-300">
-       <h3 className="text-xl font-bold mb-2">Adresse</h3>
+       <h3 className="text-xl font-bold mb-2">Tu es un Genie Mr Frank✔🥰🖖🏿</h3>
        <p className="text-blue-100">Votre ville, Pays</p>
       </div>
      </motion.div>
