@@ -45,8 +45,6 @@ const LessonForm = () => {
    setPreviewVideo(URL.createObjectURL(file));
   }
  };
- console.log("cours", cours);
- console.log("categories", categories);
 
  return (
   <>

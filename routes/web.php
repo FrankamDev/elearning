@@ -18,6 +18,7 @@ use Inertia\Inertia;
 
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
+
 Route::get('/admin/contacts', [ContactController::class, 'index']);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardUsers::class, 'index'])->name('dashboard');
     Route::get('/user', fn() => Inertia::render('settings/profile'))->name('profile.edit');
 
-    Route::resource('lessons', LessonAdminController::class)->except(['create', 'store']);
+    Route::resource('lessons', LessonAdminController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('cours', CourseAdminController::class);
 });
@@ -54,7 +55,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leçons
-
+    Route::post('/lessons', [LessonAdminController::class, 'store'])->name('lessons.store');
     // Route::get('/lessons', [LessonAdminController::class, 'index'])->name('lessons.index');
     // Route::get('/lessons/create', [LessonAdminController::class, 'create'])->name('lessons.create');
 

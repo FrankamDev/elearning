@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import axios from 'axios';
 import Navbar from '@/components/NavBar';
 import Footer from './Footer';
@@ -10,15 +10,26 @@ const Contact = () => {
  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
  const [status, setStatus] = useState({ type: '', message: '' });
 
+ useEffect(() => {
+  if (status.message) {
+   const timer = setTimeout(() => {
+    setStatus({ type: '', message: '' });
+   }, 5000); // Efface le message après 5 secondes
+   return () => clearTimeout(timer); // Nettoie le timer
+  }
+ }, [status.message]);
+
  const onSubmit = async (data: any) => {
   setStatus({ type: '', message: '' });
   try {
-   await axios.post('/contact', data);
+   console.log('Données envoyées :', data); // Log pour déboguer
+   await axios.post('http://localhost:8000/contact', data);
    setStatus({ type: 'success', message: 'Merci ! Votre message a été envoyé.' });
    reset();
-  } catch (err) {
-   setStatus({ type: 'error', message: 'Oops ! Une erreur est survenue.' });
-   console.error(err);
+  } catch (err: any) {
+   const errorMessage = err.response?.data?.message || 'Une erreur est survenue lors de l\'envoi.';
+   setStatus({ type: 'error', message: errorMessage });
+   console.error('Erreur Axios :', err);
   }
  };
 
@@ -37,7 +48,6 @@ const Contact = () => {
      animate={{ opacity: 1, y: 0 }}
      transition={{ duration: 1 }}
     >
-     {/* Title */}
      <motion.h2
       className="text-5xl font-extrabold text-center text-blue-400 mb-6"
       initial={{ scale: 0.8, opacity: 0 }}
@@ -55,7 +65,6 @@ const Contact = () => {
       Posez vos questions, demandez une démo ou simplement dites bonjour ! Je suis disponible pour vous aider à créer votre site e-learning.
      </motion.p>
 
-     {/* Status message */}
      {status.message && (
       <motion.div
        className={`mb-6 p-4 rounded-xl text-center font-semibold ${status.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}
@@ -67,7 +76,6 @@ const Contact = () => {
       </motion.div>
      )}
 
-     {/* Form */}
      <motion.form
       onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -142,7 +150,6 @@ const Contact = () => {
       </motion.div>
      </motion.form>
 
-     {/* Contact info section */}
      <motion.div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }}>
       <div className="text-center p-6 bg-gray-800 rounded-2xl border border-blue-400 hover:scale-105 transition-transform duration-300">
        <FaEnvelope className="text-3xl text-blue-400 mx-auto mb-3" />
@@ -160,7 +167,6 @@ const Contact = () => {
        <p className="text-gray-300">Bafoussam, Cameroun</p>
       </div>
      </motion.div>
-
     </motion.div>
    </div>
    <Footer />

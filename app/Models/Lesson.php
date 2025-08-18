@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['cours_id', 'title', 'content', 'video_url'];
+    protected $fillable = ['cours_id', 'title', 'content', 'video_url', 'video_path'];
 
     public function cours()
     {
-        return $this->belongsTo(Cours::class);
+        return $this->belongsTo(Cours::class, 'cours_id');
     }
 }
