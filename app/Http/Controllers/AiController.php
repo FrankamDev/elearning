@@ -18,7 +18,7 @@ class AiController extends Controller
 
         // Appel à l'API de Grok
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . env('GROK_API_KEY'),
+            'Authorization' => 'Bearer '.env('GROK_API_KEY'),
         ])->post('https://api.x.ai/v1/chat/completions', [
             'model' => 'grok-3',
             'messages' => [
@@ -31,6 +31,7 @@ class AiController extends Controller
 
         if ($response->successful()) {
             $answer = $response->json()['choices'][0]['message']['content'] ?? 'Aucune réponse reçue';
+
             return response()->json(['answer' => $answer]);
         }
 

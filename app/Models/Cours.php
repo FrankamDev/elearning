@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 
 class Cours extends Model
 {
+    protected $table = 'cours';
     use HasFactory;
 
     protected $fillable = [

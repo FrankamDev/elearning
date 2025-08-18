@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cours;
 use App\Models\Category;
+use App\Models\Cours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -82,6 +82,7 @@ class CourseAdminController extends Controller
     public function destroy(Cours $cour)
     {
         $cour->delete();
+
         return response()->json(['id' => $cour->id]);
     }
 }

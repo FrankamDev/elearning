@@ -24,9 +24,9 @@ class UserAdminController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'role'     => 'required|in:user,admin,superadmin',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'role' => 'required|in:user,admin,superadmin',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -35,9 +35,9 @@ class UserAdminController extends Controller
         }
 
         User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'role'     => $request->role,
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
 
@@ -45,7 +45,7 @@ class UserAdminController extends Controller
 
         return response()->json([
             'message' => 'Utilisateur ajouté avec succès.',
-            'users'   => $users,
+            'users' => $users,
         ]);
     }
 
@@ -55,9 +55,9 @@ class UserAdminController extends Controller
         $user = User::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
-            'email'    => "required|email|unique:users,email,$id",
-            'role'     => 'required|in:user,admin,superadmin',
+            'name' => 'required|string|max:255',
+            'email' => "required|email|unique:users,email,$id",
+            'role' => 'required|in:user,admin,superadmin',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
@@ -65,9 +65,9 @@ class UserAdminController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $user->name  = $request->name;
+        $user->name = $request->name;
         $user->email = $request->email;
-        $user->role  = $request->role;
+        $user->role = $request->role;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
@@ -79,7 +79,7 @@ class UserAdminController extends Controller
 
         return response()->json([
             'message' => 'Utilisateur mis à jour avec succès.',
-            'users'   => $users,
+            'users' => $users,
         ]);
     }
 
@@ -100,7 +100,7 @@ class UserAdminController extends Controller
 
         return response()->json([
             'message' => 'Utilisateur supprimé avec succès.',
-            'users'   => $users,
+            'users' => $users,
         ]);
     }
 }

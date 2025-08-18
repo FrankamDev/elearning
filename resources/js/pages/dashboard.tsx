@@ -22,6 +22,7 @@ import CoursesIndex from "./cours/Index";
 import Index from "./Admin/cours/CourseCreate";
 import LessonCrud from "./Admin/Lessons/LessonCrud";
 import DashboardContacts from "./Admin/DashboardContacts";
+import LessonForm from "./Admin/Lessons/LessonForm";
 
 export default function dashboard({ users, courses, userCount, categories, stats }) {
  const { auth } = usePage().props;
@@ -94,12 +95,13 @@ export default function dashboard({ users, courses, userCount, categories, stats
        )}
 
 
-       {activeTab === "manageLessons" && (
+
+        {/* {activeTab === "manageLessons" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des leçons.</h2>
-         <h2>Lesson</h2>
+          <LessonForm />
         </div>
-       )}
+       )} */}
 
 
 
@@ -128,12 +130,12 @@ export default function dashboard({ users, courses, userCount, categories, stats
           <DashboardContacts />
          </div>
         )}
-       {activeTab === "manageLessons" && (
+        {activeTab === "manageLessons" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>
-          <LessonCrud />
+          <LessonForm />
 
-
+          <h1>cool</h1>
         </div>
        )}
       </div>

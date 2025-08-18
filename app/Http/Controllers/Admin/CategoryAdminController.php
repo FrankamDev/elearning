@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Cours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -18,7 +19,8 @@ class CategoryAdminController extends Controller
         $categories = Category::withCount('cours')->get();
 
         return Inertia::render('Admin/CategoryIndex', [
-            'categories' => $categories
+            'categories' => $categories,
+            'cours' => Cours::all(),
         ]);
     }
 
@@ -28,15 +30,15 @@ class CategoryAdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'  => 'required|string|max:255|unique:categories,name',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            'name' => 'required|string|max:255|unique:categories,name',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $imagePath = $request->file('image')->store('categories', 'public');
 
         $category = Category::create([
-            'name'  => $validated['name'],
-            'image' => $imagePath
+            'name' => $validated['name'],
+            'image' => $imagePath,
         ]);
 
         $category->loadCount('cours');
@@ -56,8 +58,8 @@ class CategoryAdminController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name'  => 'required|string|max:255|unique:categories,name,' . $category->id,
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = ['name' => $validated['name']];

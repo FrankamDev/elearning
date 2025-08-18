@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminController extends Controller
 {
- public function index()
-{
-    $categories = \App\Models\Category::withCount('cours')->get();
-    
+    public function index()
+    {
+        $categories = \App\Models\Category::withCount('cours')->get();
 
-    return Inertia::render('Admin/Dashboard', [
-        'categories' => $categories
-    ]);
-}
+        return Inertia::render('Admin/Dashboard', [
+            'categories' => $categories,
+        ]);
+    }
+
     public function create()
     {
         return Inertia::render('Admin/Categories/Create');

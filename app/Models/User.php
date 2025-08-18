@@ -12,7 +12,9 @@ class User extends Authenticatable
 
     // Constantes des rôles (correspondant à ton enum MySQL)
     public const ROLE_UTILISATEUR = 'user';
+
     public const ROLE_ADMIN = 'admin';
+
     public const ROLE_SUPERADMIN = 'superadmin';
 
     public function progress()
@@ -23,7 +25,7 @@ class User extends Authenticatable
     public function getProfileUrlAttribute()
     {
         return $this->photo
-            ? asset('storage/images/' . $this->photo)
+            ? asset('storage/images/'.$this->photo)
             : asset('storage/images/default.jpg');
     }
 
@@ -40,7 +42,6 @@ class User extends Authenticatable
         'password',
         'profile_photo',
     ];
-
 
     /**
      * The attributes that should be hidden for serialization.

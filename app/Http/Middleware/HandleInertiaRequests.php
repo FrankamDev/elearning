@@ -45,15 +45,15 @@ class HandleInertiaRequests extends Middleware
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user() ? [
-                    'id'    => $request->user()->id,
-                    'name'  => $request->user()->name,
+                    'id' => $request->user()->id,
+                    'name' => $request->user()->name,
                     'email' => $request->user()->email,
-                    'role'  => $request->user()->role,
+                    'role' => $request->user()->role,
                     'image' => $request->user()->profile_photo ?? null,
                 ] : null,
             ],
-            'flash'=> [
-                'message' => $request->session()->all()
+            'flash' => [
+                'message' => $request->session()->all(),
             ],
             'ziggy' => fn (): array => [
                 ...(new Ziggy)->toArray(),
@@ -61,8 +61,8 @@ class HandleInertiaRequests extends Middleware
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
-         array_merge(parent::share($request), [
-            'auth' =>[
+        array_merge(parent::share($request), [
+            'auth' => [
                 'user' => $request->user() ? $request->user()->only('id', 'name', 'email', 'photo') : null,
             ],
         ]);

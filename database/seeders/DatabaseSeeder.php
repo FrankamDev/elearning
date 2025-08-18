@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Cours;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,10 +16,10 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-    UserSeeder::class,
-    CategorySeeder::class,
-    CoursSeeder::class,
-]);
+            UserSeeder::class,
+            CategorySeeder::class,
+            CoursSeeder::class,
+        ]);
         User::factory()->create([
             'name' => 'Frankam',
             'email' => 'frankam@gmail.com',
@@ -29,7 +28,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Cours::factory()
-        ->count(30)
-        ->create();
+            ->count(30)
+            ->create();
     }
 }

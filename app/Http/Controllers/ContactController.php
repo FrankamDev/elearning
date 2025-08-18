@@ -11,6 +11,7 @@ class ContactController extends Controller
     public function index()
     {
         $contacts = Contact::orderBy('created_at', 'desc')->get();
+
         return response()->json($contacts);
     }
 
@@ -18,9 +19,9 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|email',
-            'phone'   => 'nullable|string|max:20',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'nullable|string|max:20',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
@@ -29,7 +30,7 @@ class ContactController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Message envoyé avec succès !'
+            'message' => 'Message envoyé avec succès !',
         ]);
     }
 }

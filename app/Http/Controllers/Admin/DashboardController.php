@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Cours;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -14,7 +13,6 @@ class DashboardController extends Controller
     /**
      * Affiche les utilisateurs pour le dashboard admin
      */
-
     public function index()
     {
         return Inertia::render('Admin/Dashboard', [

@@ -9,20 +9,10 @@ class Lesson extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'cours_id',
-        'title',
-        'video_path',
-        'content',
-    ];
+    protected $fillable = ['cours_id', 'title', 'content', 'video_url'];
 
     public function cours()
     {
         return $this->belongsTo(Cours::class);
-    }
-
-    public function progress()
-    {
-        return $this->hasMany(Progress::class);
     }
 }

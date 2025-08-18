@@ -19,7 +19,7 @@ class ProgressController extends Controller
 
         if ($progress) {
             // Inverse l'état
-            $progress->is_completed = !$progress->is_completed;
+            $progress->is_completed = ! $progress->is_completed;
             $progress->completed_at = $progress->is_completed ? now() : null;
             $progress->save();
         } else {

@@ -8,26 +8,17 @@ use App\Http\Controllers\Admin\DashboardUsers;
 use App\Http\Controllers\Admin\LessonAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AiController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-
-
-
-use Illuminate\Support\Facades\Auth;
-
-
 
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/admin/contacts', [ContactController::class, 'index']);
-
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cours', [CoursController::class, 'index'])->name('cours.index');
@@ -63,8 +54,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leçons
-    Route::get('lessons', [LessonAdminController::class, 'index'])->name('lessons.index');
-    Route::post('lessons', [LessonAdminController::class, 'store'])->name('lessons.store');
+
+    // Route::get('/lessons', [LessonAdminController::class, 'index'])->name('lessons.index');
+    // Route::get('/lessons/create', [LessonAdminController::class, 'create'])->name('lessons.create');
+
+    // Route::post('/lessons', [LessonAdminController::class, 'store']);
 
     // Cours
     Route::get('cours', [CourseAdminController::class, 'index'])->name('cours.index');
@@ -82,13 +76,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
     Route::post('users/{id}/role', [UserAdminController::class, 'updateRole'])->name('users.updateRole');
 
+
+
     Route::get('/dashboard-old', [AdminController::class, 'index']);
 });
 
 Route::get('/dashboard-old', [AdminController::class, 'index']);
-
-
-
 
 Route::post('/toggle-role', function () {
     $user = Auth::user();
