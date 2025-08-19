@@ -15,6 +15,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\ParcoursController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,6 +28,7 @@ Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])
 Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->middleware('auth')->name('comments.like');
 
+Route::get('/parcours', [ParcoursController::class, 'index']);
 
 
 

@@ -22,7 +22,7 @@ export default function Header({ categories }) {
  return (
   <>
    {/* Hero Section */}
-   <section className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-[#0B0E1E] to-[#11152B] px-6 text-white text-center">
+   <section className="pt-20relative flex items-center justify-center min-h-screen bg-gradient-to-b from-[#0B0E1E] to-[#11152B] px-6 text-white text-center flex flex-col items-center">
     <motion.h1
      initial={{ opacity: 0, y: 30 }}
      animate={{ opacity: 1, y: 0 }}

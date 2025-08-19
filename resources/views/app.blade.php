@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
     <head>
-        {{-- <meta name="csrf-token" content="{{ csrf_token }}" /> --}}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{-- Inline script to detect system dark mode preference and apply it immediately --}}
+        {{-- Détection automatique du mode sombre système --}}
         <script>
             (function() {
                 const appearance = '{{ $appearance ?? "system" }}';
-
                 if (appearance === 'system') {
                     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
                     if (prefersDark) {
                         document.documentElement.classList.add('dark');
                     }
@@ -20,12 +17,11 @@
             })();
         </script>
 
-        {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+        {{-- Styles inline pour le background selon le thème --}}
         <style>
             html {
                 background-color: oklch(1 0 0);
             }
-
             html.dark {
                 background-color: oklch(0.145 0 0);
             }
@@ -33,12 +29,8 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        {{-- Favicon personnalisé --}}
+        <link rel="icon" type="image/png" href="vraiLogo.svg" />
 
         @routes
         @viteReactRefresh

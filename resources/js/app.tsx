@@ -1,20 +1,24 @@
-import '../css/app.css';
-import './app.css';
-import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createRoot } from 'react-dom/client';
-import { initializeTheme } from './hooks/use-appearance';
-import { AuthProvider } from './context/AuthContext';
+import "../css/app.css";
+import "./app.css";
+import { createInertiaApp } from "@inertiajs/react";
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { createRoot } from "react-dom/client";
+import { AuthProvider } from "./context/AuthContext";
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || "Laravel";
+
+// 🔹 Fonction pour initialiser le thème
+function initializeTheme() {
+ const savedTheme = localStorage.getItem("theme") || "light";
+ document.querySelector("html")?.setAttribute("data-theme", savedTheme);
+}
 
 createInertiaApp({
  title: (title) => (title ? `${title} - ${appName}` : appName),
- // 🔹 Chemin exact vers tes pages (majuscules sensibles)
  resolve: (name) =>
   resolvePageComponent(
    `./Pages/${name}.tsx`,
-   import.meta.glob('./Pages/**/*.tsx')
+   import.meta.glob("./Pages/**/*.tsx")
   ),
  setup({ el, App, props }) {
   const root = createRoot(el);
@@ -26,9 +30,17 @@ createInertiaApp({
   );
  },
  progress: {
-  color: 'cyan',
+  color: "cyan",
  },
 });
 
-// Initialisation du thème (dark/light)
+// Initialisation du thème
 initializeTheme();
+
+// 🔹 Ajout d'un listener global (ex: bouton pour changer le thème)
+export function toggleTheme() {
+ const current = document.querySelector("html")?.getAttribute("data-theme");
+ const newTheme = current === "light" ? "dark" : "light";
+ document.querySelector("html")?.setAttribute("data-theme", newTheme);
+ localStorage.setItem("theme", newTheme);
+}

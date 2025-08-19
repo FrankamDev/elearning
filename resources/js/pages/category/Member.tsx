@@ -27,7 +27,7 @@ const features = [
 
 export default function Member() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 px-4 py-10 text-white max-w-7xl mx-auto">
+   <div className="grid grid-cols-1 bg-[#0F1033] sm:grid-cols-3 gap-6 px-4  py-10 text-white  -mx-32 md:mx-0 md:px-32">
 
       {/* Left column */}
       <div className="flex flex-col gap-6">

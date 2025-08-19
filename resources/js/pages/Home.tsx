@@ -22,7 +22,7 @@ export default function Home({ flash }) {
  }, [flash]);
 
  return (
-  <div className="bg-[#030215] text-white">
+  <div className="text-white bg-[#020013]">
    <NavBar />
    <ToastContainer />
 
@@ -51,7 +51,7 @@ export default function Home({ flash }) {
     <FeaturedCourses />
    </section>
 
-   {/* Companies Section */}
+
    <section className="mt-12 text-center px-6">
     <p className="text-xl md:text-2xl">
      Ils ont commencés comme <span className="font-serif font-bold text-cyan-200 text-2xl">Toi</span>, actuellement ils travaillent ici 👇👇
@@ -61,7 +61,7 @@ export default function Home({ flash }) {
     </div>
    </section>
 
-   {/* Build Section */}
+
    <section className="mt-16 px-6 flex flex-col items-center">
     <CardBuild />
     <div className="mt-8 flex flex-col items-center gap-4">
