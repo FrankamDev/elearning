@@ -6,12 +6,14 @@ use App\Http\Controllers\Admin\CourseAdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DashboardUsers;
 use App\Http\Controllers\Admin\LessonAdminController;
+use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,7 +21,8 @@ use Inertia\Inertia;
 
 // routes/web.php
 Route::get('/admin/lessons/{cours}', [LessonAdminController::class, 'index']);
-
+// Route::get('/cours/{cours_id}/lessons', [LessonController::class, 'index']);
+Route::get('/cours/{cours_id}', [LessonController::class, 'index'])->name('cours.show');
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
 
