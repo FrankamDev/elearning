@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// routes/web.php
+Route::get('/admin/lessons/{cours}', [LessonAdminController::class, 'index']);
+
 Route::get('/contact', fn() => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store']);
 
