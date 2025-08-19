@@ -12,4 +12,8 @@ class Lesson extends Model
     {
         return $this->belongsTo(Cours::class, 'cours_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

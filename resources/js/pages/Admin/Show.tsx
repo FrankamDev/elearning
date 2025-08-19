@@ -21,7 +21,64 @@ const Show = ({ lessons }) => {
       allowFullScreen
        className="w-full h-64 rounded"
      />
-    </div>
+     </div>
+
+     <div className="border rounded-lg p-3 mb-3">
+      <p className="text-sm">
+       <span className="font-semibold">{comment.user?.name}</span> : {comment.content}
+      </p>
+
+      {/* Boutons Like + Répondre */}
+      <div className="flex gap-4 mt-2 text-xs text-gray-600">
+       <button
+        onClick={() => Inertia.post(route("comments.like", comment.id))}
+        className="hover:text-blue-600"
+       >
+        👍 {comment.likes_count || 0}
+       </button>
+       <button
+        onClick={() => setReplyingTo(comment.id)}
+        className="hover:text-blue-600"
+       >
+        ↩️ Répondre
+       </button>
+      </div>
+
+      {/* Réponses */}
+      {comment.replies?.map((reply: any) => (
+       <div key={reply.id} className="ml-6 mt-2 border-l pl-3 text-sm text-gray-700">
+        <span className="font-semibold">{reply.user?.name}</span> : {reply.content}
+       </div>
+      ))}
+
+      {/* Formulaire de réponse */}
+      {replyingTo === comment.id && (
+       <form
+        onSubmit={(e) => {
+         e.preventDefault();
+         Inertia.post(route("comments.store", lesson.id), {
+          content: replyContent,
+          parent_id: comment.id,
+         });
+        }}
+        className="ml-6 mt-2 flex gap-2"
+       >
+        <input
+         type="text"
+         value={replyContent}
+         onChange={(e) => setReplyContent(e.target.value)}
+         placeholder="Votre réponse..."
+         className="flex-grow rounded-lg border px-2 py-1 text-sm"
+        />
+        <button type="submit" className="bg-blue-600 text-white px-3 py-1 rounded">
+         Envoyer
+        </button>
+       </form>
+      )}
+     </div>
+
+
+
    </div>
     {/* <Footer /> */}
    </div>

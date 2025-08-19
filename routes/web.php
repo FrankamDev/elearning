@@ -10,6 +10,7 @@ use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\AiController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +18,16 @@ use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+
+Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])
+    ->middleware('auth')
+    ->name('comments.store');
+
+Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->middleware('auth')->name('comments.like');
+
+
 
 
 // routes/web.php
@@ -62,27 +73,38 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Leçons
-    Route::post('/lessons', [LessonAdminController::class, 'store'])->name('lessons.store');
+    Route::resource('lessons', LessonAdminController::class);
+
+    // Cours
+    Route::resource('cours', CourseAdminController::class);
+
+    // Catégories
+    Route::resource('category', CategoryAdminController::class);
+
+    // Utilisateurs
+    Route::resource('users', UserAdminController::class);
+    // Leçons
+    // Route::post('/lessons', [LessonAdminController::class, 'store'])->name('lessons.store');
     // Route::get('/lessons', [LessonAdminController::class, 'index'])->name('lessons.index');
     // Route::get('/lessons/create', [LessonAdminController::class, 'create'])->name('lessons.create');
 
     // Route::post('/lessons', [LessonAdminController::class, 'store']);
 
     // Cours
-    Route::get('cours', [CourseAdminController::class, 'index'])->name('cours.index');
-    Route::post('cours', [CourseAdminController::class, 'store'])->name('cours.store');
-    Route::put('cours/{cour}', [CourseAdminController::class, 'update'])->name('cours.update');
-    Route::delete('cours/{cour}', [CourseAdminController::class, 'destroy'])->name('cours.destroy');
+    // Route::get('cours', [CourseAdminController::class, 'index'])->name('cours.index');
+    // Route::post('cours', [CourseAdminController::class, 'store'])->name('cours.store');
+    // Route::put('cours/{cour}', [CourseAdminController::class, 'update'])->name('cours.update');
+    // Route::delete('cours/{cour}', [CourseAdminController::class, 'destroy'])->name('cours.destroy');
 
     // Catégories
     Route::resource('category', CategoryAdminController::class);
 
     // Gestion des utilisateurs
-    Route::get('users', [UserAdminController::class, 'index'])->name('users.index');
-    Route::post('users', [UserAdminController::class, 'store'])->name('users.store');
-    Route::put('users/{id}', [UserAdminController::class, 'update'])->name('users.update');
-    Route::delete('users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
-    Route::post('users/{id}/role', [UserAdminController::class, 'updateRole'])->name('users.updateRole');
+    // Route::get('users', [UserAdminController::class, 'index'])->name('users.index');
+    // Route::post('users', [UserAdminController::class, 'store'])->name('users.store');
+    // Route::put('users/{id}', [UserAdminController::class, 'update'])->name('users.update');
+    // Route::delete('users/{id}', [UserAdminController::class, 'destroy'])->name('users.destroy');
+    // Route::post('users/{id}/role', [UserAdminController::class, 'updateRole'])->name('users.updateRole');
 
 
 

@@ -47,7 +47,7 @@ export default function Home({ flash }) {
    </section>
 
    {/* Featured Courses */}
-   <section className="mt-12">
+   <section className="">
     <FeaturedCourses />
    </section>
 
