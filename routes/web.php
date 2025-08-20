@@ -36,7 +36,7 @@ Route::get('/initiation', function () {
 
 
 
-// routes/web.php
+
 Route::get('/admin/lessons/{cours}', [LessonAdminController::class, 'index']);
 // Route::get('/cours/{cours_id}/lessons', [LessonController::class, 'index']);
 Route::get('/cours/{cours_id}', [LessonController::class, 'index'])->name('cours.show');
