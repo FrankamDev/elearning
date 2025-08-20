@@ -4,6 +4,8 @@ import React from 'react'
 import Technologies from '../components/Technologies';
 import Footer from '../Footer';
 import Member from '../category/Member';
+import RoadmapInteractive from '../components/RoadmapInteractive';
+// import RoadmapInteractive from '../components/RoadmapInteractive';
 
 const ParcoursIndex = () => {
  return (
@@ -11,6 +13,7 @@ const ParcoursIndex = () => {
    <NavBar />
    <FirstSection />
    <Technologies />
+   <RoadmapInteractive />
    <Member />
    <Footer />
   </>
