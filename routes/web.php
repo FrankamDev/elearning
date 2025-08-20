@@ -14,6 +14,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InitiationController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ParcoursController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,9 @@ Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])->
 Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->middleware('auth')->name('comments.like');
 
 Route::get('/parcours', [ParcoursController::class, 'index']);
+Route::get('/initiation', function () {
+    return Inertia::render('Initiation');
+});
 
 
 

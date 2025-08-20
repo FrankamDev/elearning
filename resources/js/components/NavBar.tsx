@@ -218,6 +218,7 @@ export default function Navbar() {
   : "/vraiLogo.svg";
 
  const links = [
+  { name: "Initiation", href: "/initiation", icon: "😉" },
   { name: "Tous les cours", href: "/categories", icon: "📘" },
   { name: "Parcours", href: "/parcours", icon: "📚" },
   { name: "Formations", href: "/categories", icon: "📖" },
@@ -282,7 +283,7 @@ export default function Navbar() {
       </div>
      </div>
 
-     {/* Right: Icons + Profile */}
+
      <div className="flex items-center space-x-3">
       {user && <FaBell className="cursor-pointer hover:text-cyan-400 transition-colors duration-200" />}
 

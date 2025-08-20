@@ -7,7 +7,7 @@ import { AuthProvider } from "./context/AuthContext";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
-// 🔹 Fonction pour initialiser le thème
+
 function initializeTheme() {
  const savedTheme = localStorage.getItem("theme") || "light";
  document.querySelector("html")?.setAttribute("data-theme", savedTheme);
@@ -17,8 +17,8 @@ createInertiaApp({
  title: (title) => (title ? `${title} - ${appName}` : appName),
  resolve: (name) =>
   resolvePageComponent(
-   `./Pages/${name}.tsx`,
-   import.meta.glob("./Pages/**/*.tsx")
+   `./pages/${name}.tsx`,
+   import.meta.glob("./pages/**/*.tsx")
   ),
  setup({ el, App, props }) {
   const root = createRoot(el);
@@ -34,10 +34,9 @@ createInertiaApp({
  },
 });
 
-// Initialisation du thème
+
 initializeTheme();
 
-// 🔹 Ajout d'un listener global (ex: bouton pour changer le thème)
 export function toggleTheme() {
  const current = document.querySelector("html")?.getAttribute("data-theme");
  const newTheme = current === "light" ? "dark" : "light";
