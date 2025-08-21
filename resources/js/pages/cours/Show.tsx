@@ -1402,7 +1402,8 @@ const Show: React.FC = () => {
   setVisibleLessonsCount((prev) => Math.min(prev + 4, lessons.length));
  };
 
- // Handle comment submission with optimistic UI
+
+
  const handleCommentSubmit = (lessonId: number, parentId: number | null = null) => {
   if (!commentContent.trim() || !auth.user) return;
 
@@ -1421,9 +1422,8 @@ const Show: React.FC = () => {
   setLessons((prevLessons) =>
    prevLessons.map((lesson) => {
     if (lesson.id === lessonId) {
-     if (parentId) {
-      // Ajout d'une réponse à un commentaire existant
-      const updatedComments = (lesson.comments ?? []).map((comment) => {
+     const updatedComments = parentId
+      ? (lesson.comments ?? []).map((comment) => {
        if (comment.id === parentId) {
         return {
          ...comment,
@@ -1431,12 +1431,9 @@ const Show: React.FC = () => {
         };
        }
        return comment;
-      });
-      return { ...lesson, comments: updatedComments };
-     } else {
-      // Ajout d'un nouveau commentaire principal
-      return { ...lesson, comments: [...(lesson.comments ?? []), newComment] };
-     }
+      })
+      : [...(lesson.comments ?? []), newComment];
+     return { ...lesson, comments: updatedComments };
     }
     return lesson;
    })
@@ -1452,8 +1449,6 @@ const Show: React.FC = () => {
    { content: commentContent, parent_id: parentId },
    {
     onSuccess: (page) => {
-    // Mise à jour avec les données réelles du serveur si nécessaire
-    // Ici, on assume que le serveur renvoie les données mises à jour via Inertia
      setIsSubmitting(false);
      setModal({
       show: true,
@@ -1467,8 +1462,8 @@ const Show: React.FC = () => {
      setLessons((prevLessons) =>
       prevLessons.map((lesson) => {
        if (lesson.id === lessonId) {
-        if (parentId) {
-         const updatedComments = (lesson.comments ?? []).map((comment) => {
+        const updatedComments = parentId
+         ? (lesson.comments ?? []).map((comment) => {
           if (comment.id === parentId) {
            return {
             ...comment,
@@ -1476,14 +1471,9 @@ const Show: React.FC = () => {
            };
           }
           return comment;
-         });
-         return { ...lesson, comments: updatedComments };
-        } else {
-         return {
-          ...lesson,
-          comments: (lesson.comments ?? []).filter((comment) => comment.id !== tempId),
-         };
-        }
+         })
+         : (lesson.comments ?? []).filter((comment) => comment.id !== tempId);
+        return { ...lesson, comments: updatedComments };
        }
        return lesson;
       })
@@ -1575,7 +1565,6 @@ const Show: React.FC = () => {
   );
  }, []);
 
- // Mise à jour de selectedLesson quand lessons change
  useEffect(() => {
   if (selectedLesson) {
    const updatedLesson = lessons.find((l) => l.id === selectedLesson.id);
