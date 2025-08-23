@@ -17,7 +17,7 @@ const MeetMe = () => {
  return (
   <section className="bg-[#0d0c1d] px-6 py-16 text-white md:px-20">
    <motion.h2 initial="hidden" animate="visible" variants={fadeIn} className="mb-12 text-center text-3xl font-bold md:text-4xl">
-    Faites la connaissance de <span className="text-blue-500">Frank</span>, votre <span className="text-blue-400">instructeur</span>
+    Faites la connaissance de <span className="text-blue-500">Frank</span>, votre <span className="text-blue-400">Instructeur</span>
    </motion.h2>
 
    <div className="grid gap-8 md:grid-cols-3">
