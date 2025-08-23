@@ -40,6 +40,7 @@ const MeetMe = () => {
       <span>❤️ 25</span>
       <span>▶️ 100</span>
      </div>
+
     </motion.div>
 
     <motion.div
@@ -52,7 +53,7 @@ const MeetMe = () => {
      <div className="mb-4 text-4xl text-yellow-400">⭐</div>
      <h3 className="mb-2 text-xl font-semibold">3x GitHub Star</h3>
      <p className="text-sm text-gray-300">
-      Sur 150 millions de développeurs, seuls 70 ont reçu cette reconnaissance pour leur expertise et influence.
+      Sur 2 milles développeurs, seuls 70 ont reçu cette reconnaissance pour leur expertise et influence.
      </p>
     </motion.div>
 
