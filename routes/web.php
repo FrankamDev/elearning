@@ -36,6 +36,13 @@ Route::get('/initiation', function () {
 
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/comments/{comment}/like', [CommentController::class, 'like'])->name('comments.like');
+});
+
 
 Route::get('/admin/lessons/{cours}', [LessonAdminController::class, 'index']);
 // Route::get('/cours/{cours_id}/lessons', [LessonController::class, 'index']);

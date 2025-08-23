@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Lesson;
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    use HandlesAuthorization;
     /**
      * Display a listing of the resource.
      */
@@ -16,6 +19,15 @@ class CommentController extends Controller
         //
     }
 
+    public function update(User $user, Comment $comment)
+    {
+        return $user->id === $comment->user_id;
+    }
+
+    public function delete(User $user, Comment $comment)
+    {
+        return $user->id === $comment->user_id;
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -79,10 +91,7 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

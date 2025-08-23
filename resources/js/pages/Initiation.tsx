@@ -233,7 +233,7 @@ const allCourses = [
   prerequisites: [],
   externalLink: "https://docs.python.org/fr/3/",
   codeExample: "print('Bonjour, Python!')\n",
-  videoUrl: "https://www.youtube.com/embed/_uQrJ0TkZlc",
+  videoUrl: "https://www.youtube.com/watch?v=psaDHhZ0cPs&pp=ygUQYXBwcmVuZHJlIHB5dGhvbg%3D%3D",
   quiz: [
    { question: "Python est reconnu pour ?", options: ["Lisibilité", "Complexité"], answer: 0 },
   ],
