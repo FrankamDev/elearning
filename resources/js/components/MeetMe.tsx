@@ -48,6 +48,7 @@ const MeetMe = () => {
      animate="visible"
      custom={2}
      variants={fadeIn}
+
      className="rounded-xl bg-[#1a1a2e] p-6 text-center shadow-lg"
     >
      <div className="mb-4 text-4xl text-yellow-400">⭐</div>
