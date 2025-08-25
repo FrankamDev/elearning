@@ -48,8 +48,10 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg grayscale">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+         <AvatarImage src={user.photo} alt={user.name} />
+         <AvatarFallback className="rounded-lg">
+          <img src={user.photo} alt={user.name} />
+         </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -70,7 +72,9 @@ export function NavUser({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
-          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          <AvatarFallback className="rounded-lg">
+           <img src={user.photo} alt="logo" className="h-10 w-auto" />
+          </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
@@ -87,12 +91,13 @@ export function NavUser({
                 Compte
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
+         {/* <IconCreditCard />
+                Billing */}
+
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <IconNotification />
-                Notifications
+         {/* <IconNotification /> */}
+         {/* Notifications */}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

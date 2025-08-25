@@ -9,18 +9,14 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import data from "./data.json";
 import { Link, usePage } from "@inertiajs/react";
 import User from "./Admin/User";
-import IndexLesson from "./Admin/IndexLesson";
-// import CreateCourse from "./Admin/cours/CourseCreate";
-// import Dashboard from './Admin/Dashboard';
-// import CategoryCreate from './Admin/category/Create';
-// import CourseIndex from "./courses/CourseIndex";
-// import Index from "./Admin/category/CategoryIndex";
-import CategoryIndex from "./Admin/category/CategoryIndex";
-import CreateLesson from './Admin/IndexLesson';
-import UsersChart from "@/components/graphiques/UserChart";
-import CoursesIndex from "./cours/Index";
-import Index from "./Admin/cours/CourseCreate";
-import LessonCrud from "./Admin/Lessons/LessonCrud";
+// import IndexLesson from "./Admin/IndexLesson";
+
+// import CategoryIndex from "./Admin/category/CategoryIndex";
+// import CreateLesson from './Admin/IndexLesson';
+
+// import CoursesIndex from "./cours/Index";
+// import Index from "./Admin/cours/CourseCreate";
+// import LessonCrud from "./Admin/Lessons/LessonCrud";
 import DashboardContacts from "./Admin/DashboardContacts";
 import LessonForm from "./Admin/Lessons/LessonForm";
 
@@ -62,7 +58,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
       Bienvenue{" "}
       <span className="text-xl text-gray-100 font-bold">{user.name}</span>
       <b className="text-2xl">😉</b>
-      <UsersChart />
+
      </h1>
 
      <div className="@container/main flex flex-1 flex-col gap-2">
