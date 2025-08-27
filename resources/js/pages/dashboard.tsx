@@ -9,14 +9,14 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import data from "./data.json";
 import { Link, usePage } from "@inertiajs/react";
 import User from "./Admin/User";
-// import IndexLesson from "./Admin/IndexLesson";
+import IndexLesson from "./Admin/IndexLesson";
 
-// import CategoryIndex from "./Admin/category/CategoryIndex";
+import CategoryIndex from "./Admin/category/CategoryIndex";
 // import CreateLesson from './Admin/IndexLesson';
 
-// import CoursesIndex from "./cours/Index";
-// import Index from "./Admin/cours/CourseCreate";
-// import LessonCrud from "./Admin/Lessons/LessonCrud";
+import CoursesIndex from "./cours/Index";
+import Index from "./Admin/cours/CourseCreate";
+import LessonCrud from "./Admin/Lessons/LessonCrud";
 import DashboardContacts from "./Admin/DashboardContacts";
 import LessonForm from "./Admin/Lessons/LessonForm";
 
