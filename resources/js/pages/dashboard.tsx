@@ -64,6 +64,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
      <div className="@container/main flex flex-1 flex-col gap-2">
       <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
 
+
        {activeTab === "dashboard" && (
         <>
          <SectionCards stats={stats} userCount={userCount} user={user} />
@@ -78,7 +79,7 @@ export default function dashboard({ users, courses, userCount, categories, stats
        {activeTab === "manageCourses" && (
         <div className="p-6">
          <h2 className="text-2xl font-bold mb-4">Gestion des cours</h2>
-         <Index />
+          <Index />
 
         </div>
        )}

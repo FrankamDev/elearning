@@ -2,12 +2,16 @@ import { Head, useForm } from '@inertiajs/react';
 import { LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
+
+
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
+
+
 
 type RegisterForm = {
  name: string;
@@ -97,6 +101,7 @@ export default function Register() {
         autoComplete="new-password"
         value={data.password_confirmation}
         onChange={(e) => setData('password_confirmation', e.target.value)}
+
         disabled={processing}
         placeholder="Confirm password"
        />
