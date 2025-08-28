@@ -305,10 +305,10 @@ export default function Navbar() {
         </button>
 
         <div
-         className={`absolute right-0 mt-2 w-56  backdrop-blur-md border border-gray-800 rounded-lg shadow-xl z-50 transition-all duration-200 ease-in-out origin-top ${isDropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+         className={`absolute right-0 mt-2 w-56 bg-[#1a1f4b]/95  backdrop-blur-md border border-gray-800 rounded-lg shadow-xl z-50 transition-all duration-200 ease-in-out origin-top ${isDropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
           }`}
         >
-         <div className="px-4 py-3 border-b border-gray-700">
+         <div className="px-4 py-3 border-b ">
           <div className="font-semibold text-white flex items-center justify-between">
            <span>{user.name}</span>
            <span className="text-green-400">👋🏽</span>

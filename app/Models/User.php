@@ -25,8 +25,8 @@ class User extends Authenticatable
     public function getProfileUrlAttribute()
     {
         return $this->photo
-            ? asset('storage/images/'.$this->photo)
-            : asset('storage/images/default.jpg');
+            ? asset('storage/' . $this->photo)
+            : asset('storage/profiles/default.jpg');
     }
 
     /**
