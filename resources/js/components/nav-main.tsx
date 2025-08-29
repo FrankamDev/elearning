@@ -10,13 +10,14 @@ import {
 import { usePage } from "@inertiajs/react";
 
 export function NavMain({ onSelect }: { onSelect: (id: string) => void }) {
- const { auth } = usePage().props;
+    const { auth } = usePage().props;
 
     const user = auth.user;
 
     const items: {
         title: string;
         id: string;
+
         icon?: Icon;
         role?: 'user' | 'admin' | 'superadmin';
     }[] = [
