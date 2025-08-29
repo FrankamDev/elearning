@@ -1,12 +1,6 @@
 import { IconCirclePlusFilled, IconMail, IconBook, IconUser, IconSettings, type Icon } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
-import {
- SidebarGroup,
- SidebarGroupContent,
- SidebarMenu,
- SidebarMenuButton,
- SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { usePage } from "@inertiajs/react";
 
 export function NavMain({ onSelect }: { onSelect: (id: string) => void }) {
