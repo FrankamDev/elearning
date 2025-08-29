@@ -25,7 +25,13 @@ class ProfileController extends Controller
         }
 
         $user->save();
-
-        return back()->with('status', 'Profile updated');
+return response()->json([
+    'id' => $user->id,
+    'name' => $user->name,
+    'email' => $user->email,
+    'photo' => $user->photo ? asset('storage/' .$user->photo) : null,
+    'role' => $user->role,
+]);
+        // return back()->with('status', 'Profil mis  a jour');
     }
 }

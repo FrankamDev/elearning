@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use function Pest\Laravel\json;
 
 Route::post('/lessons/{lesson}/comments', [CommentController::class, 'store'])
     ->middleware('auth')
@@ -47,6 +48,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::post('/user/profile-picture', [ProfileController::class, 'updatePhoto'])->name('profile.photo');
 });
+
+Route::get('/test/data', function () {
+    $data = ['message' => 'je suis a la maison'];
+    return response()->json($data);
+});
+
 
 
 Route::get('/admin/lessons/{cours}', [LessonAdminController::class, 'index']);
