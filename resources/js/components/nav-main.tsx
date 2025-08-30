@@ -4,106 +4,106 @@ import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, Side
 import { usePage } from "@inertiajs/react";
 
 export function NavMain({ onSelect }: { onSelect: (id: string) => void }) {
-    const { auth } = usePage().props;
+ const { auth } = usePage().props;
 
-    const user = auth.user;
+ const user = auth.user;
 
-    const items: {
-        title: string;
-        id: string;
+ const items: {
+     title: string;
+     id: string;
 
-        icon?: Icon;
-        role?: 'user' | 'admin' | 'superadmin';
-    }[] = [
-        {
-            title: 'Mon profil',
-            id: 'profile',
-            icon: IconUser,
-            role: 'user',
-        },
-        {
-            title: 'Mes cours',
-            id: 'myCourses',
-            icon: IconBook,
-            role: 'user',
-        },
-        {
-            title: 'Gestion des cours',
-            id: 'manageCourses',
-            icon: IconBook,
-            role: 'admin',
-        },
-        {
-            title: 'Gestion des catégories',
-            id: 'manageCategories',
-            icon: IconBook,
-            role: 'admin',
-        },
-        {
-            title: 'Gerer les lecons',
-            id: 'manageLessons',
-            icon: IconSettings,
-            role: 'admin',
-        },
-        {
-            title: 'Gestion avancée',
-            id: 'manageUsers',
-            icon: IconUser,
-            role: 'superadmin',
-        },
-        {
-            title: 'Questions',
-            id: 'contactUsers',
-            icon: IconUser,
-            role: 'superadmin',
-        },
-    ];
+     icon?: Icon;
+     role?: 'user' | 'admin' | 'superadmin';
+ }[] = [
+     {
+         title: 'Mon profil',
+         id: 'profile',
+         icon: IconUser,
+         role: 'user',
+     },
+     {
+         title: 'Mes cours',
+         id: 'myCourses',
+         icon: IconBook,
+         role: 'user',
+     },
+     {
+         title: 'Gestion des cours',
+         id: 'manageCourses',
+         icon: IconBook,
+         role: 'admin',
+     },
+     {
+         title: 'Gestion des catégories',
+         id: 'manageCategories',
+         icon: IconBook,
+         role: 'admin',
+     },
+     {
+         title: 'Gerer les lecons',
+         id: 'manageLessons',
+         icon: IconSettings,
+         role: 'admin',
+     },
+     {
+         title: 'Gestion avancée',
+         id: 'manageUsers',
+         icon: IconUser,
+         role: 'superadmin',
+     },
+     {
+         title: 'Questions',
+         id: 'contactUsers',
+         icon: IconUser,
+         role: 'superadmin',
+     },
+ ];
 
-    function canAccess(requiredRole?: string) {
-        if (!requiredRole) return true;
-        if (requiredRole === 'user') return true;
-        if (requiredRole === 'admin') return ['admin', 'superadmin'].includes(user.role);
-        if (requiredRole === 'superadmin') return user.role === 'superadmin';
-        return false;
-    }
+ function canAccess(requiredRole?: string) {
+     if (!requiredRole) return true;
+     if (requiredRole === 'user') return true;
+     if (requiredRole === 'admin') return ['admin', 'superadmin'].includes(user.role);
+     if (requiredRole === 'superadmin') return user.role === 'superadmin';
+     return false;
+ }
 
-    return (
-        <SidebarGroup>
-            <SidebarGroupContent className="flex flex-col gap-2">
-                <h1 className="text-sm text-muted-foreground">{user.role === 'user' ? "Bienvenue sur l'application" : "Bienvenue sur l'admin"}</h1>
+ return (
+     <SidebarGroup>
+         <SidebarGroupContent className="flex flex-col gap-2">
+             <h1 className="text-sm text-muted-foreground">{user.role === 'user' ? "Bienvenue sur l'application" : "Bienvenue sur l'admin"}</h1>
 
-                <SidebarMenu>
-                    <SidebarMenuItem className="flex items-center gap-2">
-                        <SidebarMenuButton
-                            tooltip="Quick Create"
-                            className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 active:bg-primary/90"
-                            onClick={() => onSelect('dashboard')}
-                        >
-                            <IconCirclePlusFilled />
-                            <span>EsCaLearn</span>
-                        </SidebarMenuButton>
+             <SidebarMenu>
+                 <SidebarMenuItem className="flex items-center gap-2">
+                     <SidebarMenuButton
+                         tooltip="Quick Create"
+                         className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 active:bg-primary/90"
+                         onClick={() => onSelect('dashboard')}
+                     >
+                         <IconCirclePlusFilled />
+                         <span>EsCaLearn</span>
+                     </SidebarMenuButton>
 
-                        <Button size="icon" className="size-8 group-data-[collapsible=icon]:opacity-0" variant="outline">
-                            <IconMail />
-                            <span className="sr-only">Inbox</span>
-                        </Button>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+                     <Button size="icon" className="size-8 group-data-[collapsible=icon]:opacity-0" variant="outline">
+                         <IconMail />
+                         <span className="sr-only">Inbox</span>
+                     </Button>
+                 </SidebarMenuItem>
+             </SidebarMenu>
 
-                <SidebarMenu>
-                    {items
-                        .filter((item) => canAccess(item.role))
-                        .map((item) => (
-                            <SidebarMenuItem key={item.id}>
-                                <SidebarMenuButton tooltip={item.title} onClick={() => onSelect(item.id)}>
-                                    {item.icon && <item.icon />}
-                                    <span>{item.title}</span>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        ))}
-                </SidebarMenu>
-            </SidebarGroupContent>
-        </SidebarGroup>
-    );
+             <SidebarMenu>
+                 {items
+                     .filter((item) => canAccess(item.role))
+                     .map((item) => (
+                         <SidebarMenuItem key={item.id}>
+                             <SidebarMenuButton tooltip={item.title} onClick={() => onSelect(item.id)}>
+                                 {item.icon && <item.icon />}
+                                 <span>{item.title}</span>
+                             </SidebarMenuButton>
+                         </SidebarMenuItem>
+                     ))}
+             </SidebarMenu>
+         </SidebarGroupContent>
+     </SidebarGroup>
+ );
 }
 
