@@ -60,11 +60,11 @@ export function NavMain({ onSelect }: { onSelect: (id: string) => void }) {
  ];
 
  function canAccess(requiredRole?: string) {
-     if (!requiredRole) return true;
-     if (requiredRole === 'user') return true;
-     if (requiredRole === 'admin') return ['admin', 'superadmin'].includes(user.role);
-     if (requiredRole === 'superadmin') return user.role === 'superadmin';
-     return false;
+  if (!requiredRole) return true;
+  if (requiredRole === 'user') return true;
+  if (requiredRole === 'admin') return ['admin', 'superadmin'].includes(user.role);
+  if (requiredRole === 'superadmin') return user.role === 'superadmin';
+  return false;
  }
 
  return (

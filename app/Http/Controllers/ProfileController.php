@@ -10,7 +10,8 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $request->validate([
-            'photo' => 'nullable|image|max:2048'
+            // 'photo' => 'nullable|image|max:2048'
+            'photo' => $user->photo ? asset('storage/' .$user->photo) : null,
         ]);
 
         $user = $request->user();
