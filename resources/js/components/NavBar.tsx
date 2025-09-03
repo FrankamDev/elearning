@@ -264,7 +264,7 @@ export default function Navbar() {
     className={`shadow-accent-lg fixed top-0 left-0 z-50 w-full bg-[#0E1124] text-white backdrop-blur-md transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'
      }`}
    >
-    <h1>{user.photo}</h1>
+    
     <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
      <div className="flex items-center space-x-6">
       <Link href="/" className="text-3xl font-semibold text-cyan-400">
@@ -364,7 +364,7 @@ export default function Navbar() {
        </Link>
       )}
 
-      {/* Mobile Menu Button */}
+     
       <div className="md:hidden">
        <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
