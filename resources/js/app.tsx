@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/AuthContext";
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
 
+
 function initializeTheme() {
  const savedTheme = localStorage.getItem("theme") || "light";
  document.querySelector("html")?.setAttribute("data-theme", savedTheme);
